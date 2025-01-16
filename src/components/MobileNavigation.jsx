@@ -139,7 +139,7 @@ function Navigation() {
     <nav className="lg:hidden xl:hidden h-screen ">
       <StyledMainNavList>
         {/* {user && ( */}
-        <StyledNavLink to="/myaccounts">
+        <StyledNavLink to="/myaccount">
           <div>My account</div>
           <StyledIconDiv>
             <CgProfile />
