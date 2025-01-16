@@ -11,7 +11,7 @@ import Advertisement from "./pages/Advertisement";
 import { useAuthContext } from "./hooks/useAuthContext";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import AnonymousRoute from "./components/AnonymousRoute";
-import Profile from "./pages/Profile";
+import MyAccount from "./pages/MyAccount";
 
 export default function App() {
   const { authIsReady, user } = useAuthContext();
@@ -33,9 +33,9 @@ export default function App() {
                 <Route path="/rent" element={<Rent />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/findanagent" element={<FindAnAgent />} />
-                <Route element={<ProtectedRoutes />}>
-                  <Route path="/profile" element={<Profile />} />
-                </Route>
+                {/* <Route element={<ProtectedRoutes />}> */}
+                <Route path="/myaccount" element={<MyAccount />} />
+                {/* </Route> */}
                 <Route path="/advertisement" element={<Advertisement />} />
                 <Route element={<AnonymousRoute />}>
                   <Route path="/signin" element={<SignIn />} />

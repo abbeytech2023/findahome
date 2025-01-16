@@ -9,7 +9,7 @@ const StyledInput = styled.input`
 
   /* width: auto; */
   padding-left: 1.25rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 
   &::placeholder {
     color: #8e979d;

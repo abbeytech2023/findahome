@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useCollection } from "../hooks/useCollection";
+import { StyledCartCard } from "./CartCard";
 
 const StyledLi = styled.li`
   display: flex;
@@ -23,7 +24,7 @@ export default function PropertiesToLet() {
   console.log(documents);
 
   return (
-    <div>
+    <StyledCartCard>
       <div className="flex justify-between px-8 text-large font-medium mt-9">
         <div>Properties</div>
         <div>Agents</div>
@@ -47,6 +48,6 @@ export default function PropertiesToLet() {
             </ul>
           );
         })}
-    </div>
+    </StyledCartCard>
   );
 }

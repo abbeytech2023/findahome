@@ -46,7 +46,7 @@ export default function Navigation() {
       </div>
 
       <div className="-800 flex items-center justify-between basis-1/3">
-        {user && <StyledNavLink to="/profile">My account</StyledNavLink>}
+        {<StyledNavLink to="/myaccount">My account</StyledNavLink>}
 
         <StyledNavLink to="advertisement">Advertisement</StyledNavLink>
 

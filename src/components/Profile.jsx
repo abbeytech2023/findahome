@@ -110,14 +110,7 @@ function Profile() {
           </FormRow>
         </form>
       </div>
-      <StyledSubheading>Your Houses For Sale</StyledSubheading>
-      <sectiion>
-        <ProductCart
-          uid={user && user.uid}
-          documents={documents}
-          error={error}
-        />
-      </sectiion>
+      {/* <StyledSubheading>Your Houses For Sale</StyledSubheading> */}
     </>
   );
 }

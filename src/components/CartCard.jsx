@@ -8,7 +8,7 @@ import bg from "../assets/images/illus.jpg";
 
 import styled from "styled-components";
 
-const StyledCartCard = styled.div`
+export const StyledCartCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
