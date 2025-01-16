@@ -12,7 +12,7 @@ function Tabbed() {
   const [activeTab, setActiveTab] = useState(1);
 
   return (
-    <div className=" w-auto h-auto   flex items-center justify-center pt-10 pb-16">
+    <div className=" w-full h-screen flex justify-center pt-20 pb-16">
       <div className=" flex relative h-auto flex-col mt-auto justify-center items-center shadow-2xl z-0 overflow-y-scroll md:w-full sm:w-full lg:w-2/4 xl:w-2/4">
         <h1 className="font-normal text-4xl text-center text-[#0f2c3d] ">
           Welcome to HomeHunter
@@ -25,7 +25,9 @@ function Tabbed() {
             SignIn
           </Tab>
         </div>
-        {activeTab === 1 ? <SignUpForm /> : <LoginForm />}
+        <div className="flex justify-center w-screen">
+          {activeTab === 1 ? <SignUpForm /> : <LoginForm />}
+        </div>
       </div>
     </div>
   );

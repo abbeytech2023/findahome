@@ -95,7 +95,7 @@ function MobileNavigation() {
 
   return (
     <>
-      <StyledMainNav className="xl:hidden lg:hidden px-2 py-4 flex items-center justify-between relative  xl:text-4xl sm:text-2xl bg-[#a8c1d1]  text-[#fff]">
+      <StyledMainNav className="xl:hidden lg:hidden px-2 py-4 flex items-center justify-between relative  xl:text-4xl sm:text-2xl bg-[#43525b]  text-[#fff]">
         <div className="text-white   top-3 left-4 ">
           <Logo />
         </div>
