@@ -6,6 +6,7 @@ import FormRow from "./FormRow";
 import StyledInput from "./StyledInput";
 import { useState } from "react";
 import styled from "styled-components";
+import { StyledSubheading } from "./HeadingText";
 
 const OpenCloseForm = styled.button`
   border: 1px solid black;
@@ -40,8 +41,10 @@ export default function PropertyLetForm() {
 
   return (
     <div className=" ">
-      <div>
-        <div className="h-screen mt-32 flex justify-center items-center">
+      <div className="flex items-center justify-center flex-col gap-8 mt-64 ">
+        <StyledSubheading>Properties To Let Form</StyledSubheading>
+
+        <div className="flex justify-center items-center">
           <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
             {/* <FormRow label="Full-Name" error={errors?.fullName?.message}>
               <StyledInput
@@ -120,7 +123,7 @@ function Form({ children, handleSubmit, onSubmit }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className=" min-w-full  flex gap-6 items-center justify-center flex-col"
+      className="   flex gap-6 items-center justify-center flex-col"
     >
       {children}
     </form>

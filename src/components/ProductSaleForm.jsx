@@ -3,6 +3,8 @@ import { useFirestore } from "../hooks/useFirestore";
 import Button from "./Button";
 import FormRow from "./FormRow";
 import StyledInput from "./StyledInput";
+import Form from "./Form";
+import { StyledSubheading } from "./HeadingText";
 
 function ProductSaleForm({ uid }) {
   const [propertyDetails, setPropertyDetails] = useState();
@@ -30,11 +32,17 @@ function ProductSaleForm({ uid }) {
 
   return (
     <div className=" w-full mb-9 ">
-      <div className=" flex">
+      <div className="flex items-center justify-center flex-col gap-8 mt-64">
+        <StyledSubheading>Properties For Sale Form</StyledSubheading>
+
         <div className="w-full">
-          <Form className="" onSubmit={handleSubmit}>
+          <form
+            className="flex items-center justify-center flex-col"
+            onSubmit={handleSubmit}
+          >
             <FormRow label="property details">
               <StyledInput
+                className="h-[120px]"
                 id="details"
                 onChange={(e) => setPropertyDetails(e.target.value)}
                 value={propertyDetails}
@@ -42,6 +50,7 @@ function ProductSaleForm({ uid }) {
             </FormRow>
             <FormRow label="Address">
               <StyledInput
+                className="h-[50px]"
                 placeHolder="The location of property"
                 id="location"
                 onChange={(e) => setAddress(e.target.value)}
@@ -77,7 +86,7 @@ function ProductSaleForm({ uid }) {
                 <Button type="primary">Loading...</Button>
               </FormRow>
             )}
-          </Form>
+          </form>
         </div>
       </div>
     </div>
@@ -85,14 +94,3 @@ function ProductSaleForm({ uid }) {
 }
 
 export default ProductSaleForm;
-
-function Form({ children, onSubmit }) {
-  return (
-    <form
-      onSubmit={onSubmit}
-      className="min-w-full flex gap-6 items-center justify-center bg-slate-50 flex-col"
-    >
-      {children}
-    </form>
-  );
-}

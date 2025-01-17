@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const StyledSubheading = styled.div`
   font-weight: 500;
-  margin-top: 5rem;
   text-align: center;
+  font-size: 2.25rem;
 `;
 
 export function HeadingText({ text }) {

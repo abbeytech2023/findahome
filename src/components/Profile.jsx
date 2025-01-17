@@ -8,6 +8,7 @@ import ProductCart from "../components/ProductCart";
 import { useUserCollection } from "../hooks/useUserCollection";
 import { StyledSubheading } from "../components/HeadingText";
 import { useLocation } from "react-router-dom";
+import Form from "./Form";
 
 // Email regex: /\S+@\S+\.\S+/
 function Profile() {
@@ -38,8 +39,9 @@ function Profile() {
 
   return (
     <>
-      <div className="flex items-center justify-center">
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-32">
+      <div className="flex items-center justify-center flex-col gap-8 ">
+        <StyledSubheading>Edit and save your profile</StyledSubheading>
+        <form onSubmit={handleSubmit(onSubmit)} className="h-auto">
           <FormRow label="Fullname" error={errors?.fullName?.message}>
             <StyledInput
               defaultValue={user && user.displayName}

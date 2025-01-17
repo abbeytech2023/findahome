@@ -5,8 +5,12 @@ import PropertiesToLet from "../components/PropertiesToLet";
 import ProductCart from "../components/ProductCart";
 import { useUserCollection } from "../hooks/useUserCollection";
 import { useAuthContext } from "../hooks/useAuthContext";
+import ProductSaleForm from "../components/ProductSaleForm";
+import { GiClosedDoors, GiHamburgerMenu } from "react-icons/gi";
+import { IoCloseSharp } from "react-icons/io5";
 
 export default function MyAccount() {
+  const [isOpen, setIsisOpen] = useState(true);
   const [activeTab, setActiveTab] = useState(null);
   const { user } = useAuthContext();
   const { documents, error } = useUserCollection(
@@ -15,35 +19,49 @@ export default function MyAccount() {
     ["createdAt", "desc"]
   );
   return (
-    <div className="h-screen flex gap-2">
-      <div className="h-screen bg-[#0d293b]">
-        <div className="flex  flex-col h-full min-w-[200px] font-semibold cursor-pointer  text-[#fff] justify-center gap-8 ">
-          <Tab num={1} activeTab={activeTab} setActiveTab={setActiveTab}>
-            My Profile
-          </Tab>
-          <Tab num={2} activeTab={activeTab} setActiveTab={setActiveTab}>
-            Add property for sale
-          </Tab>
-          <Tab num={3} activeTab={activeTab} setActiveTab={setActiveTab}>
-            Add property to let
-          </Tab>
-          <Tab num={4} activeTab={activeTab} setActiveTab={setActiveTab}>
-            My properties
-          </Tab>
-        </div>
-      </div>
-      <div className=" w-full flex items-center justify-center">
-        {activeTab === 1 ? <Profile /> : null}
-        {activeTab === 2 ? <CreatePropertiesToLetForm /> : null}
-        {activeTab === 3 ? <PropertiesToLet /> : null}
-        {activeTab === 4 ? (
-          <ProductCart
-            uid={user && user.uid}
-            documents={documents}
-            error={error}
+    <div className="h-screen  relative flex gap-2">
+      <div className="z-10 text-4xl absolute ">
+        {!isOpen && (
+          <GiHamburgerMenu
+            className="absolute top-[4.5rem] left-0.5"
+            onClick={() => setIsisOpen(true)}
           />
-        ) : null}
+        )}
+        {isOpen && (
+          <IoCloseSharp
+            className="text-white absolute top-[4.5rem] left-[9.75rem]"
+            onClick={() => setIsisOpen(false)}
+          />
+        )}
       </div>
+      <div className="fixed left-0 bottom-0 top-0 bg-[#0d293b] ">
+        {isOpen && <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />}
+      </div>
+      <div className="flex justify-center items-center w-full h-auto">
+        {activeTab === 1 ? <Profile /> : null}
+        {activeTab === 2 ? <ProductSaleForm /> : null}
+        {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
+        {activeTab === 4 ? <PropertiesToLet /> : null}
+      </div>
+    </div>
+  );
+}
+
+function Tabbed({ activeTab, setActiveTab }) {
+  return (
+    <div className="flex  flex-col h-full min-w-[200px] font-semibold cursor-pointer  text-[#fff] justify-center gap-8 ">
+      <Tab num={1} activeTab={activeTab} setActiveTab={setActiveTab}>
+        My Profile
+      </Tab>
+      <Tab num={2} activeTab={activeTab} setActiveTab={setActiveTab}>
+        Add property for sale
+      </Tab>
+      <Tab num={3} activeTab={activeTab} setActiveTab={setActiveTab}>
+        Add property to let
+      </Tab>
+      <Tab num={4} activeTab={activeTab} setActiveTab={setActiveTab}>
+        My properties
+      </Tab>
     </div>
   );
 }
