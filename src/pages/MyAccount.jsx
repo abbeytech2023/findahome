@@ -2,12 +2,24 @@ import Profile from "../components/Profile";
 import CreatePropertiesToLetForm from "../components/CreatePropertiesToLetForm";
 import { useState } from "react";
 import PropertiesToLet from "../components/PropertiesToLet";
-import ProductCart from "../components/ProductCart";
 import { useUserCollection } from "../hooks/useUserCollection";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ProductSaleForm from "../components/ProductSaleForm";
-import { GiClosedDoors, GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
+import styled from "styled-components";
+
+const StyledTabDiv = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background-color: #0d293b;
+  /* transform: translateY(-100%); */
+  pointer-events: none;
+  transition: all 0.3s ease-in;
+`;
 
 export default function MyAccount() {
   const [isOpen, setIsisOpen] = useState(true);
@@ -21,22 +33,27 @@ export default function MyAccount() {
   return (
     <div className="h-screen  relative flex gap-2">
       <div className="z-10 text-4xl absolute ">
-        {!isOpen && (
-          <GiHamburgerMenu
-            className="absolute top-[4.5rem] left-0.5"
-            onClick={() => setIsisOpen(true)}
-          />
-        )}
-        {isOpen && (
-          <IoCloseSharp
-            className="text-white absolute top-[4.5rem] left-[9.75rem]"
-            onClick={() => setIsisOpen(false)}
-          />
-        )}
+        <div
+          onClick={() => setIsisOpen(true)}
+          className={`bg-[#0d293b] flex gap-4 items-center text-white  py-2 px-1 absolute top-[4.5rem] left-0.5`}
+        >
+          {!isOpen && <h2 className="text-4xl">open</h2>}
+          {!isOpen && <GiHamburgerMenu />}
+        </div>
+        <div>
+          {isOpen && (
+            <IoCloseSharp
+              className="text-white  absolute top-[4.5rem] left-[9.75rem]"
+              onClick={() => setIsisOpen(false)}
+            />
+          )}
+        </div>
       </div>
-      <div className="fixed left-0 bottom-0 top-0 bg-[#0d293b] ">
+      <StyledTabDiv
+        className={`${!isOpen ? "translate-y-[-100%]" : "translate-y-0"}`}
+      >
         {isOpen && <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />}
-      </div>
+      </StyledTabDiv>
       <div className="flex justify-center items-center w-full h-auto">
         {activeTab === 1 ? <Profile /> : null}
         {activeTab === 2 ? <ProductSaleForm /> : null}

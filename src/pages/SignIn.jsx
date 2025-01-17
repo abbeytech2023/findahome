@@ -13,7 +13,7 @@ function Tabbed() {
 
   return (
     <div className="w-full flex flex-col items-center h-screen  pt-20 pb-16">
-      <div className="  flex-col mt-20  shadow-2xl z-0 overflow-y-scroll ">
+      <div className="  flex-col mt-5  shadow-2xl z-0 overflow-y-scroll ">
         <h1 className="font-normal text-4xl text-center text-[#0f2c3d]">
           Welcome to HomeHunter
         </h1>

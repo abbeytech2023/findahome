@@ -1,20 +1,22 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import css from "styled-components";
 
 const StyledLogo = styled(NavLink)`
-  background-color: #1c1818;
+  background-color: black;
   font-weight: 900;
   text-align: center;
   align-self: center;
-  font-size: 1.5rem;
   flex-basis: 3rem;
+  font-size: 1.5rem;
   letter-spacing: 2px;
 `;
+/* font-size: 1.5rem; */
 
-export default function Logo() {
+export default function Logo({ type }) {
   return (
-    <StyledLogo to="/">
-      <span className="text-[#a8c1d1]">FIND</span>
+    <StyledLogo type={type} className={``}>
+      <span className={`text-[#a8c1d1]`}>FIND</span>
       <span className="text-red-400">A</span>
       <span className=" text-[#fff]">HOME</span>
     </StyledLogo>

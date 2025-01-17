@@ -45,11 +45,11 @@ const StyledMainNavList = styled.div`
   & a {
     border-bottom: 1px solid #510a0a;
     padding: 1rem 2rem;
-    color: #2d0808;
+    color: #fff;
   }
 
   & a.active {
-    color: #5f7483;
+    color: #fff;
   }
 
   & a.active:hover {
@@ -57,7 +57,7 @@ const StyledMainNavList = styled.div`
   }
 
   & a:hover {
-    background-color: #8fb0c9;
+    background-color: #000;
   }
 `;
 
@@ -71,7 +71,7 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const StyledIconDiv = styled.div`
-  color: #222;
+  color: #fff;
   font-size: 1.125rem;
   font-weight: 500;
 `;
@@ -95,9 +95,9 @@ function MobileNavigation() {
 
   return (
     <>
-      <StyledMainNav className="xl:hidden lg:hidden px-2 py-4 flex items-center justify-between relative  xl:text-4xl sm:text-2xl bg-[#43525b]  text-[#fff]">
+      <StyledMainNav className="xl:hidden  lg:hidden px-2 py-4 flex items-center justify-between relative  xl:text-4xl sm:text-2xl bg-[#43525b]  text-[#fff]">
         <div className="text-white   top-3 left-4 ">
-          <Logo />
+          <Logo type="mobile" />
         </div>
         <div>
           <div className="justify-between xl:hidden text-4xl lg:hidden mr-4 ">
@@ -119,7 +119,7 @@ function MobileNavigation() {
         </div>
       </StyledMainNav>
       <div
-        className="z-40 bg-[#fff] text-lg"
+        className="z-40 bg-[#144c6f] text-lg"
         ref={numref}
         onClick={handleIsOpen}
       >

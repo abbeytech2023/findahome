@@ -4,7 +4,7 @@ import Button from "./Button";
 import FormRow from "./FormRow";
 import StyledInput from "./StyledInput";
 import Form from "./Form";
-import { StyledSubheading } from "./HeadingText";
+import { Heading, StyledSubheading } from "./HeadingText";
 
 function ProductSaleForm({ uid }) {
   const [propertyDetails, setPropertyDetails] = useState();
@@ -33,7 +33,7 @@ function ProductSaleForm({ uid }) {
   return (
     <div className=" w-full mb-9 ">
       <div className="flex items-center justify-center flex-col gap-8 mt-64">
-        <StyledSubheading>Properties For Sale Form</StyledSubheading>
+        <Heading as="h2">Properties For Sale Form</Heading>
 
         <div className="w-full">
           <form

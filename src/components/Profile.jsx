@@ -8,9 +8,10 @@ import ProductCart from "../components/ProductCart";
 import { useUserCollection } from "../hooks/useUserCollection";
 import { StyledSubheading } from "../components/HeadingText";
 import { useLocation } from "react-router-dom";
-import Form from "./Form";
+import { Heading } from "./HeadingText";
 
 // Email regex: /\S+@\S+\.\S+/
+
 function Profile() {
   const { user } = useAuthContext();
   const { documents, error } = useUserCollection(
@@ -40,7 +41,7 @@ function Profile() {
   return (
     <>
       <div className="flex items-center justify-center flex-col gap-8 ">
-        <StyledSubheading>Edit and save your profile</StyledSubheading>
+        <Heading as="h2">Edit and save your profile</Heading>
         <form onSubmit={handleSubmit(onSubmit)} className="h-auto">
           <FormRow label="Fullname" error={errors?.fullName?.message}>
             <StyledInput

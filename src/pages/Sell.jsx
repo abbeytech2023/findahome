@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ProductSaleForm from "../components/ProductSaleForm";
 import { BgOverlay } from "../components/BgOverlay";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Heading } from "../components/HeadingText";
 
 const SellSection = styled.section`
   height: 100vh;
@@ -20,9 +21,9 @@ export default function Sell() {
       <SellSection>
         <BgOverlay>
           <div className="w-full h-screen flex justify-center text-5xl text-center items-center gap-6 tracking-wider flex-col  /">
-            <h1 className="font-extrabold text-[#f7e6e6] tracking-[4px] xl:text-8xl lg:text-7xl sm:font-semibold sm:text-3xl md:text-5xl  ">
+            <h2 className="font-extrabold text-[#f7e6e6] tracking-[4px] xl:text-8xl lg:text-7xl sm:font-semibold sm:text-3xl md:text-5xl  ">
               Sell your home with confidence
-            </h1>
+            </h2>
             <p className="text-[#d2e1e9] font-medium text-2xl sm:text-3xl  ">
               FindAHome is making it simpler to sell your home and move forward.
             </p>
