@@ -8,6 +8,7 @@ import ProductSaleForm from "../components/ProductSaleForm";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
 import styled from "styled-components";
+import ProductCart from "../components/ProductCart";
 
 const StyledTabDiv = styled.div`
   position: fixed;
@@ -22,7 +23,7 @@ const StyledTabDiv = styled.div`
 
 export default function MyAccount() {
   const [isOpen, setIsisOpen] = useState(true);
-  const [activeTab, setActiveTab] = useState(null);
+  const [activeTab, setActiveTab] = useState(1);
   const { user } = useAuthContext();
   const { documents, error } = useUserCollection(
     "Outlets",
@@ -61,7 +62,9 @@ export default function MyAccount() {
         {activeTab === 1 ? <Profile /> : null}
         {activeTab === 2 ? <ProductSaleForm uid={user && user.uid} /> : null}
         {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
-        {activeTab === 4 ? <PropertiesToLet /> : null}
+        {activeTab === 4 ? (
+          <ProductCart documents={documents} error={error} />
+        ) : null}
       </div>
     </div>
   );

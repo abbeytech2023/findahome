@@ -175,7 +175,7 @@ function Navigation() {
           </StyledIconDiv>
         </StyledNavLink>
 
-        <StyledNavLink to="advertisement">
+        <StyledNavLink to="/">
           <div>Advertisement </div>
           <StyledIconDiv>
             <RiAdvertisementLine />

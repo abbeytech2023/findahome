@@ -3,6 +3,7 @@ import { BgOverlay } from "../components/BgOverlay";
 import Image from "../assets/images/Image-search.jpg";
 import { BackgroundImage } from "../components/BackgroundImage";
 import ProductCart from "../components/ProductCart";
+import { useCollection } from "../hooks/useCollection";
 // import { projectAuth } from "../firebase/config";
 
 const Section = styled.section`
@@ -18,6 +19,7 @@ const Section = styled.section`
 `;
 
 export default function Dashboard() {
+  const { documents, error } = useCollection("Outlets");
   return (
     <>
       <BackgroundImage>
@@ -29,7 +31,7 @@ export default function Dashboard() {
       </BackgroundImage>
 
       <section>
-        <ProductCart />
+        <ProductCart documents={documents} error={error} />
       </section>
     </>
   );
