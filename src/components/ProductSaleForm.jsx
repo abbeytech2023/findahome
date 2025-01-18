@@ -16,9 +16,10 @@ function ProductSaleForm({ uid }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // addDocument({ uid, address, propertyDetails, title, price });
+    addDocument({ uid, address, propertyDetails, title, price });
     console.log({ uid, address, propertyDetails, title, price });
-    console.log(response.isPending);
+    console.log(response);
+    console.log(response.success);
   };
 
   useEffect(() => {
@@ -76,16 +77,22 @@ function ProductSaleForm({ uid }) {
             <FormRow label="Phone">
               <StyledInput type="mobile" placeHolder="c" id="phone" />
             </FormRow>
-            {!response.isPending && (
-              <FormRow>
-                <Button type="primary">Complete</Button>
-              </FormRow>
-            )}
-            {response.isPending && (
+
+            <FormRow>
+              <Button type="primary">
+                {response.isPending === "completed" ? (
+                  <p>Complete</p>
+                ) : (
+                  <p>loading...</p>
+                )}
+              </Button>
+            </FormRow>
+
+            {/* {response.isPending && (
               <FormRow>
                 <Button type="primary">Loading...</Button>
               </FormRow>
-            )}
+            )} */}
           </form>
         </div>
       </div>

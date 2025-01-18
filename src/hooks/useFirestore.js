@@ -4,59 +4,66 @@ import { projectFirestore, timestamp } from "../firebase/config";
 
 let initialState = {
   document: null,
-  isPending: false,
+  isPending: "loading",
   error: null,
   success: null,
 };
 
 const firestoreReducer = (state, action) => {
+  console.log(state, action);
+
   switch (action.type) {
     case "IS_PENDING":
-      return { ...state, isPending: true, document: null, error: null };
-    case "ADDED_DOCUMENT":
+      return { ...state, isPending: "loading", document: null, error: null };
+    case "ADDED_DOC":
       return {
-        isPending: false,
+        ...state,
+        isPending: "completed",
         document: action.payload,
         success: true,
         error: null,
       };
     case "DELETED_DOCUMENT":
-      return { isPending: false, document: null, success: true, error: null };
+      return {
+        isPending: "completed",
+        document: null,
+        success: true,
+        error: null,
+      };
     case "ERROR":
       return {
-        isPending: false,
+        isPending: "completed",
         document: null,
         success: false,
         error: action.payload,
       };
     default:
-      return state;
+      throw new Error("unknown action");
   }
 };
 
 export const useFirestore = (collection) => {
   const [response, dispatch] = useReducer(firestoreReducer, initialState);
-  const [isCancelled, setIsCancelled] = useState(false);
+  // const [isCancelled, setIsCancelled] = useState(false);
 
   // collection ref
   const ref = projectFirestore.collection(collection);
 
   // only dispatch is not cancelled
   const dispatchIfNotCancelled = (action) => {
-    if (!isCancelled) {
-      dispatch(action);
-    }
+    // if (!isCancelled) {
+    dispatch(action);
+    // }
   };
 
   // add a document
   const addDocument = async (doc) => {
-    dispatch({ type: "IS_PENDING" });
-
     try {
+      dispatch({ type: "IS_PENDING" });
       const createdAt = timestamp.fromDate(new Date());
       const addedDocument = await ref.add({ ...doc, createdAt });
       dispatchIfNotCancelled({
-        type: "ADDED_DOCUMENT",
+        type: "ADDED_DOC",
         payload: addedDocument,
       });
     } catch (err) {
@@ -86,9 +93,9 @@ export const useFirestore = (collection) => {
     }
   };
 
-  useEffect(() => {
-    return () => setIsCancelled(true);
-  }, []);
+  // useEffect(() => {
+  //   return () => setIsCancelled(true);
+  // }, []);
 
   return { addDocument, deleteDocument, response };
 };

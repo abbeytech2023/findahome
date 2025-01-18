@@ -17,8 +17,7 @@ const StyledTabDiv = styled.div`
   height: 100%;
   background-color: #0d293b;
   /* transform: translateY(-100%); */
-  pointer-events: none;
-  transition: all 0.3s ease-in;
+  transition: all 0.3s ease-out;
 `;
 
 export default function MyAccount() {
@@ -31,13 +30,13 @@ export default function MyAccount() {
     ["createdAt", "desc"]
   );
   return (
-    <div className="h-screen  relative flex gap-2">
+    <div className="h-screen   relative flex gap-2">
       <div className="z-10 text-4xl absolute ">
         <div
           onClick={() => setIsisOpen(true)}
-          className={`bg-[#0d293b] flex gap-4 items-center text-white  py-2 px-1 absolute top-[4.5rem] left-0.5`}
+          className={`bg-[#0d293b] flex gap-4 items-center text-white  py-2 px-1 absolute top-[4.2rem] left-0.3`}
         >
-          {!isOpen && <h2 className="text-4xl">open</h2>}
+          {/* {!isOpen && <h2 className="text-4xl">open</h2>} */}
           {!isOpen && <GiHamburgerMenu />}
         </div>
         <div>
@@ -50,13 +49,17 @@ export default function MyAccount() {
         </div>
       </div>
       <StyledTabDiv
-        className={`${!isOpen ? "translate-y-[-100%]" : "translate-y-0"}`}
+        className={`${
+          !isOpen
+            ? "translate-x-[-100%] transition-all duration-[3s] ease-in pointer-events-none"
+            : "translate-x-0"
+        }`}
       >
         {isOpen && <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />}
       </StyledTabDiv>
-      <div className="flex justify-center items-center w-full h-auto">
+      <div className="w-full flex justify-center items-center h-auto">
         {activeTab === 1 ? <Profile /> : null}
-        {activeTab === 2 ? <ProductSaleForm /> : null}
+        {activeTab === 2 ? <ProductSaleForm uid={user && user.uid} /> : null}
         {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
         {activeTab === 4 ? <PropertiesToLet /> : null}
       </div>
