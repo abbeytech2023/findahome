@@ -16,6 +16,7 @@ const StyledTabDiv = styled.div`
   top: 0;
   bottom: 0;
   height: 100%;
+  z-index: 10;
   background-color: #0d293b;
   /* transform: translateY(-100%); */
   transition: all 0.3s ease-out;
@@ -40,14 +41,6 @@ export default function MyAccount() {
           {/* {!isOpen && <h2 className="text-4xl">open</h2>} */}
           {!isOpen && <GiHamburgerMenu />}
         </div>
-        <div>
-          {isOpen && (
-            <IoCloseSharp
-              className="text-white  absolute top-[4.5rem] left-[9.75rem]"
-              onClick={() => setIsisOpen(false)}
-            />
-          )}
-        </div>
       </div>
       <StyledTabDiv
         className={`${
@@ -56,6 +49,14 @@ export default function MyAccount() {
             : "translate-x-0"
         }`}
       >
+        <div>
+          {isOpen && (
+            <IoCloseSharp
+              className="text-white text-4xl  absolute top-[4.5rem] left-[9.75rem]"
+              onClick={() => setIsisOpen(false)}
+            />
+          )}
+        </div>
         {isOpen && <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />}
       </StyledTabDiv>
       <div className="w-full flex justify-center items-center h-auto">

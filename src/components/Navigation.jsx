@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useLogout } from "../hooks/useLogout";
 import Logo from "./Logo";
@@ -41,9 +41,9 @@ export default function Navigation() {
 
         <StyledNavLink to="/findanagent">Find an Agent</StyledNavLink>
       </div>
-      <div to="/" className=" ">
+      <NavLink to="/" className="bg-red-700 z-20 ">
         <Logo />
-      </div>
+      </NavLink>
 
       <div className="-800 flex items-center justify-between basis-1/3">
         {<StyledNavLink to="/myaccount">My account</StyledNavLink>}

@@ -75,7 +75,7 @@ export default function PropertyLetForm() {
             >
               <StyledInput
                 type="text"
-                id="password"
+                id="propertyLocation"
                 {...register("propertyLocation", {
                   required: "This field is required",
                 })}

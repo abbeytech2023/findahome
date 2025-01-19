@@ -1,6 +1,6 @@
 import CartCard from "./CartCard";
 import styled from "styled-components";
-import { StyledSubheading } from "./HeadingText";
+
 //HOOKS
 
 const StyledProductCartDiv = styled.div`
@@ -13,6 +13,8 @@ const StyledProductCartDiv = styled.div`
 `;
 
 function ProductCart({ documents, error }) {
+  console.log(error);
+
   // console.log(documents);
 
   return (

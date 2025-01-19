@@ -1,3 +1,4 @@
+import StarRating from "../components/StarRating";
 import { useCollection } from "../hooks/useCollection";
 
 export default function FindAnAgent() {
@@ -5,6 +6,9 @@ export default function FindAnAgent() {
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <h2>Find an agent</h2>
+      <div className=" text-[5rem] flex justify-center items-center w-full">
+        <StarRating />
+      </div>
       {error && <div>{error}</div>}
       {documents &&
         documents.map((user) => {

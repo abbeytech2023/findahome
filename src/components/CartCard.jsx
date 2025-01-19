@@ -31,7 +31,7 @@ function CartCard({ document }) {
 
   return (
     <StyledCartCard className=" gap-8   text-4xl rounded-3xl relative">
-      <div className="h-40 w-60 relative  ">
+      <div className="h-40 w-60 ">
         <img alt="image" src={bg} />
       </div>
       <h1 className="text-3xl uppercase">{document.title}</h1>

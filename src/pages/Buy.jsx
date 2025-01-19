@@ -2,8 +2,10 @@ import { BackgroundImage } from "../components/BackgroundImage";
 import { BgOverlay } from "../components/BgOverlay";
 import { StyledSubheading } from "../components/HeadingText";
 import ProductCart from "../components/ProductCart";
+import StarRating123 from "../components/StarRating";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useCollection } from "../hooks/useCollection";
+import FindAgent from "../components/FindAgent";
 
 export default function Buy() {
   const { user } = useAuthContext();
@@ -35,9 +37,13 @@ export default function Buy() {
         </section>
       )}
       {!user && (
-        <section>
-          <ProductCart documents={documents} error={error} />
-        </section>
+        <>
+          <section>
+            <ProductCart documents={documents} error={error} />
+            <StarRating123 />
+          </section>
+          <FindAgent />
+        </>
       )}
     </>
   );

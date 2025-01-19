@@ -96,9 +96,9 @@ function MobileNavigation() {
   return (
     <>
       <StyledMainNav className="xl:hidden  lg:hidden px-2 py-4 flex items-center justify-between relative  xl:text-4xl sm:text-2xl bg-[#43525b]  text-[#fff]">
-        <div className="text-white   top-3 left-4 ">
+        <NavLink to="/" className="  top-3 left-4 ">
           <Logo type="mobile" />
-        </div>
+        </NavLink>
         <div>
           <div className="justify-between xl:hidden text-4xl lg:hidden mr-4 ">
             {!isOpen && (
