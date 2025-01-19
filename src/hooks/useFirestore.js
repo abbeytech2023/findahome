@@ -4,7 +4,7 @@ import { projectFirestore, timestamp } from "../firebase/config";
 
 let initialState = {
   document: null,
-  isPending: "loading",
+  isPending: "completed",
   error: null,
   success: null,
 };

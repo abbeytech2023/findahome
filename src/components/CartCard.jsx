@@ -30,13 +30,13 @@ function CartCard({ document }) {
   const deleteCart = location.pathname === "/profile";
 
   return (
-    <StyledCartCard className=" gap-8   text-4xl rounded-3xl relative">
+    <StyledCartCard className=" gap-8 text-4xl rounded-3xl relative">
       <div className="h-40 w-60 ">
         <img alt="image" src={bg} />
       </div>
-      <h1 className="text-3xl uppercase">{document.title}</h1>
-      <p className="text-3xl">{document.price}</p>
-      <p className="text-3xl w-2/3 h-2/5">{document.propertyDetails}</p>
+      <h1 className="text-[18px] uppercase">{document.title}</h1>
+      <p className="text-lg">{document.price}</p>
+      <p className="text-lg w-2/3 h-2/5">{document.propertyDetails}</p>
       {deleteCart && (
         <button
           onClick={() => deleteDocument(document.id)}

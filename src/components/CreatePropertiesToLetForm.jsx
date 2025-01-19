@@ -4,9 +4,8 @@ import { useForm } from "react-hook-form";
 import Button from "./Button";
 import FormRow from "./FormRow";
 import StyledInput from "./StyledInput";
-import { useState } from "react";
 import styled from "styled-components";
-import { Heading, StyledSubheading } from "./HeadingText";
+import { Heading } from "./HeadingText";
 
 const OpenCloseForm = styled.button`
   border: 1px solid black;
@@ -41,7 +40,7 @@ export default function PropertyLetForm() {
 
   return (
     <div className=" ">
-      <div className="flex items-center justify-center flex-col gap-8 mt-20 ">
+      <div className="flex items-center justify-center flex-col gap-8 ">
         <Heading as="h2">Properties To Let Form</Heading>
 
         <div className="flex justify-center items-center">
@@ -104,12 +103,14 @@ export default function PropertyLetForm() {
               />
             </FormRow>
             <FormRow>
-              {<Button type="primary">Complete</Button>}
-              {/* {
+              {response.isPending === "completed" && (
+                <Button type="primary">Complete</Button>
+              )}
+              {response.isPending === "loading" && (
                 <Button type="primary" disabled>
                   loading...
                 </Button>
-              } */}
+              )}
             </FormRow>
             {/* {error && <p className="text-[1.8rem]  text-red-700">{error}</p>} */}
           </Form>

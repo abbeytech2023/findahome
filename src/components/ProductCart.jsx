@@ -1,16 +1,7 @@
 import CartCard from "./CartCard";
-import styled from "styled-components";
-
+import { GridContainer, GridInner } from "./Grid";
+import { Heading } from "./HeadingText";
 //HOOKS
-
-const StyledProductCartDiv = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  grid-template-rows: auto;
-
-  grid-gap: 4rem;
-  margin-top: 5rem;
-`;
 
 function ProductCart({ documents, error }) {
   console.log(error);
@@ -18,23 +9,23 @@ function ProductCart({ documents, error }) {
   // console.log(documents);
 
   return (
-    <>
-      <section>
-        {error && <p>{error}</p>}
-
-        {documents && (
-          <StyledProductCartDiv>
+    <div className=" flex flex-col mt-36 justify-center items-center h-full w-full">
+      {error && <p>{error}</p>}
+      <Heading as="h2">Your Properties to sell</Heading>
+      {documents && (
+        <GridContainer>
+          <>
             {documents.map((document) => {
               return (
-                <div key={document.uid}>
+                <GridInner key={document.uid}>
                   <CartCard document={document} />
-                </div>
+                </GridInner>
               );
             })}
-          </StyledProductCartDiv>
-        )}
-      </section>
-    </>
+          </>
+        </GridContainer>
+      )}
+    </div>
   );
 }
 

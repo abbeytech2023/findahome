@@ -33,7 +33,7 @@ function ProductSaleForm({ uid }) {
 
   return (
     <div className=" w-full mb-9 ">
-      <div className="flex items-center justify-center flex-col gap-8 mt-64">
+      <div className="flex items-center justify-center flex-col gap-8 h-screen mt-32">
         <Heading as="h2">Properties For Sale Form</Heading>
 
         <div className="w-full">

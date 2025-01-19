@@ -4,6 +4,7 @@ import Image from "../assets/images/Image-search.jpg";
 import { BackgroundImage } from "../components/BackgroundImage";
 import ProductCart from "../components/ProductCart";
 import { useCollection } from "../hooks/useCollection";
+import PropertiesToLet from "../components/PropertiesToLet";
 // import { projectAuth } from "../firebase/config";
 
 const Section = styled.section`
@@ -31,6 +32,9 @@ export default function Dashboard() {
       </BackgroundImage>
 
       <section>
+        <div>
+          <PropertiesToLet />
+        </div>
         <ProductCart documents={documents} error={error} />
       </section>
     </>

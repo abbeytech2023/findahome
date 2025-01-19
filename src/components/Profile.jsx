@@ -40,7 +40,7 @@ function Profile() {
 
   return (
     <>
-      <div className="flex items-center justify-center flex-col gap-8 ">
+      <div className="flex items-center justify-center flex-col gap-8">
         <Heading as="h2">Edit and save your profile</Heading>
         <form onSubmit={handleSubmit(onSubmit)} className="h-auto">
           <FormRow label="Fullname" error={errors?.fullName?.message}>

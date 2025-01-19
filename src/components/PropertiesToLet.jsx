@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useCollection } from "../hooks/useCollection";
 import { StyledCartCard } from "./CartCard";
+import { Heading } from "./HeadingText";
 
 const StyledLi = styled.li`
   display: flex;
@@ -26,8 +27,7 @@ export default function PropertiesToLet() {
   return (
     <StyledCartCard>
       <div className="flex justify-between px-8 text-large font-medium mt-9">
-        <div>Properties</div>
-        <div>Agents</div>
+        <Heading as="h2">your Properties to let</Heading>
       </div>
       {documents &&
         documents.map((document, index) => {

@@ -32,11 +32,11 @@ export default function MyAccount() {
     ["createdAt", "desc"]
   );
   return (
-    <div className="h-screen   relative flex gap-2">
+    <div className="relative flex gap-2">
       <div className="z-10 text-4xl absolute ">
         <div
           onClick={() => setIsisOpen(true)}
-          className={`bg-[#0d293b] flex gap-4 items-center text-white  py-2 px-1 absolute top-[4.2rem] left-0.3`}
+          className={`bg-[#0d293b] flex gap-4 items-center text-white  py-2 px-1 absolute top-[6.8rem] left-0.3`}
         >
           {/* {!isOpen && <h2 className="text-4xl">open</h2>} */}
           {!isOpen && <GiHamburgerMenu />}
@@ -52,19 +52,22 @@ export default function MyAccount() {
         <div>
           {isOpen && (
             <IoCloseSharp
-              className="text-white text-4xl  absolute top-[4.5rem] left-[9.75rem]"
+              className="text-white text-4xl  absolute top-[6.8rem] left-[9.75rem]"
               onClick={() => setIsisOpen(false)}
             />
           )}
         </div>
         {isOpen && <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />}
       </StyledTabDiv>
-      <div className="w-full flex justify-center items-center h-auto">
+      <div className="w-full flex flex-col justify-center items-center h-screen">
         {activeTab === 1 ? <Profile /> : null}
         {activeTab === 2 ? <ProductSaleForm uid={user && user.uid} /> : null}
         {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
         {activeTab === 4 ? (
-          <ProductCart documents={documents} error={error} />
+          <>
+            <ProductCart documents={documents} error={error} />
+            {/* <PropertiesToLet /> */}
+          </>
         ) : null}
       </div>
     </div>
@@ -73,7 +76,7 @@ export default function MyAccount() {
 
 function Tabbed({ activeTab, setActiveTab }) {
   return (
-    <div className="flex  flex-col h-full min-w-[200px] font-semibold cursor-pointer  text-[#fff] justify-center gap-8 ">
+    <div className="flex  flex-col gap-11 h-full min-w-[200px] font-semibold cursor-pointer  text-[#fff] justify-center  ">
       <Tab num={1} activeTab={activeTab} setActiveTab={setActiveTab}>
         My Profile
       </Tab>
