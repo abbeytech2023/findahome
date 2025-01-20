@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useCollection } from "../hooks/useCollection";
 import { StyledCartCard } from "./CartCard";
 import { Heading } from "./HeadingText";
+import { GridContainer, GridInner } from "./Grid";
 
 const StyledLi = styled.li`
   display: flex;
@@ -25,29 +26,31 @@ export default function PropertiesToLet() {
   console.log(documents);
 
   return (
-    <StyledCartCard>
-      <div className="flex justify-between px-8 text-large font-medium mt-9">
-        <Heading as="h2">your Properties to let</Heading>
+    <div className="flex mt-20 flex-col items-center">
+      <div className="">
+        <Heading as="h2" className="uppercase mb-12">
+          Properties to let
+        </Heading>
       </div>
       {documents &&
         documents.map((document, index) => {
           return (
-            <ul
+            <GridContainer
               key={document.id}
-              className="text-3xl mt-10 text-center flex flex-col"
+              className="text-2xl mt-10 text-center flex flex-col"
             >
-              <StyledLi>
-                <span>
+              <GridInner className="flex px-11 ">
+                <span className="flex gap-11 ">
                   {index + 1}
                   <p>
                     {document.propertyDescription}, {document.propertyLocation}
                   </p>
                 </span>
-                <div>{document.agentName}</div>
-              </StyledLi>
-            </ul>
+                <div className="ml-auto">{document.agentName}</div>
+              </GridInner>
+            </GridContainer>
           );
         })}
-    </StyledCartCard>
+    </div>
   );
 }

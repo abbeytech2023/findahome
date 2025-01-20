@@ -191,7 +191,7 @@ function Navigation() {
         {user && (
           <Link
             to="/signin"
-            className="flex justify-around text-[#2d0808]"
+            className="flex justify-between text-[#2d0808]"
             onClick={logout}
           >
             <div>Logout</div>

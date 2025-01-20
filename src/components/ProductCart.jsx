@@ -9,9 +9,11 @@ function ProductCart({ documents, error }) {
   // console.log(documents);
 
   return (
-    <div className=" flex flex-col mt-36 justify-center items-center h-full w-full">
+    <div className="mt-40 w-full  flex items-center justify-center px-16 flex-col">
       {error && <p>{error}</p>}
-      <Heading as="h2">Your Properties to sell</Heading>
+      <Heading as="h2" className="uppercase">
+        Properties for sale
+      </Heading>
       {documents && (
         <GridContainer>
           <>

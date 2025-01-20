@@ -9,7 +9,7 @@ import FindAgent from "../components/FindAgent";
 
 export default function Buy() {
   const { user } = useAuthContext();
-  const { documents, error } = useCollection("Tolets");
+  const { documents, error } = useCollection("Outlets");
 
   return (
     <>
@@ -27,24 +27,19 @@ export default function Buy() {
       </BackgroundImage>
 
       {/* ------------------- BUY RENT SELL SECTION -------------  */}
-      <div className="mt-72 mb-20 xl:text-4xl text-4xl ">
-        <StyledSubheading>Our Houses</StyledSubheading>
-      </div>
 
       {user && (
         <section>
           <ProductCart uid={user.uid} documents={documents} error={error} />
         </section>
       )}
-      {!user && (
+      {/* {!user && (
         <>
           <section>
             <ProductCart documents={documents} error={error} />
-            <StarRating123 />
           </section>
-          <FindAgent />
         </>
-      )}
+      )} */}
     </>
   );
 }

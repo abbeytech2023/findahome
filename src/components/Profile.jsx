@@ -4,9 +4,7 @@ import FormRow from "../components/FormRow";
 import Button from "../components/Button";
 import StyledInput from "../components/StyledInput";
 import { useAuthContext } from "../hooks/useAuthContext";
-import ProductCart from "../components/ProductCart";
 import { useUserCollection } from "../hooks/useUserCollection";
-import { StyledSubheading } from "../components/HeadingText";
 import { useLocation } from "react-router-dom";
 import { Heading } from "./HeadingText";
 
@@ -40,9 +38,11 @@ function Profile() {
 
   return (
     <>
-      <div className="flex items-center justify-center flex-col gap-8">
-        <Heading as="h2">Edit and save your profile</Heading>
-        <form onSubmit={handleSubmit(onSubmit)} className="h-auto">
+      <div className="flex items-center justify-center flex-col mt-44 gap-8">
+        <Heading as="h2" className="px-2">
+          Edit and save your profile
+        </Heading>
+        <form onSubmit={handleSubmit(onSubmit)} className="">
           <FormRow label="Fullname" error={errors?.fullName?.message}>
             <StyledInput
               defaultValue={user && user.displayName}
@@ -108,7 +108,7 @@ function Profile() {
             />
           </FormRow>
 
-          <FormRow className="text-gray-700" disabled>
+          <FormRow className="text-gray-700 mt-1rem" disabled>
             <Button type="small">Save</Button>
           </FormRow>
         </form>

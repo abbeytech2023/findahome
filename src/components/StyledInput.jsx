@@ -5,7 +5,7 @@ const StyledInput = styled.input`
   justify-content: center; */
   border: 1px solid black;
   border-radius: 0.5rem;
-  padding: 0 2rem;
+  padding: 0.6rem 2rem;
   width: 100%;
   /* font-size: 1.4rem; */
 

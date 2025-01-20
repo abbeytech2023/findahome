@@ -31,9 +31,9 @@ export default function Rent() {
           </section>
         </BgOverlay>
       </RentSection>
-      <div className="mt-64 mb-20 lg:text-5xl">
+      {/* <div className="mt-64 mb-20 lg:text-5xl">
         <StyledSubheading>Properties to Let</StyledSubheading>
-      </div>
+      </div> */}
 
       <div>
         <PropertiesToLet />

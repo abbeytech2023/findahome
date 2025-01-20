@@ -7,7 +7,7 @@ export const GridContainer = styled.div`
   grid-template-rows: auto;
   width: 100%;
 
-  /* grid-gap: 4rem; */
+  grid-gap: 4rem;
 `;
 
 // .work {

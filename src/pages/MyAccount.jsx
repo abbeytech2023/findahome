@@ -5,7 +5,8 @@ import PropertiesToLet from "../components/PropertiesToLet";
 import { useUserCollection } from "../hooks/useUserCollection";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ProductSaleForm from "../components/ProductSaleForm";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { CgMenuGridO } from "react-icons/cg";
+
 import { IoCloseSharp } from "react-icons/io5";
 import styled from "styled-components";
 import ProductCart from "../components/ProductCart";
@@ -36,10 +37,10 @@ export default function MyAccount() {
       <div className="z-10 text-4xl absolute ">
         <div
           onClick={() => setIsisOpen(true)}
-          className={`bg-[#0d293b] flex gap-4 items-center text-white  py-2 px-1 absolute top-[6.8rem] left-0.3`}
+          className={`bg-[#0d293b] flex gap-4  items-center text-white  py-2 px-1 absolute top-16 left-0  xl:top-[6.8rem] lg:top-[6.8rem]  xl:left-0 lg:left-0`}
         >
           {/* {!isOpen && <h2 className="text-4xl">open</h2>} */}
-          {!isOpen && <GiHamburgerMenu />}
+          {!isOpen && <CgMenuGridO />}
         </div>
       </div>
       <StyledTabDiv
@@ -52,14 +53,14 @@ export default function MyAccount() {
         <div>
           {isOpen && (
             <IoCloseSharp
-              className="text-white text-4xl  absolute top-[6.8rem] left-[9.75rem]"
+              className="text-white text-4xl  absolute top-16 left-[161px]  xl:top-[6rem] lg:top-[6rem]  xl:left-[161px] lg:left-[161px]"
               onClick={() => setIsisOpen(false)}
             />
           )}
         </div>
         {isOpen && <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />}
       </StyledTabDiv>
-      <div className="w-full flex flex-col justify-center items-center h-screen">
+      <div className="w-full flex flex-col justify-center items-center">
         {activeTab === 1 ? <Profile /> : null}
         {activeTab === 2 ? <ProductSaleForm uid={user && user.uid} /> : null}
         {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
