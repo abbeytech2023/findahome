@@ -77,7 +77,7 @@ export default function MyAccount() {
 
 function Tabbed({ activeTab, setActiveTab }) {
   return (
-    <div className="flex  flex-col gap-11 h-full min-w-[200px] font-semibold cursor-pointer  text-[#fff] justify-center  ">
+    <div className="flex  flex-col gap-11 h-full min-w-[200px] font-semibold cursor-pointer items-center  text-[#fff] justify-center  ">
       <Tab num={1} activeTab={activeTab} setActiveTab={setActiveTab}>
         My Profile
       </Tab>
