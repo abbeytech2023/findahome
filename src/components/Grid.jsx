@@ -5,8 +5,6 @@ export const GridContainer = styled.div`
   margin-top: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   grid-template-rows: auto;
-  width: 100%;
-
   grid-gap: 4rem;
 `;
 

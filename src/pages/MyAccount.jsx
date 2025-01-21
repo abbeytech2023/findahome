@@ -60,7 +60,7 @@ export default function MyAccount() {
         </div>
         {isOpen && <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />}
       </StyledTabDiv>
-      <div className="w-full flex flex-col justify-center items-center">
+      <div className=" flex flex-col justify-center items-center">
         {activeTab === 1 ? <Profile /> : null}
         {activeTab === 2 ? <ProductSaleForm uid={user && user.uid} /> : null}
         {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
