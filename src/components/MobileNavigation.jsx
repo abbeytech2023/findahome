@@ -43,12 +43,13 @@ const StyledMainNavList = styled.div`
   list-style: none;
 
   & a {
-    border-bottom: 1px solid #510a0a;
+    border-bottom: 1px solid #fff;
     padding: 1rem 2rem;
     color: #fff;
   }
 
   & a.active {
+    background-color: #000;
     color: #fff;
   }
 
@@ -189,11 +190,7 @@ function Navigation() {
         )}
 
         {user && (
-          <Link
-            to="/signin"
-            className="flex justify-between text-[#2d0808]"
-            onClick={logout}
-          >
+          <Link to="/signin" className="flex justify-between " onClick={logout}>
             <div>Logout</div>
 
             <StyledIconDiv>

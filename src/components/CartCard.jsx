@@ -37,8 +37,11 @@ function CartCard({ document }) {
           <img alt="image" src={bg} />
         </div>
         <h1 className="text-[18px] uppercase">{document.title}</h1>
-        <p className="text-lg">{document.price}</p>
-        <p className="text-lg ">{document.propertyDetails}</p>
+        <p className=" text-lg">{document.price}</p>
+        <p className="h-[7rem] text-lg ">
+          {document.propertyDetails} Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Id, omnis.
+        </p>
         {deleteCart && (
           <button
             onClick={() => deleteDocument(document.id)}

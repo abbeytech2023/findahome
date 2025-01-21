@@ -26,7 +26,7 @@ export default function PropertiesToLet() {
   console.log(documents);
 
   return (
-    <div className="flex mt-20 flex-col items-center w-full">
+    <div className="flex mt-20  flex-col items-center w-full">
       <div className="">
         <Heading as="h2" className="uppercase mb-12">
           Properties to let
@@ -43,16 +43,16 @@ export default function PropertiesToLet() {
               key={document.id}
               className="text-2xl mt-10 text-center flex flex-col"
             >
-              <GridInner className="flex w-full gap-12 ">
-                <span className="flex gap-11 ">
+              <GridInner className="flex w-full px-9 gap-12 items-center">
+                <span className="flex gap-11 text-center ">
                   {index + 1}
                   <p>
-                    {document.propertyDescription}, {document.propertyLocation}{" "}
+                    {document.propertyDescription}, {document.propertyLocation}
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     Animi, laudantium.
                   </p>
                 </span>
-                <div className="ml-auto">{document.agentName}</div>
+                <div className="">{document.agentName}</div>
               </GridInner>
             </GridContainer>
           );
