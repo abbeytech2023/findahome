@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const GridContainer = styled.div`
   display: grid;
   margin-top: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   grid-template-rows: auto;
   grid-gap: 4rem;
 `;
@@ -17,6 +17,7 @@ export const GridContainer = styled.div`
 
 export const GridInner = styled.div`
   border-radius: 1rem;
+  background-color: #7a7aae;
   width: 100%;
   position: relative;
   overflow: hidden;
