@@ -39,7 +39,7 @@ function Profile() {
   return (
     <>
       <div className="flex items-center justify-center flex-col mt-44 gap-8">
-        <Heading as="h2" className="px-2">
+        <Heading as="h2" className="text-center px-2">
           Edit and save your profile
         </Heading>
         <form onSubmit={handleSubmit(onSubmit)} className="">

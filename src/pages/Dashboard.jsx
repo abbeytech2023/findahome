@@ -25,8 +25,9 @@ export default function Dashboard() {
     <>
       <BackgroundImage>
         <BgOverlay className="h-full w-full flex items-center justify-center">
-          <h1 className=" font-medium text-3xl  text-[#d0ebd1] tracking-[4px] lg:text-7xl sm:font-semibold sm:text-4xl md:text-5xl  ">
-            Find Your New Home with Home-Finder
+          <h1 className="text-center font-medium text-3xl  text-[#d0ebd1] tracking-[4px] lg:text-7xl sm:font-semibold sm:text-4xl md:text-5xl  ">
+            The Ultimate Neighborhood Guide. <br /> Discover the Best Places to
+            Live
           </h1>
         </BgOverlay>
       </BackgroundImage>

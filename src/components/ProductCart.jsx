@@ -11,7 +11,7 @@ function ProductCart({ documents, error }) {
   return (
     <div className="mt-40 px-[3rem] ">
       {error && <p>{error}</p>}
-      <Heading as="h2" className="uppercase">
+      <Heading as="h2" className=" uppercase text-center">
         Properties for sale
       </Heading>
       {documents && (

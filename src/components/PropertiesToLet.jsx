@@ -28,7 +28,7 @@ export default function PropertiesToLet() {
   return (
     <div className="flex mt-20  flex-col items-center w-full">
       <div className="">
-        <Heading as="h2" className="uppercase mb-12">
+        <Heading as="h2" className="text-center uppercase mb-12">
           Properties to let
         </Heading>
       </div>
@@ -39,22 +39,22 @@ export default function PropertiesToLet() {
       {documents &&
         documents.map((document, index) => {
           return (
-            <GridContainer
+            <div
               key={document.id}
-              className="text-2xl mt-10 text-center flex flex-col"
+              className="text-lg mt-10 text-center flex flex-col"
             >
-              <GridInner className="flex w-full px-9 gap-12 items-center">
-                <span className="flex gap-11 text-center ">
+              <div className="flex px-9  gap-12 items-center">
+                <span className="flex gap-4 w-3/4 text-center ">
                   {index + 1}
-                  <p>
+                  <p className="">
                     {document.propertyDescription}, {document.propertyLocation}
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     Animi, laudantium.
                   </p>
                 </span>
-                <div className="">{document.agentName}</div>
-              </GridInner>
-            </GridContainer>
+                <div className="w-1/4">{document.agentName}</div>
+              </div>
+            </div>
           );
         })}
     </div>
