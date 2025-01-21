@@ -9,19 +9,19 @@ function ProductCart({ documents, error }) {
   // console.log(documents);
 
   return (
-    <div className="mt-40 w-full  flex items-center justify-center px-16 flex-col">
+    <div className="mt-40 px-[3rem] ">
       {error && <p>{error}</p>}
       <Heading as="h2" className="uppercase">
         Properties for sale
       </Heading>
       {documents && (
-        <GridContainer>
+        <GridContainer className="">
           <>
             {documents.map((document) => {
               return (
-                <GridInner key={document.uid}>
+                <div key={document.uid}>
                   <CartCard document={document} />
-                </GridInner>
+                </div>
               );
             })}
           </>

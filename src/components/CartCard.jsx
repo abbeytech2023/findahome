@@ -3,13 +3,14 @@ import { useLocation } from "react-router-dom";
 
 import { MdDelete } from "react-icons/md";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { GridInner } from "./Grid";
 
 import bg from "../assets/images/illus.jpg";
 
 import styled from "styled-components";
 
 export const StyledCartCard = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -18,7 +19,7 @@ export const StyledCartCard = styled.div`
   padding: 3rem;
   gap: 2rem;
   border-radius: 1.5rem;
-  box-shadow: 7px 3px 8px rgba(85, 85, 85, 0.487);
+  box-shadow: 7px 3px 8px rgba(85, 85, 85, 0.487); */
 `;
 
 function CartCard({ document }) {
@@ -30,22 +31,24 @@ function CartCard({ document }) {
   const deleteCart = location.pathname === "/profile";
 
   return (
-    <StyledCartCard className=" gap-8 text-4xl rounded-3xl relative">
-      <div className="h-40 w-60 ">
-        <img alt="image" src={bg} />
+    <GridInner className=" gap-8 text-4xl rounded-3xl relative">
+      <div className="w-full h-full px-4 py-8 flex flex-col gap-1 justify-center items-center">
+        <div className="w-2/4 ">
+          <img alt="image" src={bg} />
+        </div>
+        <h1 className="text-[18px] uppercase">{document.title}</h1>
+        <p className="text-lg">{document.price}</p>
+        <p className="text-lg ">{document.propertyDetails}</p>
+        {deleteCart && (
+          <button
+            onClick={() => deleteDocument(document.id)}
+            className="2xl absolute right-3 top-3"
+          >
+            <MdDelete className="text-gray-400" />
+          </button>
+        )}
       </div>
-      <h1 className="text-[18px] uppercase">{document.title}</h1>
-      <p className="text-lg">{document.price}</p>
-      <p className="text-lg w-2/3 h-2/5">{document.propertyDetails}</p>
-      {deleteCart && (
-        <button
-          onClick={() => deleteDocument(document.id)}
-          className="2xl absolute right-3 top-3"
-        >
-          <MdDelete className="text-gray-400" />
-        </button>
-      )}
-    </StyledCartCard>
+    </GridInner>
   );
 }
 
