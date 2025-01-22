@@ -5,6 +5,7 @@ import { BackgroundImage } from "../components/BackgroundImage";
 import ProductCart from "../components/ProductCart";
 import { useCollection } from "../hooks/useCollection";
 import PropertiesToLet from "../components/PropertiesToLet";
+import { Heading } from "../components/HeadingText";
 // import { projectAuth } from "../firebase/config";
 
 const Section = styled.section`
@@ -25,10 +26,12 @@ export default function Dashboard() {
     <>
       <BackgroundImage>
         <BgOverlay className="h-full w-full flex items-center justify-center">
-          <h1 className="text-center font-medium text-3xl  text-[#d0ebd1] tracking-[4px] lg:text-7xl sm:font-semibold sm:text-4xl md:text-5xl  ">
-            The Ultimate Neighborhood Guide. <br /> Discover the Best Places to
-            Live
-          </h1>
+          <div>
+            <Heading className="text-center font-extrabold text-3xl  text-[#d0ebd1] tracking-[4px] lg:text-7xl  sm:text-4xl md:text-5xl ">
+              The Ultimate Neighborhood Guide. <br /> Discover the Best Places
+              to Live
+            </Heading>
+          </div>
         </BgOverlay>
       </BackgroundImage>
 

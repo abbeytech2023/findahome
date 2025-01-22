@@ -14,7 +14,7 @@ const RentSection = styled.section`
 `;
 
 import { BgOverlay } from "../components/BgOverlay";
-import { StyledSubheading } from "../components/HeadingText";
+import { Heading, StyledSubheading } from "../components/HeadingText";
 
 export default function Rent() {
   return (
@@ -24,10 +24,15 @@ export default function Rent() {
           <section
             className={`relative bg-no-repeat bg-center bg-cover w-full items-center justify-center  flex h-screen`}
           >
-            <div className="text-center text-4xl font-extrabold text-[#a8c1d1] xl:text-9xl lg:text-8xl md:text-7xl  w-full h-full flex  flex-col justify-center items-center ">
-              <p>
-                Get Ready to move, your step by step guide to a stress free
-                relocation
+            <div className="text-center w-full h-full flex  flex-col justify-center items-center ">
+              <Heading
+                as="h1"
+                className="text-5xl   font-extrabold text-[#a8c1d1] "
+              >
+                Get Ready to move,
+              </Heading>
+              <p className="text-[#b9d0de] text-4xl mt-5">
+                your step by step guide to a stress free relocation
               </p>
             </div>
           </section>
