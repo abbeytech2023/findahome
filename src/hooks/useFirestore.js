@@ -1,5 +1,5 @@
 //ADDING AND DELETING FILES FROM OUR FIRESTORE DATABASE
-import { useReducer, useEffect, useState } from "react";
+import { useReducer } from "react";
 import { projectFirestore, timestamp } from "../firebase/config";
 
 let initialState = {
@@ -71,9 +71,7 @@ export const useFirestore = (collection) => {
     }
   };
 
-  //Getting a document 
-
-  
+  //Getting a document
 
   // delete a document
   const deleteDocument = async (id) => {

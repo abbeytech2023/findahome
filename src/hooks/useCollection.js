@@ -1,16 +1,20 @@
 // Subscribing to realtime data from a firestore collection
 import { useEffect, useState } from "react";
-import { projectFirestore } from "../firebase/config";
+import { db } from "../firebase/config";
 
-export const useCollection = (collection, id) => {
+import { collection, onSnapshot } from "firebase/firestore";
+
+export const useCollection = (c) => {
   const [documents, setDocuments] = useState();
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let ref = projectFirestore.collection(collection).doc(id);
+    let ref = db(c);
     console.log(ref);
 
-    const unsubscribe = ref.onSnapshot(
+    const unsubscribe = onSnapshot(
+      ref,
+
       (snapshot) => {
         let results = [];
         snapshot.docs.forEach((doc) => {
@@ -30,7 +34,7 @@ export const useCollection = (collection, id) => {
 
     // unsubscrbe onsnapshot
     return () => unsubscribe();
-  }, [collection]);
+  }, [c]);
 
   return {};
 };
