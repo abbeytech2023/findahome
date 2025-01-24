@@ -3,7 +3,7 @@ import { BgOverlay } from "../components/BgOverlay";
 import Image from "../assets/images/Image-search.jpg";
 import { BackgroundImage } from "../components/BackgroundImage";
 import ProductCart from "../components/ProductCart";
-import { useCollection } from "../hooks/useCollection";
+import { useCollections } from "../hooks/useCollections";
 import PropertiesToLet from "../components/PropertiesToLet";
 import { Heading } from "../components/HeadingText";
 // import { projectAuth } from "../firebase/config";
@@ -21,13 +21,16 @@ const Section = styled.section`
 `;
 
 export default function Dashboard() {
-  const { documents, error } = useCollection("Outlets");
+  const { documents, error } = useCollections("Outlets");
   return (
     <>
       <BackgroundImage>
         <BgOverlay className="h-full w-full flex items-center justify-center">
           <div>
-            <Heading className="text-center font-extrabold text-3xl  text-[#d0ebd1] tracking-[4px] lg:text-7xl  sm:text-4xl md:text-5xl ">
+            <Heading
+              // as="h3"
+              className="text-center font-extrabold text-3xl  text-[#d0ebd1] tracking-[4px] lg:text-7xl  sm:text-4xl md:text-5xl "
+            >
               The Ultimate Neighborhood Guide. <br /> Discover the Best Places
               to Live
             </Heading>

@@ -32,7 +32,7 @@ function CartCard({ document }) {
 
   return (
     <GridInner className=" gap-8 text-4xl rounded-3xl relative">
-      <div className="w-full h-full px-4 py-8 flex flex-col gap-1 justify-center items-center">
+      <div className="w-full h-full text-center px-4 py-8 flex flex-col gap-1 justify-center items-center">
         <div className="w-2/4 ">
           <img alt="image" src={bg} />
         </div>

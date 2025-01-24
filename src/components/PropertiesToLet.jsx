@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useCollection } from "../hooks/useCollection";
+import { useCollections } from "../hooks/useCollections";
 import { StyledCartCard } from "./CartCard";
 import { Heading } from "./HeadingText";
 import { GridContainer, GridInner } from "./Grid";
@@ -22,7 +22,7 @@ const StyledLi = styled.li`
 `;
 
 export default function PropertiesToLet() {
-  const { documents, error } = useCollection("ToLets");
+  const { documents, error } = useCollections("ToLets");
   console.log(documents);
 
   return (
@@ -41,7 +41,7 @@ export default function PropertiesToLet() {
           return (
             <div
               key={document.id}
-              className="text-lg mt-10 text-center flex flex-col"
+              className="text-2xl mt-10 text-center flex flex-col"
             >
               <div className="flex px-9  gap-12 items-center">
                 <span className="flex gap-4 w-3/4 text-center ">

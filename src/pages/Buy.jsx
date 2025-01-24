@@ -1,15 +1,16 @@
 import { BackgroundImage } from "../components/BackgroundImage";
 import { BgOverlay } from "../components/BgOverlay";
-import { StyledSubheading } from "../components/HeadingText";
 import ProductCart from "../components/ProductCart";
-import StarRating123 from "../components/StarRating";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useCollections } from "../hooks/useCollections";
 import { useCollection } from "../hooks/useCollection";
-import FindAgent from "../components/FindAgent";
 
 export default function Buy() {
   const { user } = useAuthContext();
-  const { documents, error } = useCollection("Outlets");
+  const { documents, error } = useCollections("Outlets");
+  const { ref } = useCollection("Users", user && user.uid);
+
+  console.log(ref);
 
   return (
     <>

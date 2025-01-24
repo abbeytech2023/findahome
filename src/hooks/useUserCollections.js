@@ -1,14 +1,26 @@
 // Subscribing to realtime data from a firestore collection
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { projectFirestore } from "../firebase/config";
 
-export const useCollection = (collection, id) => {
+export const useUserCollections = (collection, _query, _orderBy) => {
   const [documents, setDocuments] = useState();
   const [error, setError] = useState(null);
 
+  // IF WE DONT WRAP THE _QUERY THEN AN  INFINITE LOOP IS GOING TO HAPPEN
+  // _QUERY IS AN ARRAY AND IT IS DIFFERENT ON EVERY FUNCTION CALL
+  const query = useRef(_query).current;
+  const orderBy = useRef(_orderBy).current;
+
   useEffect(() => {
-    let ref = projectFirestore.collection(collection).doc(id);
-    console.log(ref);
+    let ref = projectFirestore.collection(collection);
+
+    if (query) {
+      ref = ref.where(...query);
+    }
+
+    if (orderBy) {
+      ref = ref.orderBy(...orderBy);
+    }
 
     const unsubscribe = ref.onSnapshot(
       (snapshot) => {
@@ -28,9 +40,9 @@ export const useCollection = (collection, id) => {
       }
     );
 
-    // unsubscrbe onsnapshot
+    //unsubscrbe onsnapshot
     return () => unsubscribe();
-  }, [collection]);
+  }, [collection, query, orderBy]);
 
-  return {};
+  return { documents, error };
 };

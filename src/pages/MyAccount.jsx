@@ -1,8 +1,7 @@
 import Profile from "../components/Profile";
 import CreatePropertiesToLetForm from "../components/CreatePropertiesToLetForm";
 import { useState } from "react";
-import PropertiesToLet from "../components/PropertiesToLet";
-import { useUserCollection } from "../hooks/useUserCollection";
+import { useUserCollections } from "../hooks/useUserCollections";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ProductSaleForm from "../components/ProductSaleForm";
 import { CgMenuGridO } from "react-icons/cg";
@@ -27,7 +26,7 @@ export default function MyAccount() {
   const [isOpen, setIsisOpen] = useState(true);
   const [activeTab, setActiveTab] = useState(1);
   const { user } = useAuthContext();
-  const { documents, error } = useUserCollection(
+  const { documents, error } = useUserCollections(
     "Outlets",
     ["uid", "==", user && user.uid],
     ["createdAt", "desc"]
@@ -53,7 +52,7 @@ export default function MyAccount() {
         <div>
           {isOpen && (
             <IoCloseSharp
-              className="text-white text-4xl  absolute top-16 left-[161px]  xl:top-[6rem] lg:top-[6rem]  xl:left-[161px] lg:left-[161px]"
+              className="text-white text-4xl  absolute top-16 left-[161px]  xl:top-[7rem] lg:top-[6rem]  xl:left-[161px] lg:left-[161px]"
               onClick={() => setIsisOpen(false)}
             />
           )}

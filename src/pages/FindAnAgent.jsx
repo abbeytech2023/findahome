@@ -1,8 +1,8 @@
 import StarRating from "../components/StarRating";
-import { useCollection } from "../hooks/useCollection";
+import { useCollections } from "../hooks/useCollections";
 
 export default function FindAnAgent() {
-  const { error, documents } = useCollection("Users");
+  const { error, documents } = useCollections("Users");
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <h2>Find an agent</h2>

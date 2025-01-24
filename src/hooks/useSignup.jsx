@@ -31,8 +31,15 @@ export const useSignup = () => {
 
       //CREATE A USER DOCUMENT
       await projectFirestore.collection("Users").doc(res.user.uid).set({
+        gender: "",
+        NIN: "",
+        State: "",
+        localGovt: "",
+        Address: "",
+        companyName: "",
         online: true,
         displayName,
+        // totalRatings:
       });
 
       dispatch({ type: "LOGIN", payload: res.user });

@@ -4,7 +4,7 @@ import FormRow from "../components/FormRow";
 import Button from "../components/Button";
 import StyledInput from "../components/StyledInput";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useUserCollection } from "../hooks/useUserCollection";
+import { useUserCollections } from "../hooks/useUserCollections";
 import { useLocation } from "react-router-dom";
 import { Heading } from "./HeadingText";
 
@@ -12,10 +12,10 @@ import { Heading } from "./HeadingText";
 
 function Profile() {
   const { user } = useAuthContext();
-  const { documents, error } = useUserCollection(
-    "Outlets",
-    ["uid", "==", user && user.uid],
-    ["createdAt", "desc"]
+  const { documents, error } = useUserCollections(
+    "Users"
+    // ["uid", "==", user && user.uid],
+    // ["createdAt", "desc"]
   );
 
   const location = useLocation();
