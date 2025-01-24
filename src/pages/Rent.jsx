@@ -28,7 +28,7 @@ export default function Rent() {
               <Heading as="h1" className="   font-bold text-[#a8c1d1] ">
                 Get Ready to move,
               </Heading>
-              <p className="text-[#b9d0de] text-4xl mt-5">
+              <p className="text-[#b9d0de] text-3xl mt-5">
                 your step by step guide to a stress free relocation
               </p>
             </div>
