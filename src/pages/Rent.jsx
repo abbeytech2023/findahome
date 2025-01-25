@@ -14,7 +14,7 @@ const RentSection = styled.section`
 `;
 
 import { BgOverlay } from "../components/BgOverlay";
-import { Heading, StyledSubheading } from "../components/HeadingText";
+import { Heading } from "../components/HeadingText";
 
 export default function Rent() {
   return (
