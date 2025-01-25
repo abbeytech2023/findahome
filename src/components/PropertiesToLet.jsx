@@ -32,7 +32,7 @@ export default function PropertiesToLet() {
         documents.map((doc) => {
           return (
             <GridContainer key={doc.id}>
-              <div className="flex justify-center items-center text-lg  gap-4 ">
+              <div className="flex justify-center items-center text-lg px-4 gap-4 ">
                 <div className="flex flex-col items-center justify-center max-w-[70%] min-w-32 text-center bg-[#e3e3fa] py-6  gap-6 px-7">
                   <h2>Property</h2>
                   <div className="w-60">
