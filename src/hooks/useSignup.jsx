@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { projectAuth } from "../firebase/config";
+import { auth } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
-import { projectFirestore } from "../firebase/config";
+import { collection } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
@@ -15,12 +16,7 @@ export const useSignup = () => {
     try {
       //Signup user
 
-      console.log(projectAuth);
-
-      const res = await projectAuth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
+      const res = await createUserWithEmailAndPassword(auth, email, password);
 
       console.log(res.user);
 
@@ -30,17 +26,17 @@ export const useSignup = () => {
       await res.user.updateProfile({ displayName });
 
       //CREATE A USER DOCUMENT
-      await projectFirestore.collection("Users").doc(res.user.uid).set({
-        gender: "",
-        NIN: "",
-        State: "",
-        localGovt: "",
-        Address: "",
-        companyName: "",
-        online: true,
-        displayName,
-        // totalRatings:
-      });
+      // await collection("Users").doc(res.user.uid).set({
+      //   gender: "",
+      //   NIN: "",
+      //   State: "",
+      //   localGovt: "",
+      //   Address: "",
+      //   companyName: "",
+      //   online: true,
+      //   displayName,
+      //   // totalRatings:
+      // });
 
       dispatch({ type: "LOGIN", payload: res.user });
 

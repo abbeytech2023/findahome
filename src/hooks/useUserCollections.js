@@ -1,28 +1,36 @@
 // Subscribing to realtime data from a firestore collection
 import { useEffect, useRef, useState } from "react";
-import { projectFirestore } from "../firebase/config";
+import { db } from "../firebase/config";
+import {
+  collection,
+  onSnapshot,
+  where,
+  query,
+  orderBy,
+} from "firebase/firestore";
 
-export const useUserCollections = (collection, _query, _orderBy) => {
+export const useUserCollections = (c, _query, _orderBy) => {
   const [documents, setDocuments] = useState();
   const [error, setError] = useState(null);
 
   // IF WE DONT WRAP THE _QUERY THEN AN  INFINITE LOOP IS GOING TO HAPPEN
   // _QUERY IS AN ARRAY AND IT IS DIFFERENT ON EVERY FUNCTION CALL
-  const query = useRef(_query).current;
-  const orderBy = useRef(_orderBy).current;
+  const q = useRef(_query).current;
+  const order = useRef(_orderBy).current;
 
   useEffect(() => {
-    let ref = projectFirestore.collection(collection);
+    let ref = collection(db, c);
 
-    if (query) {
-      ref = ref.where(...query);
+    if (q) {
+      ref = query(ref, where(...q));
     }
 
-    if (orderBy) {
-      ref = ref.orderBy(...orderBy);
+    if (order) {
+      ref = query(ref, orderBy(...order));
     }
 
-    const unsubscribe = ref.onSnapshot(
+    const unsubscribe = onSnapshot(
+      ref,
       (snapshot) => {
         let results = [];
         snapshot.docs.forEach((doc) => {
@@ -42,7 +50,7 @@ export const useUserCollections = (collection, _query, _orderBy) => {
 
     //unsubscrbe onsnapshot
     return () => unsubscribe();
-  }, [collection, query, orderBy]);
+  }, [c, q, order]);
 
   return { documents, error };
 };

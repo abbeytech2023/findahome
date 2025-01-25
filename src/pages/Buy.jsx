@@ -3,14 +3,10 @@ import { BgOverlay } from "../components/BgOverlay";
 import ProductCart from "../components/ProductCart";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useCollections } from "../hooks/useCollections";
-import { useCollection } from "../hooks/useCollection";
 
 export default function Buy() {
   const { user } = useAuthContext();
   const { documents, error } = useCollections("Outlets");
-  const { ref } = useCollection("Users", user && user.uid);
-
-  console.log(ref);
 
   return (
     <>

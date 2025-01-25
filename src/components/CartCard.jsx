@@ -28,7 +28,7 @@ function CartCard({ document }) {
 
   const location = useLocation();
 
-  const deleteCart = location.pathname === "/profile";
+  const deleteCart = location.pathname === "/myaccount";
 
   return (
     <GridInner className=" gap-8 text-4xl rounded-3xl relative">
@@ -45,7 +45,7 @@ function CartCard({ document }) {
         {deleteCart && (
           <button
             onClick={() => deleteDocument(document.id)}
-            className="2xl absolute right-3 top-3"
+            className="2xl z-40 absolute right-3 top-3"
           >
             <MdDelete className="text-gray-400" />
           </button>

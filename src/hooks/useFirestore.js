@@ -1,6 +1,7 @@
 //ADDING AND DELETING FILES FROM OUR FIRESTORE DATABASE
 import { useReducer } from "react";
-import { projectFirestore, timestamp } from "../firebase/config";
+import { db, timestamp } from "../firebase/config";
+import { collection } from "firebase/firestore";
 
 let initialState = {
   document: null,
@@ -42,12 +43,12 @@ const firestoreReducer = (state, action) => {
   }
 };
 
-export const useFirestore = (collection) => {
+export const useFirestore = (c) => {
   const [response, dispatch] = useReducer(firestoreReducer, initialState);
   // const [isCancelled, setIsCancelled] = useState(false);
 
   // collection ref
-  const ref = projectFirestore.collection(collection);
+  const ref = collection(db, c);
 
   // only dispatch is not cancelled
   const dispatchIfNotCancelled = (action) => {
