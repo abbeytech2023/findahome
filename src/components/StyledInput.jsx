@@ -8,7 +8,6 @@ const StyledInput = styled.input`
 
   padding: 0.6rem 2rem;
   width: 100%;
-  font-size: 1.5rem;
 
   &::placeholder {
     color: #8e979d;
