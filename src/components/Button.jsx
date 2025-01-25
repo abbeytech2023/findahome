@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 function Button({ children, type, to, disabled, onClick }) {
   const base =
-    "bg-[#144c6f] text-sm disabled:cursor-not-allowed text-[#c7e1f2] uppercase font-semibold  tracking-wide inline-block rounded-full focus:outline-none focus:ring focus:ring-[text-[#c7e1f2]]  focus:ring-offset-2 hover:bg-[#144c6f] transition-all duration-300 ";
+    "bg-[#144c6f] mt-[1rem] text-sm disabled:cursor-not-allowed text-[#c7e1f2] uppercase font-semibold  tracking-wide inline-block rounded-full focus:outline-none focus:ring focus:ring-[text-[#c7e1f2]]  focus:ring-offset-2 hover:bg-[#144c6f] transition-all duration-300 ";
 
   const styles = {
-    primary: base + "w-auto  text-center px-[4rem] py-3  md:py-4",
+    primary: base + "w-auto  text-center px-[4rem]   md:py-4",
 
     small: base + " px-4 py-2 md:px-5 md:py-2.5 text-xs",
     round: base + " px-2.5 py-1 md:px-3.5 md:py-2 text-xs",

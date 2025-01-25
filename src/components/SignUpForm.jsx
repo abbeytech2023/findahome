@@ -23,6 +23,8 @@ function SignUpForm() {
         <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
           <FormRow label="Full-Name" error={errors?.fullName?.message}>
             <StyledInput
+              // pattern="[a-zA-Z0-9]+"
+              minLength="7"
               type="text"
               placeHolder="Enter your full Name"
               id="fullname"
@@ -33,7 +35,7 @@ function SignUpForm() {
           </FormRow>
           <FormRow label="Email" error={errors?.email?.message}>
             <StyledInput
-              type="text"
+              type="email"
               placeHolder="Enter your Email"
               id="email"
               {...register("email", {
@@ -47,6 +49,7 @@ function SignUpForm() {
           </FormRow>
           <FormRow label="password" error={errors?.password?.message}>
             <StyledInput
+              minLength="8"
               type="password"
               id="password"
               {...register("password", {
@@ -63,6 +66,7 @@ function SignUpForm() {
             error={errors?.passwordConfirm?.message}
           >
             <StyledInput
+              minLength="8"
               type="password"
               id="passwordConfirm"
               name="password"
@@ -77,6 +81,7 @@ function SignUpForm() {
 
           <FormRow label="Phone">
             <StyledInput
+              minLength="11"
               placeHolder="Enter your phone Number"
               id="phone"
               {...register("phoneNumber", {

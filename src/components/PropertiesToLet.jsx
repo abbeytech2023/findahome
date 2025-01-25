@@ -6,12 +6,6 @@ import { GridContainer, GridInner } from "./Grid";
 
 const StyledLi = styled.li`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid black;
-  height: auto;
-  font-size: large;
-  padding: 1rem 2rem;
 
   & span {
     display: flex;
@@ -26,35 +20,34 @@ export default function PropertiesToLet() {
   console.log(documents);
 
   return (
-    <div className="flex mt-20  flex-col items-center w-full">
+    <div className="mt-20 w-full ">
       <div className="">
         <Heading as="h2" className="text-center uppercase mb-12">
           Properties to let
         </Heading>
       </div>
-      <div className="flex justify-between items-center w-full px-8 mb-10 font-bold text-2xl">
-        <p>Properties</p>
-        <p>Agents</p>
-      </div>
+
+      {error && <p>{error}</p>}
       {documents &&
-        documents.map((document, index) => {
+        documents.map((doc) => {
           return (
-            <div
-              key={document.id}
-              className="text-2xl mt-10 text-center flex flex-col"
-            >
-              <div className="flex px-9  gap-12 items-center">
-                <span className="flex gap-4 w-3/4 text-center ">
-                  {index + 1}
-                  <p className="">
-                    {document.propertyDescription}, {document.propertyLocation}
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Animi, laudantium.
-                  </p>
+            <GridContainer key={doc.id}>
+              <div className="flex justify-center items-center text-lg  gap-12 ">
+                <div className="flex flex-col items-center justify-center max-w-[70%] min-w-32 text-center bg-[#ababe0] py-6  gap-6 px-7">
+                  <h2>Property</h2>
+                  <div className="w-60">
+                    <p>
+                      {doc.propertyDescription},{doc.propertyLocation}
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Iste, dolore?
+                    </p>
+                  </div>
+                </div>
+                <span className="w-28 bg-red-200 text-center">
+                  <h2 className="mb-4">Agent</h2> <p>{doc.agentName} </p>
                 </span>
-                <div className="w-1/4">{document.agentName}</div>
               </div>
-            </div>
+            </GridContainer>
           );
         })}
     </div>

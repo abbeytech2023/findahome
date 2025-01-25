@@ -3,15 +3,25 @@ import styled from "styled-components";
 const StyledInput = styled.input`
   /* display: flex;
   justify-content: center; */
-  border: 1px solid black;
+  border: 1px solid #666;
   border-radius: 0.5rem;
+
   padding: 0.6rem 2rem;
   width: 100%;
-  /* font-size: 1.4rem; */
+  font-size: 1.5rem;
 
   &::placeholder {
     color: #8e979d;
     font-size: 1.125rem;
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom: 3px solid green;
+  }
+
+  &:focus:user-invalid {
+    border-bottom: 3px solid red;
   }
 `;
 

@@ -55,6 +55,7 @@ function LoginForm() {
 
           <FormRow label="password" error={errors?.password?.message}>
             <StyledInput
+              minLength="8"
               type="password"
               id="password"
               {...register("password", {

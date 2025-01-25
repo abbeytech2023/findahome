@@ -36,7 +36,7 @@ function Profile() {
 
   return (
     <>
-      <div className="flex items-center justify-center flex-col mt-44 gap-8">
+      <div className="flex items-center justify-center flex-col mt-44 mb-[5rem] gap-8">
         <Heading as="h2" className="text-center px-2">
           Edit and save your profile
         </Heading>
@@ -106,8 +106,8 @@ function Profile() {
             />
           </FormRow>
 
-          <FormRow className="text-gray-700 mt-1rem" disabled>
-            <Button type="small">Save</Button>
+          <FormRow className="text-gray-700" disabled>
+            <Button type="primary">Save</Button>
           </FormRow>
         </form>
       </div>

@@ -45,6 +45,7 @@ function ProductSaleForm({ uid }) {
           >
             <FormRow label="property details">
               <StyledInput
+                minLength="20"
                 className="h-[120px]"
                 id="details"
                 onChange={(e) => setPropertyDetails(e.target.value)}
@@ -53,6 +54,7 @@ function ProductSaleForm({ uid }) {
             </FormRow>
             <FormRow label="Address">
               <StyledInput
+                minLength="15"
                 className="h-[50px]"
                 placeHolder="The location of property"
                 id="location"
@@ -62,6 +64,7 @@ function ProductSaleForm({ uid }) {
             </FormRow>
             <FormRow label="Title">
               <StyledInput
+                minLength="7"
                 placeHolder=" The name of the property owner"
                 id="state"
                 onChange={(e) => setTitle(e.target.value)}
@@ -70,6 +73,7 @@ function ProductSaleForm({ uid }) {
             </FormRow>
             <FormRow label="Total-Package">
               <StyledInput
+                type="number"
                 onChange={(e) => setPrice(e.target.value)}
                 value={price}
                 placeHolder="pricing"
@@ -77,7 +81,12 @@ function ProductSaleForm({ uid }) {
               />
             </FormRow>
             <FormRow label="Phone">
-              <StyledInput type="mobile" placeHolder="c" id="phone" />
+              <StyledInput
+                minLength="11"
+                type="number"
+                placeHolder="c"
+                id="phone"
+              />
             </FormRow>
 
             <FormRow>
