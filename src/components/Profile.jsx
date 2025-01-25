@@ -13,14 +13,12 @@ import { Heading } from "./HeadingText";
 function Profile() {
   const { user } = useAuthContext();
   const { documents, error } = useUserCollections(
-    "Users"
-    // ["uid", "==", user && user.uid],
-    // ["createdAt", "desc"]
+    "Users",
+    ["uid", "==", user && user.uid],
+    ["createdAt", "desc"]
   );
 
   const location = useLocation();
-
-  console.log(location.pathname);
 
   const { register, formState, handleSubmit } = useForm();
 

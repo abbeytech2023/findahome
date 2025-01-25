@@ -1,36 +1,40 @@
-// Subscribing to realtime data from a firestore collection
-import { useEffect, useState } from "react";
-import { projectFirestore } from "../firebase/config";
+// // Subscribing to realtime data from a firestore collection
+// import { useEffect, useState } from "react";
+// import { db } from "../firebase/config";
 
-export const useCollection = (collection, id) => {
-  const [documents, setDocuments] = useState();
-  const [error, setError] = useState(null);
+// import { collection, onSnapshot } from "firebase/firestore";
 
-  useEffect(() => {
-    let ref = projectFirestore.collection(collection).doc(id);
-    console.log(ref);
+// export const useCollection = (c) => {
+//   const [documents, setDocuments] = useState();
+//   const [error, setError] = useState(null);
 
-    const unsubscribe = ref.onSnapshot(
-      (snapshot) => {
-        let results = [];
-        snapshot.docs.forEach((doc) => {
-          results.push({ ...doc.data(), id: doc.id });
-        });
-        //update state
-        console.log(results);
+//   useEffect(() => {
+//     let ref = db(c);
+//     console.log(ref);
 
-        setDocuments(results);
-        setError(null);
-      },
-      (error) => {
-        console.log(error);
-        setError("could not fetch the data");
-      }
-    );
+//     const unsubscribe = onSnapshot(
+//       ref,
 
-    // unsubscrbe onsnapshot
-    return () => unsubscribe();
-  }, [collection]);
+//       (snapshot) => {
+//         let results = [];
+//         snapshot.docs.forEach((doc) => {
+//           results.push({ ...doc.data(), id: doc.id });
+//         });
+//         //update state
+//         console.log(results);
 
-  return {};
-};
+//         setDocuments(results);
+//         setError(null);
+//       },
+//       (error) => {
+//         console.log(error);
+//         setError("could not fetch the data");
+//       }
+//     );
+
+//     // unsubscrbe onsnapshot
+//     return () => unsubscribe();
+//   }, [c]);
+
+//   return {};
+// };

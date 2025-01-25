@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { projectAuth } from "../firebase/config";
+import { auth } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
@@ -16,7 +17,7 @@ export const useLogin = () => {
 
     //Sign the user out
     try {
-      const res = await projectAuth.signInWithEmailAndPassword(email, password);
+      const res = await signInWithEmailAndPassword(auth, email, password);
 
       dispatch({ type: "LOGIN", payload: res.user });
 

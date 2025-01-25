@@ -29,7 +29,7 @@ export default function Dashboard() {
           <div>
             <Heading
               // as="h3"
-              className="text-center font-extrabold text-3xl  text-[#d0ebd1] tracking-[4px] lg:text-7xl  sm:text-4xl md:text-5xl "
+              className="text-center font-extrabold text-4xl  text-[#d0ebd1] tracking-[4px]   md:text-5xl "
             >
               The Ultimate Neighborhood Guide. <br /> Discover the Best Places
               to Live
