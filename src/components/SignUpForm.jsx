@@ -97,7 +97,7 @@ function SignUpForm() {
               </Button>
             )}
           </FormRow>
-          {error && <p className="text-[1.8rem]  text-red-700">{error}</p>}
+          {error && <p className="text-lg  text-red-700">{error}</p>}
         </Form>
       </div>
     </div>

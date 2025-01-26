@@ -83,7 +83,7 @@ function ProductSaleForm({ uid }) {
             <FormRow label="Phone">
               <StyledInput
                 minLength="11"
-                type="number"
+                type="mobile"
                 placeHolder="c"
                 id="phone"
               />

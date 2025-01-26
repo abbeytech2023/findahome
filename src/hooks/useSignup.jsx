@@ -2,7 +2,7 @@ import { useState } from "react";
 import { auth } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
 import { collection } from "firebase/firestore";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
@@ -22,8 +22,10 @@ export const useSignup = () => {
 
       if (!res) throw new Error("could not complete signup");
 
+      const user = auth.currentUser;
+
       //add displayName to user
-      await res.user.updateProfile({ displayName });
+      await updateProfile(user, { displayName });
 
       //CREATE A USER DOCUMENT
       // await collection("Users").doc(res.user.uid).set({

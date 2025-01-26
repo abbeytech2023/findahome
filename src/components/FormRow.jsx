@@ -13,9 +13,9 @@ function FormRow({ children, label, error }) {
 export default FormRow;
 
 function Label({ children }) {
-  return <div className=" xl:text-2xl text-1xl">{children}</div>;
+  return <div className=" xl:text-2xl text-lg">{children}</div>;
 }
 
 function Error({ children }) {
-  return <span className="font-semibold text-red-700">{children}</span>;
+  return <span className="font-semibold text-lg text-red-700">{children}</span>;
 }
