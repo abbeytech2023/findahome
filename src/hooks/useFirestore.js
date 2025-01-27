@@ -1,7 +1,7 @@
 //ADDING AND DELETING FILES FROM OUR FIRESTORE DATABASE
 import { useReducer } from "react";
 import { db, timestamp } from "../firebase/config";
-import { collection } from "firebase/firestore";
+import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 
 let initialState = {
   document: null,
@@ -62,7 +62,7 @@ export const useFirestore = (c) => {
     try {
       dispatch({ type: "IS_PENDING" });
       const createdAt = timestamp.fromDate(new Date());
-      const addedDocument = await ref.add({ ...doc, createdAt });
+      const addedDocument = await addDoc(ref, { ...doc, createdAt });
       dispatchIfNotCancelled({
         type: "ADDED_DOC",
         payload: addedDocument,
@@ -79,18 +79,12 @@ export const useFirestore = (c) => {
     dispatch({ type: "IS_PENDING" });
 
     try {
-      const deletedDocument = await ref.doc(id).delete();
+      const ref = doc(db, c, id);
+      const deletedDocument = await deleteDoc(ref);
       dispatchIfNotCancelled({
         type: "DELETED_DOCUMENT",
         payload: deletedDocument,
       });
-    } catch (err) {
-      dispatchIfNotCancelled({ type: "ERROR", payload: "could not delete" });
-    }
-
-    try {
-      await ref.doc(id).delete();
-      dispatchIfNotCancelled({ type: "DELETED_DOCUMENT" });
     } catch (err) {
       dispatchIfNotCancelled({ type: "ERROR", payload: "could not delete" });
     }

@@ -17,7 +17,6 @@ const StyledLi = styled.li`
 
 export default function PropertiesToLet() {
   const { documents, error } = useCollections("ToLets");
-  console.log(documents);
 
   return (
     <div className="mt-20 w-full ">

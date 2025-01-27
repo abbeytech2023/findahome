@@ -17,5 +17,9 @@ function Label({ children }) {
 }
 
 function Error({ children }) {
-  return <span className="font-semibold text-lg text-red-700">{children}</span>;
+  return (
+    <span className="font-semibold text-lg w-[70%] mx-auto text-center text-red-700">
+      {children}
+    </span>
+  );
 }

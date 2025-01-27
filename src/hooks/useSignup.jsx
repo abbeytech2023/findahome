@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { auth } from "../firebase/config";
+import { db, auth } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
 import { collection } from "firebase/firestore";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  sendEmailVerification,
+} from "firebase/auth";
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
@@ -26,9 +30,12 @@ export const useSignup = () => {
 
       //add displayName to user
       await updateProfile(user, { displayName });
+      auth.languageCode =
+        "please follow this link to vefify your email address";
+      await sendEmailVerification(user);
 
       //CREATE A USER DOCUMENT
-      // await collection("Users").doc(res.user.uid).set({
+      // await collection(db, "Users").doc(res.user.uid).set({
       //   gender: "",
       //   NIN: "",
       //   State: "",
@@ -37,7 +44,7 @@ export const useSignup = () => {
       //   companyName: "",
       //   online: true,
       //   displayName,
-      //   // totalRatings:
+      //   totalRatings: "",
       // });
 
       dispatch({ type: "LOGIN", payload: res.user });
@@ -45,8 +52,17 @@ export const useSignup = () => {
       setIsPending(false);
       setError(null);
     } catch (err) {
-      console.log(err);
-      setError(err.message);
+      console.log(err.code);
+
+      let error;
+      if (err.code === "auth/network-request-failed")
+        error = "poor network connection";
+      if (err.code === "auth/email-already-in-use")
+        error = "email already in use by another account";
+      if (err.code === "auth/invalid-login-credentials")
+        error = "invalid login credentials";
+
+      setError(error);
       setIsPending(false);
     }
   };

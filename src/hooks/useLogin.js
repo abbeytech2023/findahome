@@ -18,19 +18,21 @@ export const useLogin = () => {
     //Sign the user out
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
+      if (!res) throw new Error("wrong email and password");
 
       dispatch({ type: "LOGIN", payload: res.user });
 
       setError(null);
       setIsPending(false);
     } catch (err) {
-      let error;
-      if (err.code === "auth/internal-error")
-        error = "Invalid login credentials";
-      if (err.code === "auth/network-request-failed")
-        error = "poor server connection";
+      console.log(err.message.code);
 
-      console.log(err);
+      let error;
+      if (err.code === "auth/network-request-failed")
+        error = "poor network connection";
+      if (err.code === "auth/invalid-login-credentials")
+        error = "invalid login credentials";
+
       setError(error);
       setIsPending(false);
     }
