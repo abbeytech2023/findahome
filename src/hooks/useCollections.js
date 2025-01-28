@@ -2,13 +2,10 @@
 import { useEffect, useState } from "react";
 import { db } from "../firebase/config";
 import { collection, onSnapshot, doc, getDoc } from "firebase/firestore";
-import { useAuthContext } from "./useAuthContext";
 
 export const useCollections = (c) => {
-  const { user } = useAuthContext();
   const [documents, setDocuments] = useState();
   const [error, setError] = useState(null);
-  const [oneDocument, setOneDocument] = useState();
 
   useEffect(() => {
     let ref = collection(db, c);
@@ -32,14 +29,11 @@ export const useCollections = (c) => {
       }
     );
 
-    const docRef = doc(db, c, user.uid);
-    getDoc(docRef).then((snapshot) => setOneDocument(snapshot));
-
     //unsubscrbe onsnapshot
     return () => {
       unsubscribe();
     };
-  }, [c, user.uid]);
+  }, [c]);
 
-  return { oneDocument, documents, error };
+  return { documents, error };
 };
