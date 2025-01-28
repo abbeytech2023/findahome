@@ -12,11 +12,11 @@ import { Heading } from "./HeadingText";
 
 function Profile() {
   const { user } = useAuthContext();
-  const { documents, error } = useUserCollections(
-    "Users",
-    ["uid", "==", user && user.uid],
-    ["createdAt", "desc"]
-  );
+  // const { documents, error } = useUserCollections(
+  //   "Users",
+  //   ["uid", "==", user && user.uid],
+  //   ["createdAt", "desc"]
+  // );
 
   const location = useLocation();
 

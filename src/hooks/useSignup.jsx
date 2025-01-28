@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { db, auth } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
-import { collection } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -22,11 +22,10 @@ export const useSignup = () => {
 
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
-      console.log(res.user);
-
       if (!res) throw new Error("could not complete signup");
 
       const user = auth.currentUser;
+      console.log(user.uid);
 
       //add displayName to user
       await updateProfile(user, { displayName });
@@ -34,8 +33,17 @@ export const useSignup = () => {
         "please follow this link to vefify your email address";
       await sendEmailVerification(user);
 
-      //CREATE A USER DOCUMENT
-      // await collection(db, "Users").doc(res.user.uid).set({
+      // CREATE A USER DOCUMENT
+      await setDoc(doc(db, "Users", user.uid), {
+        displayName,
+        gender: "",
+        NIN: "",
+        State: "",
+        localGovt: "",
+        email: user.email,
+      });
+
+      // await collection(db, "Users").doc(user.uid).set({
       //   gender: "",
       //   NIN: "",
       //   State: "",
@@ -52,8 +60,6 @@ export const useSignup = () => {
       setIsPending(false);
       setError(null);
     } catch (err) {
-      console.log(err.code);
-
       let error;
       if (err.code === "auth/network-request-failed")
         error = "poor network connection";

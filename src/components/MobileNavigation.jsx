@@ -49,7 +49,7 @@ const StyledMainNavList = styled.div`
   }
 
   & a.active {
-    background-color: #000;
+    background-color: #06121a;
     color: #fff;
   }
 
@@ -58,7 +58,7 @@ const StyledMainNavList = styled.div`
   }
 
   & a:hover {
-    background-color: #000;
+    background-color: #06121a;
   }
 `;
 

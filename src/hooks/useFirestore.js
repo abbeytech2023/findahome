@@ -73,6 +73,7 @@ export const useFirestore = (c) => {
   };
 
   //Getting a document
+  // const docRef = doc(db, "books", "5I6NuEqDwdgBmzc4lnr9");
 
   // delete a document
   const deleteDocument = async (id) => {
