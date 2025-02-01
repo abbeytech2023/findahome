@@ -46,7 +46,7 @@ function Profile() {
         <form onSubmit={handleSaveDocument}>
           <ProfileFormRow label="Fullname">
             <StyledInput
-              value={displayName || ""}
+              defaultValue={displayName || ""}
               onChange={(e) => setDisplayName(e.target.value)}
               name="displayName"
               type="text"
@@ -56,7 +56,7 @@ function Profile() {
           </ProfileFormRow>
           <ProfileFormRow label="Email address" editSavebutton>
             <StyledInput
-              value={email || ""}
+              defaultValue={email || ""}
               type="email"
               id="email"
               name="email"
@@ -67,7 +67,7 @@ function Profile() {
 
           <ProfileFormRow label="NIN">
             <StyledInput
-              value={NIN || ""}
+              defaultValue={NIN || ""}
               type="text"
               id="NIN"
               onChange={(e) => setNIN(e.target.value)}
@@ -76,7 +76,7 @@ function Profile() {
           </ProfileFormRow>
           <ProfileFormRow label="state">
             <StyledInput
-              value={state || ""}
+              defaultValue={state || ""}
               type="text"
               id="gender"
               onChange={(e) => setState(e.target.value)}
@@ -85,7 +85,7 @@ function Profile() {
           </ProfileFormRow>
           <ProfileFormRow label="Local-Govt">
             <StyledInput
-              value={localGovt || ""}
+              defaultValue={localGovt || ""}
               type="text"
               id="localGovt"
               onChange={(e) => setLocalGovt(e.target.value)}
@@ -105,7 +105,7 @@ function Profile() {
             <div>
               <select
                 className="py-2 w-full"
-                value={gender || ""}
+                defaultValue={gender || ""}
                 onChange={(e) => setGender(e.target.value)}
               >
                 <option value="Male">Male</option>
