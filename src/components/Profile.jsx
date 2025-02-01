@@ -12,7 +12,9 @@ import { useEffect, useState } from "react";
 
 function Profile() {
   const { aDoc } = useCollections("Users");
-  const [displayName, setDisplayName] = useState(null);
+  const [displayName, setDisplayName] = useState(
+    useEffect(() => setDisplayName(aDoc && aDoc.displayName), [aDoc])
+  );
   const [NIN, setNIN] = useState(null);
   const [gender, setGender] = useState(null);
   const [state, setState] = useState(null);
@@ -23,7 +25,7 @@ function Profile() {
   // const docRef = doc(db, "Users", auth.currentUser.uid);
 
   useEffect(() => {
-    setDisplayName(() => aDoc && aDoc.displayName);
+    // setDisplayName(() => aDoc && aDoc.displayName);
     setGender(aDoc && aDoc.gender);
     setState(aDoc && aDoc.state);
     setLocalGovt(aDoc && aDoc.localGovt);
