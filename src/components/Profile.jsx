@@ -48,7 +48,7 @@ function Profile() {
         <form onSubmit={handleSaveDocument}>
           <ProfileFormRow label="Fullname">
             <StyledInput
-              defaultValue={displayName || ""}
+              defaultValue={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               name="displayName"
               type="text"
