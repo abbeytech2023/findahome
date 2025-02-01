@@ -45,7 +45,7 @@ function CartCard({ document }) {
         {deleteCart && (
           <button
             onClick={() => deleteDocument(document.id)}
-            className="2xl z-40 absolute right-3 top-3"
+            className="2xl z-10 absolute right-3 top-3"
           >
             <MdDelete className="text-gray-400" />
           </button>

@@ -1,38 +1,41 @@
-import { useForm } from "react-hook-form";
 // import Form from "../components";
-import FormRow from "../components/FormRow";
-import Button from "../components/Button";
+import { db, auth } from "../firebase/config";
+import { doc, updateDoc } from "firebase/firestore";
+
 import StyledInput from "../components/StyledInput";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useUserCollections } from "../hooks/useUserCollections";
-import { useLocation } from "react-router-dom";
 import { Heading } from "./HeadingText";
+import { useFirestore } from "../hooks/useFirestore";
+import { useCollections } from "../hooks/useCollections";
+import { useEffect, useState } from "react";
 
 // Email regex: /\S+@\S+\.\S+/
 
 function Profile() {
-  const { user } = useAuthContext();
-  // const { documents, error } = useUserCollections(
-  //   "Users",
-  //   ["uid", "==", user && user.uid],
-  //   ["createdAt", "desc"]
-  // );
+  const { aDoc } = useCollections("Users");
+  const [displayName, setDisplayName] = useState(null);
+  const [NIN, setNIN] = useState(null);
+  const [gender, setGender] = useState(null);
+  const [state, setState] = useState(null);
+  const [localGovt, setLocalGovt] = useState(null);
+  const [email, setEmail] = useState(null);
+  // const { updateDocument } = useFirestore();
 
-  const location = useLocation();
+  const docRef = doc(db, "Users", auth.currentUser.uid);
 
-  const { register, formState, handleSubmit } = useForm();
+  useEffect(() => {
+    setDisplayName(aDoc && aDoc.displayName);
+    setGender(aDoc && aDoc.gender);
+    setState(aDoc && aDoc.state);
+    setLocalGovt(aDoc && aDoc.localGovt);
+    setEmail(aDoc && aDoc.email);
+    setNIN(aDoc && aDoc.NIN);
+  }, [aDoc]);
 
-  const { errors } = formState;
+  const handleSaveDocument = (e) => {
+    e.preventDefault();
 
-  function onSubmit({ email, fullName, password, passwordConfirm }) {
-    console.log(email, fullName, password, passwordConfirm);
-    // signup(
-    //   { fullName, email, password },
-    //   {
-    //     onSettled: () => reset,
-    //   }
-    // );
-  }
+    updateDoc(docRef, { displayName, email, NIN, gender, state, localGovt });
+  };
 
   return (
     <>
@@ -40,75 +43,108 @@ function Profile() {
         <Heading as="h2" className="text-center px-2">
           Edit and save your profile
         </Heading>
-        <form onSubmit={handleSubmit(onSubmit)} className="">
-          <FormRow label="Fullname" error={errors?.fullName?.message}>
+        <form onSubmit={handleSaveDocument}>
+          <ProfileFormRow label="Fullname">
             <StyledInput
-              defaultValue={user && user.displayName}
-              name="fullName"
+              defaultValue={displayName}
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              name="displayName"
               type="text"
-              id="fullName"
-              disabled
-              // disabled={isLoading}
-              {...register("fullName", { required: "This field is required" })}
+              id="displayName"
             />
-          </FormRow>
+            {<EditSaaveButton onClick={handleSaveDocument} />}
+          </ProfileFormRow>
 
-          <FormRow label="Email address" error={errors?.email?.message}>
+          <ProfileFormRow label="Email address" editSavebutton>
             <StyledInput
-              defaultValue={user && user.email}
+              defaultValue={email}
+              value={email}
               type="email"
               id="email"
               name="email"
-              disabled
-              // disabled={isLoading}
-              {...register("email", {
-                required: "This field is required",
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: "Please provide a valid email address",
-                },
-              })}
-            />
-          </FormRow>
+              onChange={(e) => setEmail(e.target.value)}
 
-          <FormRow
-            label="Password (min 8 characters)"
-            error={errors?.password?.message}
-          >
+              // disabled
+              // disabled={isLoading}
+            />
+            <EditSaaveButton onClick={handleSaveDocument} />
+          </ProfileFormRow>
+
+          <ProfileFormRow label="Password (min 8 characters)">
             <StyledInput
               type="password"
               id="password"
-              disabled
+              // disabled
               // disabled={isLoading}
-              {...register("password", {
-                required: "This field is required",
-                minLength: {
-                  value: 8,
-                  message: "password needs a minimum of 8 characters",
-                },
-              })}
             />
-          </FormRow>
-          <FormRow label="user ID" error={errors?.password?.message}>
+            <EditSaaveButton onClick={handleSaveDocument} />
+          </ProfileFormRow>
+          <ProfileFormRow label="NIN">
             <StyledInput
-              defaultValue={user && user.uid}
+              defaultValue={NIN}
+              type="text"
+              id="NIN"
+              onChange={(e) => setNIN(e.target.value)}
+            />
+            <EditSaaveButton onClick={handleSaveDocument} />
+          </ProfileFormRow>
+
+          <ProfileFormRow label="state">
+            <StyledInput
+              defaultValue={state}
+              value={state}
+              type="text"
+              id="gender"
+              onChange={(e) => setState(e.target.value)}
+            />
+            <EditSaaveButton onClick={handleSaveDocument} />
+          </ProfileFormRow>
+
+          <ProfileFormRow label="Local-Govt">
+            <StyledInput
+              defaultValue={localGovt}
+              value={localGovt}
+              type="text"
+              id="localGovt"
+              onChange={(e) => setLocalGovt(e.target.value)}
+            />
+            <EditSaaveButton onClick={handleSaveDocument} />
+          </ProfileFormRow>
+          <ProfileFormRow label="user ID">
+            <StyledInput
+              defaultValue={aDoc && aDoc.id}
               type="text"
               id="ID"
               disabled
-              // disabled={isLoading}
-              // {...register("password", {
-              //   required: "This field is required",
-              //   minLength: {
-              //     value: 8,
-              //     message: "password needs a minimum of 8 characters",
-              //   },
-              // })}
+              // onChange={(e) => setLocalGovt(e.target.value)}
             />
-          </FormRow>
+          </ProfileFormRow>
+          <ProfileFormRow label="Gender">
+            <div>
+              <select
+                className="py-2"
+                value={gender}
+                defaultValue={gender}
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            {/* <StyledInput
+              defaultValue={gender}
+              value={gender}
+              type="text"
+              id="gender"
+              onChange={(e) => setGender(e.target.value)}
+            /> */}
+            <EditSaaveButton onClick={handleSaveDocument} />
+          </ProfileFormRow>
 
-          <FormRow className="text-gray-700" disabled>
+          {/* <FormRow className="text-gray-700" disabled>
             <Button type="primary">Save</Button>
-          </FormRow>
+          </FormRow> */}
         </form>
       </div>
       {/* <StyledSubheading>Your Houses For Sale</StyledSubheading> */}
@@ -117,3 +153,29 @@ function Profile() {
 }
 
 export default Profile;
+
+function ProfileFormRow({ children, label, error }) {
+  return (
+    <div className="flex flex-col gap-4 mb-4 ">
+      {label && <Label htmlFor={children.props?.id}>{label}</Label>}
+      {children}
+    </div>
+  );
+}
+
+function Label({ children }) {
+  return <div className=" xl:text-2xl text-lg">{children}</div>;
+}
+
+function EditSaaveButton({ onClick }) {
+  return (
+    <div className="flex justify-center items-center gap-4 mb-2">
+      <button
+        onClick={onClick}
+        className="border-2 bg-[#144c6f] border-white text-white rounded-lg px-6 py-2"
+      >
+        save
+      </button>
+    </div>
+  );
+}

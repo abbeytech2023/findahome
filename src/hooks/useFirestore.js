@@ -1,7 +1,15 @@
 //ADDING AND DELETING FILES FROM OUR FIRESTORE DATABASE
 import { useReducer } from "react";
-import { db, timestamp } from "../firebase/config";
-import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { db, timestamp, auth } from "../firebase/config";
+import {
+  collection,
+  addDoc,
+  getDoc,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
+import { useAuthContext } from "./useAuthContext";
 
 let initialState = {
   document: null,
@@ -31,6 +39,14 @@ const firestoreReducer = (state, action) => {
         success: true,
         error: null,
       };
+    case "UPDATED_DOCUMENT":
+      return {
+        ...state,
+        isPending: "completed",
+        document: action.payload,
+        success: true,
+        error: null,
+      };
     case "ERROR":
       return {
         isPending: "completed",
@@ -39,12 +55,14 @@ const firestoreReducer = (state, action) => {
         error: action.payload,
       };
     default:
-      throw new Error("unknown action");
+      return { ...state };
+    // throw new Error("unknown action");
   }
 };
 
 export const useFirestore = (c) => {
   const [response, dispatch] = useReducer(firestoreReducer, initialState);
+  const { user } = useAuthContext();
   // const [isCancelled, setIsCancelled] = useState(false);
 
   // collection ref
@@ -72,8 +90,27 @@ export const useFirestore = (c) => {
     }
   };
 
-  //Getting a document
-  // const docRef = doc(db, "books", "5I6NuEqDwdgBmzc4lnr9");
+  //update a document
+  const updateDocument = async (data) => {
+    dispatch({ type: "Is_PENDING" });
+
+    try {
+      const ref = doc(db, "Users", auth.currentUser.uid);
+      // const updateData = { data };
+      const upDatedDocument = await updateDoc(ref, { data });
+      console.log(updateDocument);
+
+      dispatchIfNotCancelled({
+        type: "UPDATED_DOCUMENT",
+        payload: upDatedDocument,
+      });
+    } catch (err) {
+      dispatchIfNotCancelled({
+        type: "ERROR",
+        payload: console.log(err),
+      });
+    }
+  };
 
   // delete a document
   const deleteDocument = async (id) => {
@@ -95,5 +132,5 @@ export const useFirestore = (c) => {
   //   return () => setIsCancelled(true);
   // }, []);
 
-  return { addDocument, deleteDocument, response };
+  return { updateDocument, addDocument, deleteDocument, response };
 };
