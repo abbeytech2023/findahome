@@ -41,7 +41,7 @@ export default function Navigation() {
 
         <StyledNavLink to="/findanagent">Find an Agent</StyledNavLink>
       </div>
-      <NavLink to="/">
+      <NavLink>
         <Logo />
       </NavLink>
 

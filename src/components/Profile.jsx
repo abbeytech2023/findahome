@@ -1,6 +1,6 @@
 // import Form from "../components";
-import { db, auth } from "../firebase/config";
-import { doc, updateDoc } from "firebase/firestore";
+// import { db, auth } from "../firebase/config";
+// import { doc, updateDoc } from "firebase/firestore";
 
 import StyledInput from "../components/StyledInput";
 import { Heading } from "./HeadingText";
@@ -18,12 +18,12 @@ function Profile() {
   const [state, setState] = useState(null);
   const [localGovt, setLocalGovt] = useState(null);
   const [email, setEmail] = useState(null);
-  // const { updateDocument } = useFirestore();
+  const { updateDocument } = useFirestore("Users");
 
-  const docRef = doc(db, "Users", auth.currentUser.uid);
+  // const docRef = doc(db, "Users", auth.currentUser.uid);
 
   useEffect(() => {
-    setDisplayName(aDoc && aDoc.displayName);
+    setDisplayName(() => aDoc && aDoc.displayName);
     setGender(aDoc && aDoc.gender);
     setState(aDoc && aDoc.state);
     setLocalGovt(aDoc && aDoc.localGovt);
@@ -34,7 +34,7 @@ function Profile() {
   const handleSaveDocument = (e) => {
     e.preventDefault();
 
-    updateDoc(docRef, { displayName, email, NIN, gender, state, localGovt });
+    updateDocument({ displayName, email, NIN, gender, state, localGovt });
   };
 
   return (
@@ -46,8 +46,7 @@ function Profile() {
         <form onSubmit={handleSaveDocument}>
           <ProfileFormRow label="Fullname">
             <StyledInput
-              defaultValue={displayName}
-              value={displayName}
+              value={displayName || ""}
               onChange={(e) => setDisplayName(e.target.value)}
               name="displayName"
               type="text"
@@ -55,106 +54,76 @@ function Profile() {
             />
             {<EditSaaveButton onClick={handleSaveDocument} />}
           </ProfileFormRow>
-
           <ProfileFormRow label="Email address" editSavebutton>
             <StyledInput
-              defaultValue={email}
-              value={email}
+              value={email || ""}
               type="email"
               id="email"
               name="email"
               onChange={(e) => setEmail(e.target.value)}
-
-              // disabled
-              // disabled={isLoading}
             />
             <EditSaaveButton onClick={handleSaveDocument} />
           </ProfileFormRow>
 
-          <ProfileFormRow label="Password (min 8 characters)">
-            <StyledInput
-              type="password"
-              id="password"
-              // disabled
-              // disabled={isLoading}
-            />
-            <EditSaaveButton onClick={handleSaveDocument} />
-          </ProfileFormRow>
           <ProfileFormRow label="NIN">
             <StyledInput
-              defaultValue={NIN}
+              value={NIN || ""}
               type="text"
               id="NIN"
               onChange={(e) => setNIN(e.target.value)}
             />
             <EditSaaveButton onClick={handleSaveDocument} />
           </ProfileFormRow>
-
           <ProfileFormRow label="state">
             <StyledInput
-              defaultValue={state}
-              value={state}
+              value={state || ""}
               type="text"
               id="gender"
               onChange={(e) => setState(e.target.value)}
             />
             <EditSaaveButton onClick={handleSaveDocument} />
           </ProfileFormRow>
-
           <ProfileFormRow label="Local-Govt">
             <StyledInput
-              defaultValue={localGovt}
-              value={localGovt}
+              value={localGovt || ""}
               type="text"
               id="localGovt"
               onChange={(e) => setLocalGovt(e.target.value)}
             />
             <EditSaaveButton onClick={handleSaveDocument} />
           </ProfileFormRow>
-          <ProfileFormRow label="user ID">
+          {/* <ProfileFormRow label="user ID">
             <StyledInput
-              defaultValue={aDoc && aDoc.id}
+              value={(aDoc && aDoc.id) || ""}
               type="text"
               id="ID"
               disabled
               // onChange={(e) => setLocalGovt(e.target.value)}
             />
-          </ProfileFormRow>
+          </ProfileFormRow> */}
           <ProfileFormRow label="Gender">
             <div>
               <select
-                className="py-2"
-                value={gender}
-                defaultValue={gender}
+                className="py-2 w-full"
+                value={gender || ""}
                 onChange={(e) => setGender(e.target.value)}
               >
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
             </div>
-            {/* <StyledInput
-              defaultValue={gender}
-              value={gender}
-              type="text"
-              id="gender"
-              onChange={(e) => setGender(e.target.value)}
-            /> */}
+
             <EditSaaveButton onClick={handleSaveDocument} />
           </ProfileFormRow>
-
-          {/* <FormRow className="text-gray-700" disabled>
-            <Button type="primary">Save</Button>
-          </FormRow> */}
         </form>
       </div>
-      {/* <StyledSubheading>Your Houses For Sale</StyledSubheading> */}
     </>
   );
 }
 
 export default Profile;
 
-function ProfileFormRow({ children, label, error }) {
+function ProfileFormRow({ children, label }) {
   return (
     <div className="flex flex-col gap-4 mb-4 ">
       {label && <Label htmlFor={children.props?.id}>{label}</Label>}

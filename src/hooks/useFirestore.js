@@ -96,13 +96,13 @@ export const useFirestore = (c) => {
 
     try {
       const ref = doc(db, "Users", auth.currentUser.uid);
-      // const updateData = { data };
-      const upDatedDocument = await updateDoc(ref, { data });
+      const updateData = { ...data };
+      const upDatedDocument = await updateDoc(ref, { ...updateData });
       console.log(updateDocument);
 
       dispatchIfNotCancelled({
         type: "UPDATED_DOCUMENT",
-        payload: upDatedDocument,
+        payload: { ...updateData },
       });
     } catch (err) {
       dispatchIfNotCancelled({
