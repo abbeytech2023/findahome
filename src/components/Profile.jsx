@@ -42,6 +42,7 @@ function Profile() {
 
   const handleSaveDocument = (e) => {
     e.preventDefault();
+    console.log(gender);
 
     updateDocument({ displayName, email, NIN, gender, state, localGovt });
   };
@@ -53,7 +54,7 @@ function Profile() {
           <GreyBox>
             <ProfileFormRow label="Fullname">
               <StyledInput
-                defaultValue={displayName}
+                value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 name="displayName"
                 type="text"
@@ -65,7 +66,7 @@ function Profile() {
           <GreyBox>
             <ProfileFormRow label="email" editSavebutton>
               <StyledInput
-                defaultValue={email}
+                value={email}
                 type="email"
                 id="email"
                 name="email"
@@ -75,17 +76,17 @@ function Profile() {
             </ProfileFormRow>
           </GreyBox>
 
-          <ProfileFormRow label="nin">
+          <ProfileFormRow label="Nin">
             <StyledInput
-              defaultValue={NIN}
+              value={NIN}
               type="text"
               id="NIN"
               onChange={(e) => setNIN(e.target.value)}
             />
           </ProfileFormRow>
-          <ProfileFormRow label="state">
+          <ProfileFormRow label="State">
             <StyledInput
-              defaultValue={aDoc && aDoc.state}
+              value={aDoc && aDoc.state}
               type="text"
               id="gender"
               onChange={(e) => setState(e.target.value)}
@@ -93,7 +94,7 @@ function Profile() {
           </ProfileFormRow>
           <ProfileFormRow label="Local-govt">
             <StyledInput
-              defaultValue={localGovt || ""}
+              value={localGovt}
               type="text"
               id="localGovt"
               onChange={(e) => setLocalGovt(e.target.value)}
@@ -108,15 +109,15 @@ function Profile() {
               // onChange={(e) => setLocalGovt(e.target.value)}
             />
           </ProfileFormRow> */}
-          <ProfileFormRow label="gender">
+          <ProfileFormRow label="Gender">
             <div>
               <select
                 className="py-2 w-full"
-                defaultValue={gender}
+                value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
               </select>
             </div>
           </ProfileFormRow>
