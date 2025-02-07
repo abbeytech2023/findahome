@@ -49,9 +49,6 @@ function Profile() {
   return (
     <>
       <div className="flex items-center justify-center flex-col mt-44 mb-[5rem] gap-8">
-        <Heading as="h2" className="text-center px-2">
-          Edit and save your profile
-        </Heading>
         <form onSubmit={handleSaveDocument}>
           <GreyBox>
             <ProfileFormRow label="Fullname">
@@ -61,6 +58,7 @@ function Profile() {
                 name="displayName"
                 type="text"
                 id="displayName"
+                disabled
               />
             </ProfileFormRow>
           </GreyBox>
@@ -72,11 +70,12 @@ function Profile() {
                 id="email"
                 name="email"
                 onChange={(e) => setEmail(e.target.value)}
+                disabled
               />
             </ProfileFormRow>
           </GreyBox>
 
-          <ProfileFormRow label="NIN">
+          <ProfileFormRow label="nin">
             <StyledInput
               defaultValue={NIN}
               type="text"
@@ -140,7 +139,7 @@ function ProfileFormRow({ children, label }) {
 }
 
 function Label({ children }) {
-  return <div className=" xl:text-2xl text-lg">{children}</div>;
+  return <div className=" text-[0.9rem]">{children}</div>;
 }
 
 function EditSaaveButton({ onClick }) {

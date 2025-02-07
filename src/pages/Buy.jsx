@@ -15,7 +15,7 @@ export default function Buy() {
           <section
             className={`relative bg-no-repeat bg-center bg-cover w-full items-center justify-center  flex h-screen`}
           >
-            <div className="bg-blackOverlay text-4xl font-extrabold text-[#a8c1d1] xl:text-9xl lg:text-8xl md:text-7xl  w-full h-full flex  flex-col justify-center items-center ">
+            <div className="bg-blackOverlay text-6xl font-extrabold text-[#a8c1d1]  w-full h-full flex  flex-col justify-center items-center ">
               <h2 className="">Agent.Shops.</h2>
               <h2 className="">Office.Homes.</h2>
             </div>

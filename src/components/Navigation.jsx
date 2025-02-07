@@ -8,6 +8,7 @@ export const StyledNavLink = styled(NavLink)`
   width: 100%;
   padding: 0.4rem 0.2rem;
   text-align: center;
+  font-size: 0.9rem;
   &:link,
   &:visited {
     color: #fff;

@@ -2,7 +2,7 @@
 
 function FormRow({ children, label, error }) {
   return (
-    <div className="flex flex-col gap-4 mb-4">
+    <div className="flex flex-col gap-4 mb-4 text-[0.7rem]">
       {label && <Label htmlFor={children.props.id}>{label}</Label>}
       {children}
       {error && <Error>{error}</Error>}
@@ -13,7 +13,7 @@ function FormRow({ children, label, error }) {
 export default FormRow;
 
 function Label({ children }) {
-  return <div className=" xl:text-2xl text-lg">{children}</div>;
+  return <div className="text-[0.9rem]">{children}</div>;
 }
 
 function Error({ children }) {

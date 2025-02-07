@@ -15,6 +15,7 @@ const StyledTabDiv = styled.div`
   left: 0;
   top: 0;
   bottom: 0;
+  font-size: 0.8rem;
   height: 100%;
   z-index: 10;
   background-color: #0d293b;
@@ -23,7 +24,7 @@ const StyledTabDiv = styled.div`
 `;
 
 export default function MyAccount() {
-  const [isOpen, setIsisOpen] = useState(true);
+  const [isOpen, setIsisOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(1);
   const { user } = useAuthContext();
   const { documents, error } = useUserCollections(
@@ -94,7 +95,7 @@ function Tabbed({ activeTab, setActiveTab }) {
 }
 
 function Tab({ children, activeTab, num, setActiveTab }) {
-  const otherClass = "py-2 px-1";
+  const otherClass = " py-2 px-1";
   return (
     <button
       onClick={() => {
@@ -103,7 +104,7 @@ function Tab({ children, activeTab, num, setActiveTab }) {
       className={
         activeTab === num
           ? `${otherClass} bg-[#04090c] `
-          : `${otherClass} hover:bg-[#04090c] text-left  `
+          : `${otherClass} hover:bg-[#04090c] text-left`
       }
     >
       {children}

@@ -41,7 +41,7 @@ export default function PropertyLetForm() {
   return (
     <div className=" ">
       <div className="h-[60rem]  flex items-center justify-center flex-col gap-8 ">
-        <Heading as="h2">Properties To Let Form</Heading>
+        {/* <Heading as="h2">Properties To Let Form</Heading> */}
 
         <div className="flex justify-center items-center">
           <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>

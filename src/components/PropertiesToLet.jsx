@@ -20,18 +20,12 @@ export default function PropertiesToLet() {
 
   return (
     <div className="mt-20 w-full ">
-      <div className="">
-        <Heading as="h2" className="text-center uppercase mb-12">
-          Properties to let
-        </Heading>
-      </div>
-
       {error && <p>{error}</p>}
       {documents &&
         documents.map((doc) => {
           return (
             <GridContainer key={doc.id}>
-              <div className="flex justify-center items-center text-lg px-4 gap-4 ">
+              <div className="flex justify-center items-center text-[0.4rem] px-4 gap-4 ">
                 <div className="flex flex-col items-center justify-center max-w-[70%] min-w-32 text-center bg-[#e3e3fa] py-6  gap-6 px-7">
                   <h2>Property</h2>
                   <div className="w-60">

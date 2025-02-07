@@ -37,6 +37,7 @@ const StyledMainNav = styled.nav`
 const StyledMainNavList = styled.div`
   display: flex;
   flex-direction: column;
+  font-size: 0.9rem;
 
   text-decoration: none;
 
