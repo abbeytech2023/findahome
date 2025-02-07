@@ -9,14 +9,13 @@ import { useCollections } from "../hooks/useCollections";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
+import { addDoc } from "firebase/firestore";
 
 // Email regex: /\S+@\S+\.\S+/
 
 function Profile() {
   const { aDoc } = useCollections("Users");
-  const [displayName, setDisplayName] = useState(
-    useEffect(() => setDisplayName(aDoc && aDoc.displayName), [aDoc])
-  );
+  const [displayName, setDisplayName] = useState(null);
   const [NIN, setNIN] = useState(null);
   const [gender, setGender] = useState(null);
   const [state, setState] = useState(null);
@@ -32,12 +31,15 @@ function Profile() {
   `;
 
   useEffect(() => {
-    // setDisplayName(() => aDoc && aDoc.displayName);
-    setGender(aDoc && aDoc.gender);
-    // setState(aDoc && aDoc.state);
-    setLocalGovt(aDoc && aDoc.localGovt);
-    setEmail(aDoc && aDoc.email);
-    setNIN(aDoc && aDoc.NIN);
+    async function set() {
+      setDisplayName(() => aDoc && aDoc.displayName);
+      setGender(aDoc && aDoc.gender);
+      setState(aDoc && aDoc.state);
+      setLocalGovt(aDoc && aDoc.localGovt);
+      setEmail(aDoc && aDoc.email);
+      setNIN(aDoc && aDoc.NIN);
+    }
+    set();
   }, [aDoc]);
 
   const handleSaveDocument = (e) => {
@@ -116,8 +118,8 @@ function Profile() {
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
               </select>
             </div>
           </ProfileFormRow>
