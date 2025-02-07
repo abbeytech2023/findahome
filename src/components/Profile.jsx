@@ -18,7 +18,7 @@ function Profile() {
   const [displayName, setDisplayName] = useState(null);
   const [NIN, setNIN] = useState(null);
   const [gender, setGender] = useState(null);
-  const [state, setState] = useState(null);
+  const [State, setState] = useState(null);
   const [localGovt, setLocalGovt] = useState(null);
   const [email, setEmail] = useState(null);
   const { updateDocument } = useFirestore("Users");
@@ -34,7 +34,7 @@ function Profile() {
     async function set() {
       setDisplayName(() => aDoc && aDoc.displayName);
       setGender(aDoc && aDoc.gender);
-      setState(aDoc && aDoc.state);
+      setState(aDoc && aDoc.State);
       setLocalGovt(aDoc && aDoc.localGovt);
       setEmail(aDoc && aDoc.email);
       setNIN(aDoc && aDoc.NIN);
@@ -46,7 +46,7 @@ function Profile() {
     e.preventDefault();
     console.log(gender);
 
-    updateDocument({ displayName, email, NIN, gender, state, localGovt });
+    updateDocument({ displayName, email, NIN, gender, State, localGovt });
   };
 
   return (
@@ -56,7 +56,7 @@ function Profile() {
           <GreyBox>
             <ProfileFormRow label="Fullname">
               <StyledInput
-                value={displayName}
+                value={aDoc && aDoc.displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 name="displayName"
                 type="text"
@@ -115,7 +115,7 @@ function Profile() {
             <div>
               <select
                 className="py-2 w-full"
-                value={gender}
+                value={aDoc && aDoc.gender}
                 onChange={(e) => setGender(e.target.value)}
               >
                 <option value="male">male</option>
