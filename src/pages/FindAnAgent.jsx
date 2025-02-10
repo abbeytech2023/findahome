@@ -11,7 +11,7 @@ export default function FindAnAgent() {
   const { error, documents } = useCollections("Users");
 
   return (
-    <div className="flex flex-col justify-center gap-4 items-center h-screen">
+    <div className="flex flex-col justify-center gap-4 items-center mt-[7rem]">
       <h2>Find an agent</h2>
       {/* <div className=" text-[5rem] flex justify-center items-center w-full">
         <StarRating />
@@ -31,6 +31,7 @@ export default function FindAnAgent() {
                 <p>FullName: {user.displayName}</p>
                 <p>Email: {user.email}</p>
                 <p>NIN: {user.NIN}</p>
+                <StarRating defaultRating={4} />
               </StyledUserBox>
             </div>
           );

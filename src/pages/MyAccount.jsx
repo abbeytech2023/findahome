@@ -18,7 +18,10 @@ const StyledTabDiv = styled.div`
   font-size: 0.8rem;
   height: 100%;
   z-index: 10;
-  background-color: #0d293b;
+  color: #0d293b;
+  color: #fff;
+  background-color: #555;
+
   /* transform: translateY(-100%); */
   transition: all 0.3s ease-out;
 `;
@@ -38,7 +41,7 @@ export default function MyAccount() {
         <div className="z-10 text-4xl absolute ">
           <div
             onClick={() => setIsisOpen(true)}
-            className={`bg-[#0d293b] flex gap-4  items-center text-white  py-2 px-1 absolute top-16 left-0  xl:hidden lg:top-[6.8rem]  xl:left-0 lg:left-0`}
+            className={`bg-[#0d293b] flex gap-4  items-center text-white  py-2 px-1 absolute top-16 left-0   xl:hidden lg:hidden`}
           >
             {/* {!isOpen && <h2 className="text-4xl">open</h2>} */}
             {!isOpen && <CgMenuGridO />}
@@ -65,8 +68,8 @@ export default function MyAccount() {
         </StyledTabDiv>
 
         <div className=" flex items-start justify-start pl-10 pt-[8rem] gap-9 w-full ">
-          <div className="">
-            <div className=" flex border-1 border-solid bg-white border-black   flex-col">
+          <div className="sm:hidden md:hidden min-[0px]:hidden lg:block xl:block">
+            <div className="flex border-1 border-solid bg-white border-black   flex-col">
               <Tab num={1} activeTab={activeTab} setActiveTab={setActiveTab}>
                 my profile
               </Tab>
@@ -82,7 +85,7 @@ export default function MyAccount() {
             </div>
           </div>
           <div
-            className={`flex justify-start pl-[100px] ${
+            className={`flex justify-start pl-[9%] ${
               activeTab === 4 ? "w-[80%]" : "w-[50%]"
             } pt-7  bg-white `}
           >
@@ -106,7 +109,7 @@ export default function MyAccount() {
 
 function Tabbed({ activeTab, setActiveTab }) {
   return (
-    <div className="flex  flex-col gap-11 h-full min-w-[200px] font-semibold cursor-pointer   text-[#fff] justify-center  ">
+    <div className="flex  flex-col gap-11 h-full min-w-[200px] font-semibold cursor-pointer justify-center  ">
       <Tab num={1} activeTab={activeTab} setActiveTab={setActiveTab}>
         My Profile
       </Tab>

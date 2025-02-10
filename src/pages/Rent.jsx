@@ -39,12 +39,12 @@ export default function Rent() {
         <StyledSubheading>Properties to Let</StyledSubheading>
       </div> */}
 
-      <div>
+      <div className="mt-[15rem]">
         <PropertiesToLet />
       </div>
-      <div className="mt-32">
+      {/* <div className="mt-32">
         <CreatePropertiesToLetForm />
-      </div>
+      </div> */}
     </>
   );
 }

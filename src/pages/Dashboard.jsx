@@ -38,11 +38,13 @@ export default function Dashboard() {
         </BgOverlay>
       </BackgroundImage>
 
-      <section>
-        <div>
+      <section className="mt-[15rem]">
+        <div className="mb-[15rem]">
           <PropertiesToLet />
         </div>
-        <ProductCart documents={documents} error={error} />
+        <div>
+          <ProductCart documents={documents} error={error} />
+        </div>
       </section>
     </>
   );
