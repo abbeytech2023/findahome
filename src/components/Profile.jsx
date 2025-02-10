@@ -32,7 +32,7 @@ function Profile() {
 
   useEffect(() => {
     async function set() {
-      setDisplayName(() => aDoc && aDoc.displayName);
+      // setDisplayName(() => aDoc && aDoc.displayName);
       setGender(aDoc && aDoc.gender);
       setState(aDoc && aDoc.State);
       setLocalGovt(aDoc && aDoc.localGovt);
@@ -51,7 +51,7 @@ function Profile() {
 
   return (
     <>
-      <div className="flex items-center justify-center flex-col mt-44 mb-[5rem] gap-8">
+      <div className="flex items-center flex-col  mb-[5rem] gap-8">
         <form onSubmit={handleSaveDocument}>
           <GreyBox>
             <ProfileFormRow label="Fullname">
@@ -134,7 +134,7 @@ export default Profile;
 
 function ProfileFormRow({ children, label }) {
   return (
-    <div className="flex flex-col gap-4 mb-4  ">
+    <div className="flex flex-col gap-1 mb-4  ">
       {label && <Label htmlFor={children.props?.id}>{label}</Label>}
       {children}
     </div>

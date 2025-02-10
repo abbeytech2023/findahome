@@ -19,7 +19,7 @@ export default function PropertiesToLet() {
   const { documents, error } = useCollections("ToLets");
 
   return (
-    <div className="mt-20 w-full ">
+    <div className=" ">
       {error && <p>{error}</p>}
       {documents &&
         documents.map((doc) => {

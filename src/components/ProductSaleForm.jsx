@@ -32,8 +32,8 @@ function ProductSaleForm({ uid }) {
   }, [response.success]);
 
   return (
-    <div className=" w-full  ">
-      <div className="h-[70rem] flex   justify-center flex-col gap-8">
+    <div className=" ">
+      <div className="h-[70rem] flex  flex-col gap-8">
         {/* <Heading as="h2" className="text-center">
           Properties For Sale Form
         </Heading> */}

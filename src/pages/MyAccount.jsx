@@ -33,45 +33,74 @@ export default function MyAccount() {
     ["createdAt", "desc"]
   );
   return (
-    <div className="relative flex gap-2">
-      <div className="z-10 text-4xl absolute ">
-        <div
-          onClick={() => setIsisOpen(true)}
-          className={`bg-[#0d293b] flex gap-4  items-center text-white  py-2 px-1 absolute top-16 left-0  xl:top-[6.8rem] lg:top-[6.8rem]  xl:left-0 lg:left-0`}
+    <>
+      <div className="relative flex gap-2 bg-gray-400">
+        <div className="z-10 text-4xl absolute ">
+          <div
+            onClick={() => setIsisOpen(true)}
+            className={`bg-[#0d293b] flex gap-4  items-center text-white  py-2 px-1 absolute top-16 left-0  xl:hidden lg:top-[6.8rem]  xl:left-0 lg:left-0`}
+          >
+            {/* {!isOpen && <h2 className="text-4xl">open</h2>} */}
+            {!isOpen && <CgMenuGridO />}
+          </div>
+        </div>
+        <StyledTabDiv
+          className={`${
+            !isOpen
+              ? "translate-x-[-100%] transition-all duration-[3s] ease-in pointer-events-none"
+              : "translate-x-0"
+          }`}
         >
-          {/* {!isOpen && <h2 className="text-4xl">open</h2>} */}
-          {!isOpen && <CgMenuGridO />}
-        </div>
-      </div>
-      <StyledTabDiv
-        className={`${
-          !isOpen
-            ? "translate-x-[-100%] transition-all duration-[3s] ease-in pointer-events-none"
-            : "translate-x-0"
-        }`}
-      >
-        <div>
+          <div>
+            {isOpen && (
+              <IoCloseSharp
+                className="text-white text-4xl  absolute top-16 left-[161px]  xl:top-[7rem] lg:top-[6rem]  xl:left-[161px] lg:left-[161px]"
+                onClick={() => setIsisOpen(false)}
+              />
+            )}
+          </div>
           {isOpen && (
-            <IoCloseSharp
-              className="text-white text-4xl  absolute top-16 left-[161px]  xl:top-[7rem] lg:top-[6rem]  xl:left-[161px] lg:left-[161px]"
-              onClick={() => setIsisOpen(false)}
-            />
+            <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />
           )}
+        </StyledTabDiv>
+
+        <div className=" flex items-start justify-start pl-10 pt-[8rem] gap-9 w-full ">
+          <div className="">
+            <div className=" flex border-1 border-solid bg-white border-black   flex-col">
+              <Tab num={1} activeTab={activeTab} setActiveTab={setActiveTab}>
+                my profile
+              </Tab>
+              <Tab num={2} activeTab={activeTab} setActiveTab={setActiveTab}>
+                Add property for sale
+              </Tab>
+              <Tab num={3} activeTab={activeTab} setActiveTab={setActiveTab}>
+                Add property to let
+              </Tab>
+              <Tab num={4} activeTab={activeTab} setActiveTab={setActiveTab}>
+                my properties
+              </Tab>
+            </div>
+          </div>
+          <div
+            className={`flex justify-start pl-[100px] ${
+              activeTab === 4 ? "w-[80%]" : "w-[50%]"
+            } pt-7  bg-white `}
+          >
+            {activeTab === 1 ? <Profile /> : null}
+            {activeTab === 2 ? (
+              <ProductSaleForm uid={user && user.uid} />
+            ) : null}
+            {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
+            {activeTab === 4 ? (
+              <>
+                <ProductCart documents={documents} error={error} />
+                {/* <PropertiesToLet /> */}
+              </>
+            ) : null}
+          </div>
         </div>
-        {isOpen && <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />}
-      </StyledTabDiv>
-      <div className=" flex flex-col justify-center items-center w-full ">
-        {activeTab === 1 ? <Profile /> : null}
-        {activeTab === 2 ? <ProductSaleForm uid={user && user.uid} /> : null}
-        {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
-        {activeTab === 4 ? (
-          <>
-            <ProductCart documents={documents} error={error} />
-            {/* <PropertiesToLet /> */}
-          </>
-        ) : null}
       </div>
-    </div>
+    </>
   );
 }
 
@@ -95,7 +124,7 @@ function Tabbed({ activeTab, setActiveTab }) {
 }
 
 function Tab({ children, activeTab, num, setActiveTab }) {
-  const otherClass = " py-2 px-1";
+  const otherClass = "py-2 px-1";
   return (
     <button
       onClick={() => {
@@ -103,8 +132,8 @@ function Tab({ children, activeTab, num, setActiveTab }) {
       }}
       className={
         activeTab === num
-          ? `${otherClass} bg-[#04090c] `
-          : `${otherClass} hover:bg-[#04090c] text-left`
+          ? `${otherClass} bg-[#0d293b] text-white `
+          : `${otherClass} hover:bg-[rgba(13,41,59,0.56)]  hover:text-white `
       }
     >
       {children}

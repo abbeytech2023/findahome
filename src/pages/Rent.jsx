@@ -25,10 +25,10 @@ export default function Rent() {
             className={`relative bg-no-repeat bg-center bg-cover w-full items-center justify-center  flex h-screen`}
           >
             <div className="text-center w-full h-full flex  flex-col justify-center items-center ">
-              <Heading as="h1" className="   font-bold text-[#a8c1d1] ">
+              <Heading as="h1" className="text-6xl font-bold text-[#a8c1d1] ">
                 Get Ready to move,
               </Heading>
-              <p className="text-[#b9d0de] text-3xl mt-5">
+              <p className="text-[#b9d0de] text-2xl sm:text-3xl mt-5">
                 your step by step guide to a stress free relocation
               </p>
             </div>
