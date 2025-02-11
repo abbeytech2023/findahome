@@ -1,7 +1,7 @@
 import StarRating from "../components/StarRating";
 import { useCollections } from "../hooks/useCollections";
 import styled from "styled-components";
-import RatingLogic from "../components/RatingLogic";
+import { RatingLogic } from "../components/RatingLogic";
 
 const StyledUserBox = styled.div`
   border: 1px solid black;
