@@ -67,7 +67,7 @@ export default function MyAccount() {
           )}
         </StyledTabDiv>
 
-        <div className=" flex items-start justify-start pl-10 sm:pl-5 pt-[8rem] gap-9 w-full ">
+        <div className=" flex items-start justify-start pl-10 sm:pl-0 pt-[8rem] gap-9 w-full ">
           <div className="sm:hidden md:hidden min-[0px]:hidden lg:block xl:block">
             <div className="flex border-1 border-solid bg-white border-black   flex-col">
               <Tab num={1} activeTab={activeTab} setActiveTab={setActiveTab}>
@@ -85,7 +85,7 @@ export default function MyAccount() {
             </div>
           </div>
           <div
-            className={`flex justify-start pl-[5%] pt-7 w-[100%] bg-white pr-[2%]  mr-[5%]`}
+            className={`flex justify-start pl-[5%] sm-pl-0 pt-7 w-[100%] bg-white pr-[2%]  mr-[5%]`}
           >
             {activeTab === 1 ? <Profile /> : null}
             {activeTab === 2 ? (
