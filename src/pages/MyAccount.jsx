@@ -85,9 +85,7 @@ export default function MyAccount() {
             </div>
           </div>
           <div
-            className={`flex justify-start mr-auto pl-[9%] ${
-              activeTab === 4 ? "w-[80%]" : "w-[50%] "
-            } pt-7  bg-white sm:w-[100%] mr-[5%]`}
+            className={`flex justify-start pl-[9%] pt-7  bg-white sm:w-[100%] mr-[5%]`}
           >
             {activeTab === 1 ? <Profile /> : null}
             {activeTab === 2 ? (
