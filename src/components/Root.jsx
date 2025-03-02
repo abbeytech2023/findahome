@@ -4,8 +4,9 @@ import styled from "styled-components";
 const IconDiv = styled.div`
   font-size: 32px;
   background-color: black;
-  border-radius: 50%;
-  /* border: 1px solid white; */
+  border-radius: 30%;
+  overflow: hidden;
+  border: 1px solid white;
 `;
 
 export default function Root() {
