@@ -18,10 +18,11 @@ export function RatingLogic() {
     setRating((prevRatings) => [...prevRatings, rating]);
     calculateAverageRating();
   };
+  2;
 
   return (
     <div>
-      <StarRating defaultRating={averageRating} size={20} />
+      <StarRating defaultRating={averageRating} size={30} />
     </div>
   );
 }

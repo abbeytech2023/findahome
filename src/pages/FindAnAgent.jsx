@@ -1,7 +1,6 @@
 import StarRating from "../components/StarRating";
 import { useCollections } from "../hooks/useCollections";
 import styled from "styled-components";
-import { RatingLogic } from "../components/RatingLogic";
 
 const StyledUserBox = styled.div`
   border: 1px solid black;
@@ -32,7 +31,9 @@ export default function FindAnAgent() {
                 <p>FullName: {user.displayName}</p>
                 <p>Email: {user.email}</p>
                 <p>NIN: {user.NIN}</p>
-                <RatingLogic defaultRating={4} />
+                <div className="flex items-center gap-4">
+                  Review: {<StarRating defaultRating={4} />}
+                </div>
               </StyledUserBox>
             </div>
           );

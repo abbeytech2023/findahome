@@ -10,8 +10,19 @@ import FindAnAgent from "./pages/FindAnAgent";
 import Advertisement from "./pages/Advertisement";
 import { useAuthContext } from "./hooks/useAuthContext";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import Root from "./components/Root";
 import AnonymousRoute from "./components/AnonymousRoute";
 import MyAccount from "./pages/MyAccount";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
 
 export default function App() {
   const { authIsReady, user } = useAuthContext();
@@ -20,7 +31,8 @@ export default function App() {
     <div className="overflow-x-hidden">
       {authIsReady && (
         <BrowserRouter className="relative">
-          <>
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools initialIsOpen={false} />
             <div>
               <Header />
               <Routes>
@@ -42,8 +54,9 @@ export default function App() {
                 </Route>
                 <Route path="/*" element={<PageNotFound />} />
               </Routes>
+              <Root />
             </div>
-          </>
+          </QueryClientProvider>
         </BrowserRouter>
       )}
     </div>

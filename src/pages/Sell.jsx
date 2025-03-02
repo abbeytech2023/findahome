@@ -1,9 +1,11 @@
 import SellImage from "../assets/images/bg5.jpg";
 import styled from "styled-components";
-import ProductSaleForm from "../components/ProductSaleForm";
 import { BgOverlay } from "../components/BgOverlay";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Heading } from "../components/HeadingText";
+import { useQuery } from "@tanstack/react-query";
+import { db } from "../firebase/config";
+import { fetchCollection } from "../hooks/useCollections";
+import { collection, getDocs } from "firebase/firestore";
 
 const SellSection = styled.section`
   height: 100vh;
@@ -46,21 +48,39 @@ export default function Sell() {
               Nigeria. Click here to see if its available in your city.
             </p>
           </div>
-          {/* <div class=" flex items-center basis-1/3 justify-center md:flex-col"> */}
-          <div className=" relative">
-            {/* <Image fill src={bg} alt="illusale" quality={70} /> */}
-          </div>
         </div>
       </section>
-      {user ? (
-        <section>
-          <ProductSaleForm uid={user.uid} />
-        </section>
-      ) : (
-        <section>
-          <ProductSaleForm />
-        </section>
-      )}
+
+      {/* <div>
+        <GetRUms />
+      </div> */}
     </>
+  );
+}
+
+function GetRUms() {
+  const { data } = useQuery({
+    queryKey: ["Tolet"],
+    queryFn: fetchCollection,
+  });
+
+  console.log(data);
+
+  return (
+    <div>
+      {data &&
+        data.map((rum) => {
+          return (
+            <div
+              key={rum.id}
+              className="flex items-center justify-center gap-6 mb-11"
+            >
+              <div>{rum.localGovernment}</div>
+              <div>{rum.phoneNumber}</div>
+              <div>{rum.propertyDescription}</div>
+            </div>
+          );
+        })}
+    </div>
   );
 }

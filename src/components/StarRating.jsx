@@ -31,6 +31,20 @@ export default function StarRating({
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
+  const [averageRating, setAverageRating] = useState(0);
+
+  const calculateAverageRating = () => {
+    const sum = rating.reduce((acc, rating) => {
+      acc + rating;
+    }, 0);
+    const average = sum / rating.length;
+    setAverageRating(7);
+  };
+
+  const handleRatingSubmission = (rating) => {
+    setRating((prevRatings) => [...prevRatings, rating]);
+    calculateAverageRating();
+  };
 
   const textStyle = {
     lineHeight: "1",

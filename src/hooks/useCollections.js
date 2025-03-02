@@ -1,7 +1,13 @@
 // Subscribing to realtime data from a firestore collection
 import { useEffect, useState } from "react";
 import { db, auth } from "../firebase/config";
-import { collection, onSnapshot, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  doc,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
 
 export const useCollections = (c) => {
   const [documents, setDocuments] = useState();
@@ -45,4 +51,15 @@ export const useCollections = (c) => {
   }, [c]);
 
   return { aDoc, documents, error };
+};
+
+export const fetchCollection = async () => {
+  let ref = collection(db, "ToLets");
+
+  const querySnapshot = await getDocs(ref);
+
+  const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  console.log(data);
+
+  return data;
 };
