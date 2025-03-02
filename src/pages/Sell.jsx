@@ -40,7 +40,7 @@ export default function Sell() {
               Sell with Our partner agent <br />
               or get a cash offer
             </h2>
-            <p className="text-lg  ">
+            <p className="text-[1.2rem]  ">
               We help you to sell your home, your way. Easily explore your
               selling options below and get personalized market value estimates
               — we can even help you choose the best option when you’re ready.

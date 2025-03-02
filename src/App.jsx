@@ -32,7 +32,7 @@ export default function App() {
       {authIsReady && (
         <BrowserRouter className="relative">
           <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false} />
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
             <div>
               <Header />
               <Routes>
