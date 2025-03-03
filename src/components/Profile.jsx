@@ -34,7 +34,7 @@ function Profile() {
     async function set() {
       // setDisplayName(() => aDoc && aDoc.displayName);
       setGender(aDoc && aDoc.gender);
-      setState(aDoc && aDoc.State);
+      setState(aDoc && aDoc.state);
       setLocalGovt(aDoc && aDoc.localGovt);
       setEmail(aDoc && aDoc.email);
       setNIN(aDoc && aDoc.NIN);
@@ -55,7 +55,7 @@ function Profile() {
         <form onSubmit={handleSaveDocument}>
           <GreyBox>
             <ProfileFormRow label="Fullname">
-              <p className="uppercase">{aDoc.displayName}</p>
+              <p className="uppercase">{displayName}</p>
               {/* <StyledInput
                 value={aDoc && aDoc.displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
@@ -68,7 +68,7 @@ function Profile() {
           </GreyBox>
           <GreyBox>
             <ProfileFormRow label="email" editSavebutton>
-              {aDoc.email}
+              {email}
               {/* <StyledInput
                 value={email}
                 type="email"
@@ -90,7 +90,7 @@ function Profile() {
             /> */}
           </ProfileFormRow>
           <ProfileFormRow label="State">
-            <p className="uppercase">{aDoc.state}</p>
+            <p className="uppercase">{State}</p>
             {/* <StyledInput
               value={aDoc && aDoc.state}
               type="text"
@@ -99,7 +99,7 @@ function Profile() {
             /> */}
           </ProfileFormRow>
           <ProfileFormRow label="Local-govt">
-            <p className="uppercase">{aDoc.localGovt}</p>
+            <p className="uppercase">{localGovt}</p>
             {/* <StyledInput
               value={localGovt}
               type="text"
@@ -117,7 +117,7 @@ function Profile() {
             />
           </ProfileFormRow> */}
           <ProfileFormRow label="Gender">
-            <p className="uppercase">{aDoc.gender}</p>
+            <p className="uppercase">{gender}</p>
             {/* <div>
               <select
                 className="py-2 w-full"
@@ -141,7 +141,7 @@ export default Profile;
 function ProfileFormRow({ children, label }) {
   return (
     <div className="flex flex-col gap-1 mb-4  ">
-      {label && <Label htmlFor={children.props?.id}>{label}</Label>}
+      {label && <Label htmlFor={children?.props?.id}>{label}</Label>}
       {children}
     </div>
   );
