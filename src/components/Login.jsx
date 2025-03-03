@@ -6,10 +6,9 @@ import { useLogin } from "../hooks/useLogin";
 import { useForm } from "react-hook-form";
 import Form from "./Form";
 import StyledInput from "./StyledInput";
+import toast from "react-hot-toast";
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const { login, error, isPending } = useLogin();
   // const [fullname, setFullname] = useState("");
 
@@ -21,6 +20,7 @@ function LoginForm() {
     console.log(email);
 
     login(email, password);
+
     console.log(email, password);
   };
 

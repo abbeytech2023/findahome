@@ -10,6 +10,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useAuthContext } from "./useAuthContext";
+import toast from "react-hot-toast";
 
 let initialState = {
   document: null,
@@ -128,9 +129,12 @@ export const useFirestore = (c) => {
     }
   };
 
-  // useEffect(() => {
-  //   return () => setIsCancelled(true);
-  // }, []);
-
   return { updateDocument, addDocument, deleteDocument, response };
+};
+
+export const deleteDocument = async (id) => {
+  const ref = doc(db, "Outlets", id);
+  const deletedDocument = await deleteDoc(ref);
+
+  return deletedDocument;
 };

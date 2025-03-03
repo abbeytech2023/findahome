@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { db } from "../firebase/config";
 import { fetchCollection } from "../hooks/useCollections";
 import { collection, getDocs } from "firebase/firestore";
+import Spinner from "../components/Spinner";
 
 const SellSection = styled.section`
   height: 100vh;
@@ -50,10 +51,6 @@ export default function Sell() {
           </div>
         </div>
       </section>
-
-      {/* <div>
-        <GetRUms />
-      </div> */}
     </>
   );
 }

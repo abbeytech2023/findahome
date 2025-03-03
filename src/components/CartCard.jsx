@@ -8,6 +8,8 @@ import { GridInner } from "./Grid";
 import bg from "../assets/images/illus.jpg";
 
 import styled from "styled-components";
+import { deleteDocument } from "../hooks/useFirestore";
+import { useMutation } from "@tanstack/react-query";
 
 export const StyledCartCard = styled.div`
   /* display: flex;
@@ -23,10 +25,15 @@ export const StyledCartCard = styled.div`
 `;
 
 function CartCard({ document }) {
-  const { deleteDocument, response } = useFirestore("Outlets");
+  const { propertyDetails, price, title, id } = document;
+  // const { deleteDocument, response } = useFirestore("Outlets");
   const { user } = useAuthContext();
 
   const location = useLocation();
+
+  const { isLoading, mutate } = useMutation({
+    mutationFn: (id) => deleteDocument(id),
+  });
 
   const deleteCart = location.pathname === "/myaccount";
 
@@ -36,15 +43,15 @@ function CartCard({ document }) {
         <div className="w-2/4 ">
           <img alt="image" src={bg} />
         </div>
-        <h1 className="text-[18px] uppercase">{document.title}</h1>
-        <p className=" text-lg">{document.price}</p>
+        <h1 className="text-[18px] uppercase">{title}</h1>
+        <p className=" text-lg">{price}</p>
         <p className="h-[7rem] text-lg ">
-          {document.propertyDetails} Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Id, omnis.
+          {propertyDetails} Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Id, omnis.
         </p>
         {deleteCart && (
           <button
-            onClick={() => deleteDocument(document.id)}
+            onClick={() => mutate(id)}
             className="2xl z-10 absolute right-3 top-3"
           >
             <MdDelete className="text-gray-400" />

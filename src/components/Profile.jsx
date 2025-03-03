@@ -55,52 +55,57 @@ function Profile() {
         <form onSubmit={handleSaveDocument}>
           <GreyBox>
             <ProfileFormRow label="Fullname">
-              <StyledInput
+              <p className="uppercase">{aDoc.displayName}</p>
+              {/* <StyledInput
                 value={aDoc && aDoc.displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 name="displayName"
                 type="text"
                 id="displayName"
                 disabled
-              />
+              /> */}
             </ProfileFormRow>
           </GreyBox>
           <GreyBox>
             <ProfileFormRow label="email" editSavebutton>
-              <StyledInput
+              {aDoc.email}
+              {/* <StyledInput
                 value={email}
                 type="email"
                 id="email"
                 name="email"
                 onChange={(e) => setEmail(e.target.value)}
                 disabled
-              />
+              /> */}
             </ProfileFormRow>
           </GreyBox>
 
           <ProfileFormRow label="Nin">
-            <StyledInput
+            <p>{NIN}</p>
+            {/* <StyledInput
               value={NIN}
               type="text"
               id="NIN"
               onChange={(e) => setNIN(e.target.value)}
-            />
+            /> */}
           </ProfileFormRow>
           <ProfileFormRow label="State">
-            <StyledInput
+            <p className="uppercase">{aDoc.state}</p>
+            {/* <StyledInput
               value={aDoc && aDoc.state}
               type="text"
               id="gender"
               onChange={(e) => setState(e.target.value)}
-            />
+            /> */}
           </ProfileFormRow>
           <ProfileFormRow label="Local-govt">
-            <StyledInput
+            <p className="uppercase">{aDoc.localGovt}</p>
+            {/* <StyledInput
               value={localGovt}
               type="text"
               id="localGovt"
               onChange={(e) => setLocalGovt(e.target.value)}
-            />
+            /> */}
           </ProfileFormRow>
           {/* <ProfileFormRow label="user ID">
             <StyledInput
@@ -112,7 +117,8 @@ function Profile() {
             />
           </ProfileFormRow> */}
           <ProfileFormRow label="Gender">
-            <div>
+            <p className="uppercase">{aDoc.gender}</p>
+            {/* <div>
               <select
                 className="py-2 w-full"
                 value={aDoc && aDoc.gender}
@@ -121,7 +127,7 @@ function Profile() {
                 <option value="male">male</option>
                 <option value="female">female</option>
               </select>
-            </div>
+            </div> */}
           </ProfileFormRow>
           <EditSaaveButton />
         </form>

@@ -3,6 +3,9 @@ import { useCollections } from "../hooks/useCollections";
 import { StyledCartCard } from "./CartCard";
 import { Heading } from "./HeadingText";
 import { GridContainer, GridInner } from "./Grid";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCollection } from "../hooks/useCollections";
+import Spinner from "./Spinner";
 
 const StyledLi = styled.li`
   display: flex;
@@ -16,11 +19,16 @@ const StyledLi = styled.li`
 `;
 
 export default function PropertiesToLet() {
-  const { documents, error } = useCollections("ToLets");
+  // const { documents, error } = useCollections("ToLets");
 
+  const { data: documents, isLoading } = useQuery({
+    queryKey: ["Tolets"],
+    queryFn: fetchCollection,
+  });
+  if (isLoading) return <Spinner />;
   return (
     <div className=" ">
-      {error && <p>{error}</p>}
+      {/* {error && <p>{error}</p>} */}
       <Heading as="h2" className=" uppercase text-center mb-16">
         Properties to let
       </Heading>
