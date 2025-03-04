@@ -41,11 +41,11 @@ function Profile() {
 
   useEffect(() => {
     async function set() {
-      setDisplayName(() => aDoc && aDoc.displayName);
-      setGender(aDoc && aDoc.gender);
-      setState(aDoc && aDoc.state);
-      setLocalGovt(aDoc && aDoc.localGovt);
-      setEmail(aDoc && aDoc.email);
+      // setDisplayName(() => aDoc && aDoc.displayName);
+      // setGender(aDoc && aDoc.gender);
+      // setState(aDoc && aDoc.state);
+      // setLocalGovt(aDoc && aDoc.localGovt);
+      // setEmail(aDoc && aDoc.email);
       setNIN(aDoc && aDoc.NIN);
     }
     set();
@@ -66,35 +66,35 @@ function Profile() {
             <Label>
               <p>FullName</p>
             </Label>
-            <p className="uppercase">{displayName}</p>
+            <p className="uppercase">{aDoc && aDoc.displayName}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label editSavebutton>
               <p>Email</p>
             </Label>
-            {email}
+            <p> {aDoc && aDoc.email}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label>
               <p>NIN</p>
             </Label>
-            <p>{NIN}</p>
+            <p>{aDoc && aDoc.NIN}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label>
               <p>State</p>
             </Label>
-            <p className="uppercase">{State}</p>
+            <p className="uppercase">{aDoc && aDoc.state}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label label="Local-govt"> Local-government</Label>
-            <p className="uppercase">{localGovt}</p>
+            <p className="uppercase">{aDoc && aDoc.localGovt}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label>
               <p>Gender</p>
             </Label>
-            <p className="uppercase">{gender}</p>
+            <p className="uppercase">{aDoc && aDoc.gender}</p>
           </StyledProfileBox>
           <EditSaaveButton />
         </form>
