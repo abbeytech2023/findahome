@@ -11,6 +11,15 @@ import styled from "styled-components";
 import Button from "./Button";
 import { addDoc } from "firebase/firestore";
 
+const StyledProfileBox = styled.div`
+  display: flex;
+  gap: 7px;
+  margin-bottom: 12px;
+  & > :first-child {
+    width: 8rem;
+  }
+`;
+
 // Email regex: /\S+@\S+\.\S+/
 
 function Profile() {
@@ -32,7 +41,7 @@ function Profile() {
 
   useEffect(() => {
     async function set() {
-      // setDisplayName(() => aDoc && aDoc.displayName);
+      setDisplayName(() => aDoc && aDoc.displayName);
       setGender(aDoc && aDoc.gender);
       setState(aDoc && aDoc.state);
       setLocalGovt(aDoc && aDoc.localGovt);
@@ -53,82 +62,40 @@ function Profile() {
     <>
       <div className="flex items-center flex-col  mb-[5rem] gap-8">
         <form onSubmit={handleSaveDocument}>
-          <GreyBox>
-            <ProfileFormRow label="Fullname">
-              <p className="uppercase">{displayName}</p>
-              {/* <StyledInput
-                value={aDoc && aDoc.displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                name="displayName"
-                type="text"
-                id="displayName"
-                disabled
-              /> */}
-            </ProfileFormRow>
-          </GreyBox>
-          <GreyBox>
-            <ProfileFormRow label="email" editSavebutton>
-              {email}
-              {/* <StyledInput
-                value={email}
-                type="email"
-                id="email"
-                name="email"
-                onChange={(e) => setEmail(e.target.value)}
-                disabled
-              /> */}
-            </ProfileFormRow>
-          </GreyBox>
-
-          <ProfileFormRow label="Nin">
+          <StyledProfileBox>
+            <Label>
+              <p>FullName</p>
+            </Label>
+            <p className="uppercase">{displayName}</p>
+          </StyledProfileBox>
+          <StyledProfileBox>
+            <Label editSavebutton>
+              <p>Email</p>
+            </Label>
+            {email}
+          </StyledProfileBox>
+          <StyledProfileBox>
+            <Label>
+              <p>NIN</p>
+            </Label>
             <p>{NIN}</p>
-            {/* <StyledInput
-              value={NIN}
-              type="text"
-              id="NIN"
-              onChange={(e) => setNIN(e.target.value)}
-            /> */}
-          </ProfileFormRow>
-          <ProfileFormRow label="State">
+          </StyledProfileBox>
+          <StyledProfileBox>
+            <Label>
+              <p>State</p>
+            </Label>
             <p className="uppercase">{State}</p>
-            {/* <StyledInput
-              value={aDoc && aDoc.state}
-              type="text"
-              id="gender"
-              onChange={(e) => setState(e.target.value)}
-            /> */}
-          </ProfileFormRow>
-          <ProfileFormRow label="Local-govt">
+          </StyledProfileBox>
+          <StyledProfileBox>
+            <Label label="Local-govt"> Local-government</Label>
             <p className="uppercase">{localGovt}</p>
-            {/* <StyledInput
-              value={localGovt}
-              type="text"
-              id="localGovt"
-              onChange={(e) => setLocalGovt(e.target.value)}
-            /> */}
-          </ProfileFormRow>
-          {/* <ProfileFormRow label="user ID">
-            <StyledInput
-              value={(aDoc && aDoc.id) || ""}
-              type="text"
-              id="ID"
-              disabled
-              // onChange={(e) => setLocalGovt(e.target.value)}
-            />
-          </ProfileFormRow> */}
-          <ProfileFormRow label="Gender">
+          </StyledProfileBox>
+          <StyledProfileBox>
+            <Label>
+              <p>Gender</p>
+            </Label>
             <p className="uppercase">{gender}</p>
-            {/* <div>
-              <select
-                className="py-2 w-full"
-                value={aDoc && aDoc.gender}
-                onChange={(e) => setGender(e.target.value)}
-              >
-                <option value="male">male</option>
-                <option value="female">female</option>
-              </select>
-            </div> */}
-          </ProfileFormRow>
+          </StyledProfileBox>
           <EditSaaveButton />
         </form>
       </div>
@@ -138,17 +105,8 @@ function Profile() {
 
 export default Profile;
 
-function ProfileFormRow({ children, label }) {
-  return (
-    <div className="flex flex-col gap-1 mb-4  ">
-      {label && <Label htmlFor={children?.props?.id}>{label}</Label>}
-      {children}
-    </div>
-  );
-}
-
 function Label({ children }) {
-  return <div className=" text-[0.9rem]">{children}</div>;
+  return <div className=" text-[0.9rem] flex flex-row ">{children}</div>;
 }
 
 function EditSaaveButton({ onClick }) {
