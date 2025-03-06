@@ -126,7 +126,7 @@ function Form({ children, handleSubmit, onSubmit }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="   flex gap-4 items-center justify-center flex-col"
+      className="flex gap-4 items-center justify-center flex-col"
     >
       {children}
     </form>

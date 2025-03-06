@@ -24,13 +24,8 @@ const StyledProfileBox = styled.div`
 
 function Profile() {
   const { aDoc } = useCollections("Users");
-  const [displayName, setDisplayName] = useState(null);
-  const [NIN, setNIN] = useState(null);
-  const [gender, setGender] = useState(null);
-  const [State, setState] = useState(null);
-  const [localGovt, setLocalGovt] = useState(null);
-  const [email, setEmail] = useState(null);
-  const { updateDocument } = useFirestore("Users");
+
+  // const { updateDocument } = useFirestore("Users");
 
   // const docRef = doc(db, "Users", auth.currentUser.uid);
 
@@ -39,29 +34,17 @@ function Profile() {
     opacity: 0.8;
   `;
 
-  useEffect(() => {
-    async function set() {
-      // setDisplayName(() => aDoc && aDoc.displayName);
-      // setGender(aDoc && aDoc.gender);
-      // setState(aDoc && aDoc.state);
-      // setLocalGovt(aDoc && aDoc.localGovt);
-      // setEmail(aDoc && aDoc.email);
-      setNIN(aDoc && aDoc.NIN);
-    }
-    set();
-  }, [aDoc]);
+  // const handleSaveDocument = (e) => {
+  //   e.preventDefault();
+  //   console.log(gender);
 
-  const handleSaveDocument = (e) => {
-    e.preventDefault();
-    console.log(gender);
-
-    updateDocument({ displayName, email, NIN, gender, State, localGovt });
-  };
+  //   updateDocument({ displayName, email, NIN, gender, State, localGovt });
+  // };
 
   return (
     <>
       <div className="flex items-center flex-col  mb-[5rem] gap-8">
-        <form onSubmit={handleSaveDocument}>
+        <form>
           <StyledProfileBox>
             <Label>
               <p>FullName</p>
