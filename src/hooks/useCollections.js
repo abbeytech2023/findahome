@@ -17,25 +17,6 @@ export const useCollections = (c) => {
   useEffect(() => {
     let ref = collection(db, c);
 
-    const unsubscribe = onSnapshot(
-      ref,
-      (snapshot) => {
-        let results = [];
-        snapshot.docs.forEach((doc) => {
-          results.push({ ...doc.data(), id: doc.id });
-        });
-        //update state
-        console.log(results);
-
-        setDocuments(results);
-        setError(null);
-      },
-      (error) => {
-        console.log(error);
-        setError("could not fetch the data");
-      }
-    );
-
     const unsub = async () => {
       const docRef = doc(db, c, auth.currentUser.uid);
       const snapshot = await getDoc(docRef);
@@ -45,7 +26,6 @@ export const useCollections = (c) => {
     };
 
     return () => {
-      unsubscribe();
       unsub();
     };
   }, [c]);
@@ -53,13 +33,33 @@ export const useCollections = (c) => {
   return { aDoc, documents, error };
 };
 
-export const fetchCollection = async () => {
+export const fetchCollectionForAUser = async () => {
+  const docRef = doc(db, "Users", auth.currentUser.uid);
+  const snapshot = await getDoc(docRef);
+
+  const data = snapshot.data();
+
+  console.log(data);
+
+  return data;
+};
+
+export const fetchCollectionToLet = async () => {
   let ref = collection(db, "ToLets");
 
   const querySnapshot = await getDocs(ref);
 
   const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  console.log(data);
+
+  return data;
+};
+
+export const fetchCollectionForSale = async () => {
+  let ref = collection(db, "Outlets");
+
+  const querySnapshot = await getDocs(ref);
+
+  const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
   return data;
 };

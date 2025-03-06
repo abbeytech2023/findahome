@@ -4,7 +4,7 @@ import { BgOverlay } from "../components/BgOverlay";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { db } from "../firebase/config";
-import { fetchCollection } from "../hooks/useCollections";
+import { fetchCollectionForSale } from "../hooks/useCollections";
 import { collection, getDocs } from "firebase/firestore";
 import Spinner from "../components/Spinner";
 
@@ -58,7 +58,7 @@ export default function Sell() {
 function GetRUms() {
   const { data } = useQuery({
     queryKey: ["Tolet"],
-    queryFn: fetchCollection,
+    queryFn: fetchCollectionForSale,
   });
 
   console.log(data);

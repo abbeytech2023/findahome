@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { useCollections } from "../hooks/useCollections";
+import { fetchCollectionToLet } from "../hooks/useCollections";
 import { StyledCartCard } from "./CartCard";
 import { Heading } from "./HeadingText";
 import { GridContainer, GridInner } from "./Grid";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCollection } from "../hooks/useCollections";
 import Spinner from "./Spinner";
+import { Outlet } from "react-router-dom";
+import { data } from "autoprefixer";
 
 const StyledLi = styled.li`
   display: flex;
@@ -23,9 +24,11 @@ export default function PropertiesToLet() {
 
   const { data: documents, isLoading } = useQuery({
     queryKey: ["Tolets"],
-    queryFn: fetchCollection,
+    queryFn: fetchCollectionToLet,
   });
-  if (isLoading) return <Spinner />;
+  console.log("data:", documents);
+
+  if (isLoading) return "Loading...";
   return (
     <div className=" ">
       {/* {error && <p>{error}</p>} */}

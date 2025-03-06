@@ -21,7 +21,6 @@ const Section = styled.section`
 `;
 
 export default function Dashboard() {
-  const { documents, error } = useCollections("Outlets");
   return (
     <>
       <BackgroundImage>
@@ -43,7 +42,7 @@ export default function Dashboard() {
           <PropertiesToLet />
         </div>
         <div>
-          <ProductCart documents={documents} error={error} />
+          <ProductCart />
         </div>
       </section>
     </>

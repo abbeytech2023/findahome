@@ -1,15 +1,12 @@
 // import Form from "../components";
-// import { db, auth } from "../firebase/config";
 // import { doc, updateDoc } from "firebase/firestore";
 
-import StyledInput from "../components/StyledInput";
-import { Heading } from "./HeadingText";
+import { fetchCollectionForAUser } from "../hooks/useCollections";
 import { useFirestore } from "../hooks/useFirestore";
 import { useCollections } from "../hooks/useCollections";
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
-import { addDoc } from "firebase/firestore";
+import { useQuery } from "@tanstack/react-query";
 
 const StyledProfileBox = styled.div`
   display: flex;
@@ -23,7 +20,11 @@ const StyledProfileBox = styled.div`
 // Email regex: /\S+@\S+\.\S+/
 
 function Profile() {
-  const { aDoc } = useCollections("Users");
+  const { data: user, isLoading } = useQuery({
+    queryKey: ["Users"],
+    queryFn: fetchCollectionForAUser,
+  });
+  // const { aDoc } = useCollections("Users");
 
   // const { updateDocument } = useFirestore("Users");
 
@@ -49,35 +50,35 @@ function Profile() {
             <Label>
               <p>FullName</p>
             </Label>
-            <p className="uppercase">{aDoc && aDoc.displayName}</p>
+            <p className="uppercase">{user && user.displayName}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label editSavebutton>
               <p>Email</p>
             </Label>
-            <p> {aDoc && aDoc.email}</p>
+            <p> {user && user.email}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label>
               <p>NIN</p>
             </Label>
-            <p>{aDoc && aDoc.NIN}</p>
+            <p>{user && user.NIN}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label>
               <p>State</p>
             </Label>
-            <p className="uppercase">{aDoc && aDoc.state}</p>
+            <p className="uppercase">{user && user.state}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label label="Local-govt"> Local-government</Label>
-            <p className="uppercase">{aDoc && aDoc.localGovt}</p>
+            <p className="uppercase">{user && user.localGovt}</p>
           </StyledProfileBox>
           <StyledProfileBox>
             <Label>
               <p>Gender</p>
             </Label>
-            <p className="uppercase">{aDoc && aDoc.gender}</p>
+            <p className="uppercase">{user && user.gender}</p>
           </StyledProfileBox>
           <EditSaaveButton />
         </form>
