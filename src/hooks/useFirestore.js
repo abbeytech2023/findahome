@@ -138,3 +138,12 @@ export const deleteDocument = async (id) => {
 
   return deletedDocument;
 };
+
+export const addPropertiesToLet = async (doc) => {
+  const ref = collection(db, "ToLets");
+
+  const createdAt = timestamp.fromDate(new Date());
+  const addedDocument = await addDoc(ref, { ...doc, createdAt });
+
+  return addedDocument;
+};

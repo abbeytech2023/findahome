@@ -1,7 +1,11 @@
 import Profile from "../components/Profile";
 import CreatePropertiesToLetForm from "../components/CreatePropertiesToLetForm";
 import { useState } from "react";
-import { useUserCollections } from "../hooks/useUserCollections";
+import {
+  useUserCollectionsSale,
+  useUserCollectionsToLet,
+} from "../hooks/useUserCollections";
+import PropertiesToLet from "../components/PropertiesToLet";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ProductSaleForm from "../components/ProductSaleForm";
 import { CgMenuGridO } from "react-icons/cg";
@@ -30,7 +34,13 @@ export default function MyAccount() {
   const [isOpen, setIsisOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(1);
   const { user } = useAuthContext();
-  const { documents, error } = useUserCollections(
+  const { documents, error } = useUserCollectionsSale(
+    "Outlets",
+    ["uid", "==", user && user.uid],
+    ["createdAt", "desc"]
+  );
+
+  const { forSale, docError } = useUserCollectionsToLet(
     "Outlets",
     ["uid", "==", user && user.uid],
     ["createdAt", "desc"]
@@ -93,10 +103,10 @@ export default function MyAccount() {
             ) : null}
             {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
             {activeTab === 4 ? (
-              <>
+              <div className="flex flex-col">
                 <ProductCart documents={documents} error={error} />
-                {/* <PropertiesToLet /> */}
-              </>
+                <PropertiesToLet />
+              </div>
             ) : null}
           </div>
         </div>

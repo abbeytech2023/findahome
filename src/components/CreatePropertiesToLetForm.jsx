@@ -1,4 +1,4 @@
-import { useFirestore } from "../hooks/useFirestore";
+import { addPropertiesToLet, useFirestore } from "../hooks/useFirestore";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useForm } from "react-hook-form";
 import Button from "./Button";
@@ -6,6 +6,12 @@ import FormRow from "./FormRow";
 import StyledInput from "./StyledInput";
 import styled from "styled-components";
 import { Heading } from "./HeadingText";
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const OpenCloseForm = styled.button`
   border: 1px solid black;
@@ -14,12 +20,24 @@ const OpenCloseForm = styled.button`
 `;
 
 export default function PropertyLetForm() {
-  const { addDocument, response } = useFirestore("ToLets");
+  const QueryClient = useQueryClient();
   const { user } = useAuthContext();
 
   const { register, getValues, reset, handleSubmit, formState } = useForm();
 
   const { errors } = formState;
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: addPropertiesToLet,
+    onSuccess: () => {
+      toast.success("property added successfully");
+      QueryClient.invalidateQueries({ queryKey: ["ToLets"] });
+      reset();
+    },
+    onError: () => {
+      toast.error("property could not be added");
+    },
+  });
 
   const agentName = user?.displayName;
 
@@ -29,7 +47,7 @@ export default function PropertyLetForm() {
     localGovernment,
     phoneNumber,
   }) => {
-    addDocument({
+    mutate({
       propertyDescription,
       propertyLocation,
       localGovernment,
@@ -103,12 +121,12 @@ export default function PropertyLetForm() {
               />
             </FormRow>
             <FormRow>
-              {response.isPending === "completed" && (
+              {!isPending && (
                 <Button type="primary" className="mt-12">
                   Complete
                 </Button>
               )}
-              {response.isPending === "loading" && (
+              {isPending && (
                 <Button type="primary" disabled>
                   loading...
                 </Button>

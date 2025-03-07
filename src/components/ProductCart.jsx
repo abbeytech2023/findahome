@@ -12,8 +12,6 @@ function ProductCart() {
     queryFn: fetchCollectionForSale,
   });
 
-  console.log(data);
-
   return (
     <div className="px-[3rem] mb-[20rem] ">
       {/* {error && <p>{error}</p>} */}
