@@ -4,13 +4,16 @@ import { GridContainer, GridInner } from "./Grid";
 import { Heading } from "./HeadingText";
 import { fetchCollectionForSale } from "../hooks/useCollections";
 import { data } from "autoprefixer";
+import Spinner from "./Spinner";
 //HOOKS
 
 function ProductCart() {
-  const { data: documents, isLoading } = useQuery({
-    queryKey: ["Outlets"],
+  const { data: documents, isPending } = useQuery({
+    queryKey: ["Outlet"],
     queryFn: fetchCollectionForSale,
   });
+
+  if (isPending) return <Spinner />;
 
   return (
     <div className="px-[3rem] mb-[20rem] ">
@@ -18,6 +21,7 @@ function ProductCart() {
       <Heading as="h2" className=" uppercase text-center mb-16">
         Properties for sale
       </Heading>
+      {isPending && <Spinner />}
       {documents && (
         <GridContainer className="">
           <>

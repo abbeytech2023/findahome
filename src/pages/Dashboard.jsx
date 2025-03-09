@@ -3,7 +3,6 @@ import { BgOverlay } from "../components/BgOverlay";
 import Image from "../assets/images/Image-search.jpg";
 import { BackgroundImage } from "../components/BackgroundImage";
 import ProductCart from "../components/ProductCart";
-import { useCollections } from "../hooks/useCollections";
 import PropertiesToLet from "../components/PropertiesToLet";
 import { Heading } from "../components/HeadingText";
 // import { projectAuth } from "../firebase/config";

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { fetchCollectionToLet } from "../hooks/useCollections";
-import { StyledCartCard } from "./CartCard";
 import { Heading } from "./HeadingText";
 import { GridContainer, GridInner } from "./Grid";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
+import toast from "react-hot-toast";
+import { deleteDocument } from "../hooks/useFirestore";
+import SpinnerMini from "./SpinnerMini";
 import Spinner from "./Spinner";
-import { Outlet } from "react-router-dom";
-import { data } from "autoprefixer";
 
 const StyledLi = styled.li`
   display: flex;
@@ -20,28 +22,44 @@ const StyledLi = styled.li`
 `;
 
 export default function PropertiesToLet() {
-  // const { documents, error } = useCollections("ToLets");
+  const queryClient = useQueryClient();
+  const location = useLocation();
 
-  const { data: documents, isLoading } = useQuery({
-    queryKey: ["Tolets"],
+  const deleteCart = location.pathname === "/myaccount";
+
+  const { mutate } = useMutation({
+    mutationFn: (id) => deleteDocument(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: "Tolet" });
+      toast.success("deleted successfully");
+    },
+  });
+
+  const { data: documents, isPending } = useQuery({
+    queryKey: ["Tolet"],
     queryFn: fetchCollectionToLet,
   });
-  console.log("data:", documents);
 
-  if (isLoading) return "Loading...";
   return (
     <div className=" ">
       {/* {error && <p>{error}</p>} */}
       <Heading as="h2" className=" uppercase text-center mb-16">
         Properties to let
       </Heading>
+      {isPending && <SpinnerMini />}
+
       {documents &&
         documents.map((doc) => {
           return (
             // <Heading></Heading>
             <GridContainer key={doc.id}>
-              <div className="flex justify-center items-center text-[0.4rem] px-4 gap-4 ">
-                <div className="flex flex-col items-center justify-center text-lg max-w-[70%] min-w-32 text-center bg-[#e3e3fa] py-6  gap-6 px-7">
+              <div className="flex justify-center items-center text-[0.4rem] px-4 gap-4  relative">
+                {deleteCart && (
+                  <button onClick={() => mutate(doc.id)} className="">
+                    <MdDelete className="text-2xl absolute right-0 top-0 text-gray-500" />
+                  </button>
+                )}
+                <div className="flex flex-col items-center  justify-center text-lg max-w-[70%] min-w-32 text-center bg-[#e3e3fa] py-6  gap-6 px-7">
                   <h2>Property</h2>
                   <div className="w-60">
                     <p>

@@ -113,22 +113,6 @@ export const useFirestore = (c) => {
     }
   };
 
-  // delete a document
-  const deleteDocument = async (id) => {
-    dispatch({ type: "IS_PENDING" });
-
-    try {
-      const ref = doc(db, c, id);
-      const deletedDocument = await deleteDoc(ref);
-      dispatchIfNotCancelled({
-        type: "DELETED_DOCUMENT",
-        payload: deletedDocument,
-      });
-    } catch (err) {
-      dispatchIfNotCancelled({ type: "ERROR", payload: "could not delete" });
-    }
-  };
-
   return { updateDocument, addDocument, deleteDocument, response };
 };
 
@@ -141,6 +125,14 @@ export const deleteDocument = async (id) => {
 
 export const addPropertiesToLet = async (doc) => {
   const ref = collection(db, "ToLets");
+
+  const createdAt = timestamp.fromDate(new Date());
+  const addedDocument = await addDoc(ref, { ...doc, createdAt });
+
+  return addedDocument;
+};
+export const addPropertiesForSale = async (doc) => {
+  const ref = collection(db, "Outlets");
 
   const createdAt = timestamp.fromDate(new Date());
   const addedDocument = await addDoc(ref, { ...doc, createdAt });

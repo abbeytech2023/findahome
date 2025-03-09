@@ -1,35 +1,37 @@
-import { useEffect, useState } from "react";
-import { useFirestore } from "../hooks/useFirestore";
+import { addPropertiesForSale } from "../hooks/useFirestore";
 import Button from "./Button";
 import FormRow from "./FormRow";
 import StyledInput from "./StyledInput";
-import Form from "./Form";
-import { Heading, StyledSubheading } from "./HeadingText";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
 function ProductSaleForm({ uid }) {
-  const [propertyDetails, setPropertyDetails] = useState();
-  const [address, setAddress] = useState();
-  const [title, setTitle] = useState();
-  const [price, setPrice] = useState();
-  const { addDocument, response } = useFirestore("Outlets");
+  const { reset, register, handleSubmit, formState } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { errors } = formState;
 
-    addDocument({ uid, address, propertyDetails, title, price });
+  const QueryClient = useQueryClient();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: addPropertiesForSale,
+    onSuccess: () => {
+      toast.success("Property added successfully");
+      QueryClient.invalidateQueries({ queryKey: ["Outlets"] });
+      reset();
+    },
+    onError: () => {
+      toast.error("property could not be added");
+    },
+  });
+
+  const onSubmit = ({ address, propertyDetails, title, price }) => {
+    mutate({ uid, address, propertyDetails, title, price });
     console.log({ uid, address, propertyDetails, title, price });
-    console.log(response);
-    console.log(response.success);
+    console.log(isPending);
   };
 
-  useEffect(() => {
-    if (response.success) {
-      setTitle("");
-      setAddress("");
-      setPropertyDetails("");
-      setPrice("");
-    }
-  }, [response.success]);
+  console.log(isPending);
 
   return (
     <div className=" ">
@@ -38,73 +40,73 @@ function ProductSaleForm({ uid }) {
           Properties For Sale Form
         </Heading> */}
 
-        <div className="w-full">
-          <form
-            className="flex items-center justify-center flex-col"
-            onSubmit={handleSubmit}
+        <div className="h-[60rem]  flex  flex-col gap-8">
+          <Form
+            // className="flex items-center justify-center flex-col"
+            onSubmit={onSubmit}
+            handleSubmit={handleSubmit}
           >
-            <FormRow label="property details">
+            <FormRow
+              label="property details"
+              error={errors?.propertyDetails?.message}
+            >
               <StyledInput
                 minLength="20"
                 className="h-[120px]"
-                id="details"
-                onChange={(e) => setPropertyDetails(e.target.value)}
-                value={propertyDetails}
+                id="propertyDetails"
+                {...register("propertyDetails", {
+                  required: "This field is required",
+                })}
               />
             </FormRow>
-            <FormRow label="Address">
+            <FormRow label="Address" error={errors?.address?.message}>
               <StyledInput
                 minLength="15"
                 className="h-[50px]"
                 placeHolder="The location of property"
-                id="location"
-                onChange={(e) => setAddress(e.target.value)}
-                value={address}
+                id="address"
+                {...register("address", {
+                  required: "This field is required",
+                })}
               />
             </FormRow>
-            <FormRow label="Title">
+            <FormRow label="Title" error={errors?.state?.message}>
               <StyledInput
                 minLength="7"
                 placeHolder=" The name of the property owner"
-                id="state"
-                onChange={(e) => setTitle(e.target.value)}
-                value={title}
+                id="title"
+                {...register("title", {
+                  required: "This field is required",
+                })}
               />
             </FormRow>
-            <FormRow label="Total-Package">
+            <FormRow label="Total-Package" error={errors?.price?.message}>
               <StyledInput
                 type="number"
-                onChange={(e) => setPrice(e.target.value)}
-                value={price}
                 placeHolder="pricing"
                 id="price"
+                {...register("price", {
+                  required: "This field is required",
+                })}
               />
             </FormRow>
-            <FormRow label="Phone">
+            <FormRow label="PropertyDetails" error={errors?.phone?.message}>
               <StyledInput
                 minLength="11"
-                type="mobile"
-                placeHolder="c"
-                id="phone"
+                type="PropertyDetails"
+                placeHolder="mobile"
+                id="propertyDetails"
+                {...register("propertyDetails", {
+                  required: "This field is required",
+                })}
               />
             </FormRow>
 
-            <FormRow>
-              <Button type="primary">
-                {response.isPending === "completed" ? (
-                  <p>Complete</p>
-                ) : (
-                  <p>loading...</p>
-                )}
-              </Button>
-            </FormRow>
-
-            {/* {response.isPending && (
-              <FormRow>
-                <Button type="primary">Loading...</Button>
-              </FormRow>
-            )} */}
-          </form>
+            <FormRow></FormRow>
+            <Button type="primary">
+              {isPending ? <p>Loading...</p> : <p>Completed</p>}
+            </Button>
+          </Form>
         </div>
       </div>
     </div>
@@ -112,3 +114,14 @@ function ProductSaleForm({ uid }) {
 }
 
 export default ProductSaleForm;
+
+function Form({ children, handleSubmit, onSubmit }) {
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex gap-4 items-center justify-center flex-col"
+    >
+      {children}
+    </form>
+  );
+}

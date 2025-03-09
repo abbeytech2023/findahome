@@ -9,7 +9,8 @@ import bg from "../assets/images/illus.jpg";
 
 import styled from "styled-components";
 import { deleteDocument } from "../hooks/useFirestore";
-import { useMutation } from "@tanstack/react-query";
+import { QueryClient, useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 export const StyledCartCard = styled.div`
   /* display: flex;
@@ -31,8 +32,12 @@ function CartCard({ document }) {
 
   const location = useLocation();
 
-  const { isLoading, mutate } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: (id) => deleteDocument(id),
+    onSuccess: () => {
+      toast.success("deleted successfully");
+      QueryClient.invalidateQueries({ queryKey: "Outlet" });
+    },
   });
 
   const deleteCart = location.pathname === "/myaccount";
@@ -52,7 +57,7 @@ function CartCard({ document }) {
         {deleteCart && (
           <button
             onClick={() => mutate(id)}
-            className="2xl z-10 absolute right-3 top-3"
+            className="2xl  absolute right-3 top-3"
           >
             <MdDelete className="text-gray-400" />
           </button>

@@ -6,11 +6,7 @@ import FormRow from "./FormRow";
 import StyledInput from "./StyledInput";
 import styled from "styled-components";
 import { Heading } from "./HeadingText";
-import {
-  QueryClient,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 const OpenCloseForm = styled.button`
@@ -63,16 +59,6 @@ export default function PropertyLetForm() {
 
         <div className="flex justify-center items-center">
           <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
-            {/* <FormRow label="Full-Name" error={errors?.fullName?.message}>
-              <StyledInput
-                type="text"
-                placeHolder="Enter your full Name"
-                id="fullname"
-                {...register("agentName", {
-                  required: "This field is required",
-                })}
-              />
-            </FormRow> */}
             <FormRow
               label="Property Description"
               error={errors?.propertyDescription?.message}
@@ -132,7 +118,6 @@ export default function PropertyLetForm() {
                 </Button>
               )}
             </FormRow>
-            {/* {error && <p className="text-[1.8rem]  text-red-700">{error}</p>} */}
           </Form>
         </div>
       </div>

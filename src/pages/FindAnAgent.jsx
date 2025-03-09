@@ -1,6 +1,8 @@
 import StarRating from "../components/StarRating";
 import { useCollections } from "../hooks/useCollections";
 import styled from "styled-components";
+import Spinner from "../components/Spinner";
+import SpinnerMini from "../components/SpinnerMini";
 
 const StyledUserBox = styled.div`
   border: 1px solid black;
@@ -20,22 +22,24 @@ export default function FindAnAgent() {
       {documents &&
         documents.map((user) => {
           return (
-            <div key={user.id}>
-              {/* <span>
+            <>
+              <div key={user.id}>
+                {/* <span>
                 {user.online && (
                   <span className="inline-block bg-green-700 w-4 h-4 mt-1 mr-3 rounded-lg"></span>
                 )}
               </span> */}
 
-              <StyledUserBox>
-                <p>FullName: {user.displayName}</p>
-                <p>Email: {user.email}</p>
-                <p>NIN: {user.NIN}</p>
-                <div className="flex items-center gap-4">
-                  Review: {<StarRating defaultRating={4} />}
-                </div>
-              </StyledUserBox>
-            </div>
+                <StyledUserBox>
+                  <p>FullName: {user.displayName}</p>
+                  <p>Email: {user.email}</p>
+                  <p>NIN: {user.NIN}</p>
+                  <div className="flex items-center gap-4">
+                    Review: {<StarRating defaultRating={4} />}
+                  </div>
+                </StyledUserBox>
+              </div>
+            </>
           );
         })}
     </div>
