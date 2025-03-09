@@ -5,6 +5,7 @@ import { Heading } from "./HeadingText";
 import { fetchCollectionForSale } from "../hooks/useCollections";
 import { data } from "autoprefixer";
 import Spinner from "./Spinner";
+import SpinnerMini from "./SpinnerMini";
 //HOOKS
 
 function ProductCart() {
@@ -21,7 +22,7 @@ function ProductCart() {
       <Heading as="h2" className=" uppercase text-center mb-16">
         Properties for sale
       </Heading>
-      {isPending && <Spinner />}
+      {isPending && <SpinnerMini />}
       {documents && (
         <GridContainer className="">
           <>
