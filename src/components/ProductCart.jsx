@@ -14,8 +14,6 @@ function ProductCart() {
     queryFn: fetchCollectionForSale,
   });
 
-  if (isPending) return <Spinner />;
-
   return (
     <div className="px-[3rem] mb-[20rem] ">
       {/* {error && <p>{error}</p>} */}

@@ -16,6 +16,7 @@ import MyAccount from "./pages/MyAccount";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import Spinner from "./components/Spinner";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +31,7 @@ export default function App() {
   // const navigate = useNavigate();
   return (
     <div className="overflow-x-hidden">
+      {!authIsReady && <Spinner />}
       {authIsReady && (
         <BrowserRouter className="relative">
           <QueryClientProvider client={queryClient}>

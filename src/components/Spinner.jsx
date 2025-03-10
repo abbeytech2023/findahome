@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { BiLoaderAlt } from "react-icons/bi";
+import Logo from "./Logo";
 
 const rotate = keyframes`
   to {
@@ -24,13 +25,15 @@ const StyledSpinner = styled(BiLoaderAlt)`
 const StyledOverlay = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: rgba(111, 18, 18, 0.524);
+  background-color: rgba(18, 18, 18, 0.305);
 `;
 
 const Spinner = () => {
   return (
     <StyledOverlay className="flex justify-center items-center">
-      <StyledSpinner />
+      <StyledSpinner>
+        <Logo />
+      </StyledSpinner>
     </StyledOverlay>
   );
 };

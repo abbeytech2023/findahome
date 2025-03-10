@@ -18,9 +18,9 @@ export default function Logo({ type }) {
   return (
     <StyledLogo type={type} className={``}>
       <Link to="/">
-        <span className={`text-[#a8c1d1]`}>FIND</span>
-        <span className="text-red-400">A</span>
+        <span className={`text-[#fff]`}>GET</span>
         <span className=" text-[#fff]">HOME</span>
+        <span className="text-red-400">S</span>
       </Link>
     </StyledLogo>
   );
