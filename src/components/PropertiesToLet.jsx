@@ -2,13 +2,12 @@ import styled from "styled-components";
 import { fetchCollectionToLet } from "../hooks/useCollections";
 import { Heading } from "./HeadingText";
 import { GridContainer, GridInner } from "./Grid";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useDeleteMutate } from "../hooks/useDeleteMutate";
 import { useLocation } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-import toast from "react-hot-toast";
-import { deleteDocument } from "../hooks/useFirestore";
 import SpinnerMini from "./SpinnerMini";
-import Spinner from "./Spinner";
+import { useFetchPropertiesTolet } from "../hooks/useFetchProperties";
 
 const StyledLi = styled.li`
   display: flex;
@@ -21,25 +20,13 @@ const StyledLi = styled.li`
   }
 `;
 
-export default function PropertiesToLet() {
-  const queryClient = useQueryClient();
+export default function PropertiesToLet({ documents, isPending }) {
   const location = useLocation();
 
   const deleteCart = location.pathname === "/myaccount";
 
-  const { mutate } = useMutation({
-    mutationFn: (id) => deleteDocument(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: "Tolet" });
-      toast.success("deleted successfully");
-    },
-  });
-
-  const { data: documents, isPending } = useQuery({
-    // const x = useQuery({
-    queryKey: ["Tolet"],
-    queryFn: fetchCollectionToLet,
-  });
+  console.log(documents);
+  const { mutate } = useDeleteMutate("Tolet");
 
   return (
     <div className=" ">
@@ -52,7 +39,6 @@ export default function PropertiesToLet() {
       {documents &&
         documents.map((doc) => {
           return (
-            // <Heading></Heading>
             <>
               <GridContainer key={doc.id}>
                 <div className="flex justify-center items-center text-[0.4rem] px-4 gap-4  relative">

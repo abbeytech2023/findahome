@@ -3,14 +3,12 @@ import CartCard from "./CartCard";
 import { GridContainer, GridInner } from "./Grid";
 import { Heading } from "./HeadingText";
 import { fetchCollectionForSale } from "../hooks/useCollections";
-import { data } from "autoprefixer";
-import Spinner from "./Spinner";
 import SpinnerMini from "./SpinnerMini";
 //HOOKS
 
 function ProductCart() {
   const { data: documents, isPending } = useQuery({
-    queryKey: ["Outlet"],
+    queryKey: ["Outlets"],
     queryFn: fetchCollectionForSale,
   });
 

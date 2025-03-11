@@ -5,7 +5,13 @@ import { BackgroundImage } from "../components/BackgroundImage";
 import ProductCart from "../components/ProductCart";
 import PropertiesToLet from "../components/PropertiesToLet";
 import { Heading } from "../components/HeadingText";
+import { fetchCollectionToLet } from "../hooks/useCollections";
+import { useQuery } from "@tanstack/react-query";
 // import { projectAuth } from "../firebase/config";
+import {
+  useFetchPropertiesForSale,
+  useFetchPropertiesTolet,
+} from "../hooks/useFetchProperties";
 
 const Section = styled.section`
   color: blue;
@@ -20,6 +26,8 @@ const Section = styled.section`
 `;
 
 export default function Dashboard() {
+  const { documents, isPending } = useFetchPropertiesTolet();
+
   return (
     <>
       <BackgroundImage>
@@ -38,7 +46,7 @@ export default function Dashboard() {
 
       <section className="mt-[15rem]">
         <div className="mb-[15rem]">
-          <PropertiesToLet />
+          <PropertiesToLet documents={documents} isPending={isPending} />
         </div>
         <div>
           <ProductCart />

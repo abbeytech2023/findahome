@@ -1,4 +1,3 @@
-import { useFirestore } from "../hooks/useFirestore";
 import { useLocation } from "react-router-dom";
 
 import { MdDelete } from "react-icons/md";
@@ -8,9 +7,7 @@ import { GridInner } from "./Grid";
 import bg from "../assets/images/illus.jpg";
 
 import styled from "styled-components";
-import { deleteDocument } from "../hooks/useFirestore";
-import { QueryClient, useMutation } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import { useDeleteMutate } from "../hooks/useDeleteMutate";
 
 export const StyledCartCard = styled.div`
   /* display: flex;
@@ -28,17 +25,9 @@ export const StyledCartCard = styled.div`
 function CartCard({ document }) {
   const { propertyDetails, price, title, id } = document;
   // const { deleteDocument, response } = useFirestore("Outlets");
-  const { user } = useAuthContext();
+  const { mutate } = useDeleteMutate("Outlets");
 
   const location = useLocation();
-
-  const { mutate } = useMutation({
-    mutationFn: (id) => deleteDocument(id),
-    onSuccess: () => {
-      toast.success("deleted successfully");
-      QueryClient.invalidateQueries({ queryKey: "Outlet" });
-    },
-  });
 
   const deleteCart = location.pathname === "/myaccount";
 
