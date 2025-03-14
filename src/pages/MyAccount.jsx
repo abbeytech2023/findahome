@@ -1,10 +1,7 @@
 import Profile from "../components/Profile";
 import CreatePropertiesToLetForm from "../components/CreatePropertiesToLetForm";
 import { useState } from "react";
-import {
-  useUserCollectionsSale,
-  useUserCollectionsToLet,
-} from "../hooks/useUserCollections";
+import { useUserCollections } from "../hooks/useUserCollections";
 import PropertiesToLet from "../components/PropertiesToLet";
 import { useAuthContext } from "../hooks/useAuthContext";
 import ProductSaleForm from "../components/ProductSaleForm";
@@ -13,6 +10,7 @@ import { CgMenuGridO } from "react-icons/cg";
 import { IoCloseSharp } from "react-icons/io5";
 import styled from "styled-components";
 import ProductCart from "../components/ProductCart";
+import SpinnerMini from "../components/SpinnerMini";
 
 const StyledTabDiv = styled.div`
   position: fixed;
@@ -34,17 +32,21 @@ export default function MyAccount() {
   const [isOpen, setIsisOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(1);
   const { user } = useAuthContext();
-  const { documents, error } = useUserCollectionsSale(
+
+  const { documents, error } = useUserCollections(
     "Outlets",
     ["uid", "==", user && user.uid],
     ["createdAt", "desc"]
   );
 
-  const { forSale, docError } = useUserCollectionsToLet(
-    "Outlets",
+  const { documents: data, error: dataError } = useUserCollections(
+    "ToLets",
     ["uid", "==", user && user.uid],
     ["createdAt", "desc"]
   );
+
+  console.log(data, dataError);
+
   return (
     <>
       <div className="relative flex gap-2 bg-gray-400">
@@ -104,7 +106,8 @@ export default function MyAccount() {
             {activeTab === 3 ? <CreatePropertiesToLetForm /> : null}
             {activeTab === 4 ? (
               <div className="flex flex-col">
-                <ProductCart documents={documents} error={error} />
+                {!documents && <SpinnerMini />}
+                {documents && <ProductCart documents={documents} />}
                 <PropertiesToLet />
               </div>
             ) : null}

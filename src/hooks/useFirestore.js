@@ -116,8 +116,8 @@ export const useFirestore = (c) => {
   return { updateDocument, addDocument, deleteDocument, response };
 };
 
-export const deleteDocument = async (id) => {
-  const ref = doc(db, "Outlets", id);
+export const deleteDocument = async (id, c) => {
+  const ref = doc(db, c, id);
   const deletedDocument = await deleteDoc(ref);
 
   return deletedDocument;

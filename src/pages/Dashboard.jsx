@@ -7,7 +7,6 @@ import PropertiesToLet from "../components/PropertiesToLet";
 import { Heading } from "../components/HeadingText";
 import { fetchCollectionToLet } from "../hooks/useCollections";
 import { useQuery } from "@tanstack/react-query";
-// import { projectAuth } from "../firebase/config";
 import {
   useFetchPropertiesForSale,
   useFetchPropertiesTolet,
@@ -26,7 +25,11 @@ const Section = styled.section`
 `;
 
 export default function Dashboard() {
-  const { documents, isPending } = useFetchPropertiesTolet();
+  const { propToLet, isPending } = useFetchPropertiesTolet();
+  console.log(propToLet);
+
+  const { documents } = useFetchPropertiesForSale();
+  console.log(documents);
 
   return (
     <>
@@ -46,11 +49,9 @@ export default function Dashboard() {
 
       <section className="mt-[15rem]">
         <div className="mb-[15rem]">
-          <PropertiesToLet documents={documents} isPending={isPending} />
+          <PropertiesToLet documents={propToLet} isPending={isPending} />
         </div>
-        <div>
-          <ProductCart />
-        </div>
+        <div>{documents && <ProductCart documents={documents} />}</div>
       </section>
     </>
   );

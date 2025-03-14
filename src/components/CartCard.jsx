@@ -7,7 +7,7 @@ import { GridInner } from "./Grid";
 import bg from "../assets/images/illus.jpg";
 
 import styled from "styled-components";
-import { useDeleteMutate } from "../hooks/useDeleteMutate";
+import { useDeleteMutateForSale } from "../hooks/useDeleteMutate";
 
 export const StyledCartCard = styled.div`
   /* display: flex;
@@ -25,7 +25,7 @@ export const StyledCartCard = styled.div`
 function CartCard({ document }) {
   const { propertyDetails, price, title, id } = document;
   // const { deleteDocument, response } = useFirestore("Outlets");
-  const { mutate } = useDeleteMutate("Outlets");
+  const { mutate } = useDeleteMutateForSale("Outlets");
 
   const location = useLocation();
 

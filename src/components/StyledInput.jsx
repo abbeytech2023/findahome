@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledInput = styled.input`
   /* display: flex;
   justify-content: center; */
+  font-size: 1.3rem;
   border: 1px solid #666;
   border-radius: 0.5rem;
 
@@ -11,7 +12,7 @@ const StyledInput = styled.input`
 
   &::placeholder {
     color: #8e979d;
-    font-size: 1.125rem;
+    font-size: 1.12rem;
   }
 
   &:focus {

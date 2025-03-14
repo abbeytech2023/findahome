@@ -6,20 +6,25 @@ import { fetchCollectionForSale } from "../hooks/useCollections";
 import SpinnerMini from "./SpinnerMini";
 //HOOKS
 
-function ProductCart() {
-  const { data: documents, isPending } = useQuery({
+function ProductCart({ documents }) {
+  const { isPending } = useQuery({
     queryKey: ["Outlets"],
     queryFn: fetchCollectionForSale,
   });
 
   return (
-    <div className="px-[3rem] mb-[20rem] ">
+    <div className="px-[3rem] mb-[20rem]">
       {/* {error && <p>{error}</p>} */}
       <Heading as="h2" className=" uppercase text-center mb-16">
         Properties for sale
       </Heading>
       {isPending && <SpinnerMini />}
-      {documents && (
+
+      {documents && documents.length === 0 ? (
+        <p className="text-3xl uppercase">
+          you don&apos;t have a property listed for sale
+        </p>
+      ) : (
         <GridContainer className="">
           <>
             {documents.map((document) => {
