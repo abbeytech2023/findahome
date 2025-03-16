@@ -2,11 +2,11 @@ import { BackgroundImage } from "../components/BackgroundImage";
 import { BgOverlay } from "../components/BgOverlay";
 import ProductCart from "../components/ProductCart";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { useCollections } from "../hooks/useCollections";
+import { useFetchPropertiesForSale } from "../hooks/useFetchProperties";
 
 export default function Buy() {
   const { user } = useAuthContext();
-  const { documents, error } = useCollections("Outlets");
+  const { documents } = useFetchPropertiesForSale();
 
   return (
     <>
@@ -26,17 +26,8 @@ export default function Buy() {
       {/* ------------------- BUY RENT SELL SECTION -------------  */}
 
       {user && (
-        <section>
-          <ProductCart uid={user.uid} documents={documents} error={error} />
-        </section>
+        <section>{documents && <ProductCart documents={documents} />}</section>
       )}
-      {/* {!user && (
-        <>
-          <section>
-            <ProductCart documents={documents} error={error} />
-          </section>
-        </>
-      )} */}
     </>
   );
 }

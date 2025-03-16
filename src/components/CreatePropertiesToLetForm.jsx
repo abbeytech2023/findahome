@@ -15,7 +15,7 @@ const OpenCloseForm = styled.button`
   padding: 0.6rem 1rem;
 `;
 
-export default function PropertyLetForm() {
+export default function PropertyToLetForm({ uid }) {
   const QueryClient = useQueryClient();
   const { user } = useAuthContext();
 
@@ -44,12 +44,21 @@ export default function PropertyLetForm() {
     phoneNumber,
   }) => {
     mutate({
+      uid,
       propertyDescription,
       propertyLocation,
       localGovernment,
       phoneNumber,
       agentName,
     });
+    console.log(
+      uid,
+      propertyDescription,
+      propertyLocation,
+      localGovernment,
+      phoneNumber,
+      agentName
+    );
   };
 
   return (

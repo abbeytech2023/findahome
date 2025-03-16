@@ -49,7 +49,9 @@ export default function Dashboard() {
 
       <section className="mt-[15rem]">
         <div className="mb-[15rem]">
-          <PropertiesToLet documents={propToLet} isPending={isPending} />
+          {propToLet && (
+            <PropertiesToLet propToLet={propToLet} isPending={isPending} />
+          )}
         </div>
         <div>{documents && <ProductCart documents={documents} />}</div>
       </section>

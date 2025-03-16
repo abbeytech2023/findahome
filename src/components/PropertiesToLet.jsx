@@ -16,10 +16,8 @@ const StyledLi = styled.li`
   }
 `;
 
-export default function PropertiesToLet() {
+export default function PropertiesToLet({ propToLet, isPending }) {
   const location = useLocation();
-
-  const { propToLet, isPending } = useFetchPropertiesTolet();
 
   return (
     <div className=" ">

@@ -63,3 +63,5 @@ export const fetchCollectionForSale = async () => {
 
   return data;
 };
+
+export const fetchUserCollection = async () => {};

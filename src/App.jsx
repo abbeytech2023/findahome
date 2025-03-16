@@ -9,7 +9,6 @@ import Header from "./components/Header";
 import FindAnAgent from "./pages/FindAnAgent";
 import Advertisement from "./pages/Advertisement";
 import { useAuthContext } from "./hooks/useAuthContext";
-import ProtectedRoutes from "./components/ProtectedRoutes";
 import Root from "./components/Root";
 import AnonymousRoute from "./components/AnonymousRoute";
 import MyAccount from "./pages/MyAccount";
@@ -17,6 +16,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import Spinner from "./components/Spinner";
+import MyProperties from "./pages/MyProperties";
+import PropertyToLetForm from "./components/CreatePropertiesToLetForm";
+import ProductSaleForm from "./components/ProductSaleForm";
+import Profile from "./components/Profile";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,9 +51,19 @@ export default function App() {
                 <Route path="/rent" element={<Rent />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/findanagent" element={<FindAnAgent />} />
-                {/* <Route element={<ProtectedRoutes />}> */}
-                <Route path="/myaccount" element={<MyAccount />} />
-                {/* </Route> */}
+                <Route path="/myaccount" element={<MyAccount />}>
+                  <Route path="myprofile" element={<Profile />} />
+                  <Route path="myproperties" element={<MyProperties />} />
+                  <Route
+                    path="addpropertytolet"
+                    element={<PropertyToLetForm />}
+                  />
+                  <Route
+                    path="addpropertyforsale"
+                    element={<ProductSaleForm />}
+                  />
+                </Route>
+
                 <Route path="/advertisement" element={<Advertisement />} />
                 <Route element={<AnonymousRoute />}>
                   <Route path="/signin" element={<SignIn />} />

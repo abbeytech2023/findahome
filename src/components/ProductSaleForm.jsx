@@ -27,7 +27,6 @@ function ProductSaleForm({ uid }) {
 
   const onSubmit = ({ address, propertyDetails, title, price }) => {
     mutate({ uid, address, propertyDetails, title, price });
-    console.log({ uid, address, propertyDetails, title, price });
     console.log(isPending);
   };
 
