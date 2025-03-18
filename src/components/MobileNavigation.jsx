@@ -50,15 +50,15 @@ const StyledMainNavList = styled.div`
   }
 
   & a.active {
-    background-color: goldenyellow;
-    color: #43525b;
+    color: goldenrod;
   }
 
   & a.active:hover {
+    background-color: #43525b;
   }
 
   & a:hover {
-    background-color: #f8cf68;
+    background-color: goldenrod;
   }
 `;
 
@@ -96,7 +96,7 @@ function MobileNavigation() {
 
   return (
     <>
-      <StyledMainNav className="xl:hidden  lg:hidden px-2 py-4 flex items-center justify-between relative  xl:text-4xl sm:text-2xl bg-[#43525b]  text-[#fff]">
+      <StyledMainNav className="xl:hidden  lg:hidden px-2 py-4 flex items-center justify-between relative  xl:text-4xl sm:text-2xl bg-[#144c6f]  text-[#fff]">
         <NavLink to="/" className="  top-3 left-4 ">
           <Logo type="mobile" />
         </NavLink>
@@ -120,7 +120,7 @@ function MobileNavigation() {
         </div>
       </StyledMainNav>
       <div
-        className="z-40 bg-[#ebf1f5] text-lg"
+        className="z-40 font-bold bg-[#fff] text-lg"
         ref={numref}
         onClick={handleIsOpen}
       >

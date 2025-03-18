@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
-import IMAGE from "../assets/images/Logo.jpg";
+import IMAGE from "../assets/images/Logoname.jpg";
 
 const StyledLogo = styled(NavLink)`
   background-color: black;
@@ -18,7 +18,10 @@ export default function Logo({ type }) {
   return (
     <StyledLogo type={type} className={``}>
       <Link to="/">
-        <img src={IMAGE} width="50px" height="64px" />
+        <div className="bg-[#fff] flex ">
+          <p className=" text-[#43425b]">GETHOMES</p>
+          <p className=" text-[#646416]">.NG</p>
+        </div>
       </Link>
     </StyledLogo>
   );
