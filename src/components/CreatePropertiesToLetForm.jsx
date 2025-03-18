@@ -63,7 +63,7 @@ export default function PropertyToLetForm({ uid }) {
 
   return (
     <div className=" ">
-      <div className="h-[60rem]  flex  flex-col gap-8 ">
+      <div className=" flex  flex-col gap-8 ">
         {/* <Heading as="h2">Properties To Let Form</Heading> */}
 
         <div className="flex justify-center items-center">

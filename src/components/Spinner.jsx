@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { BiLoaderAlt } from "react-icons/bi";
+import Image from "../assets/images/Logoname.jpg";
 import Logo from "./Logo";
 
 const rotate = keyframes`

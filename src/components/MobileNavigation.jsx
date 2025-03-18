@@ -46,20 +46,19 @@ const StyledMainNavList = styled.div`
   & a {
     border-bottom: 1px solid #fff;
     padding: 1rem 2rem;
-    color: #fff;
+    color: #43525b;
   }
 
   & a.active {
-    background-color: #06121a;
-    color: #fff;
+    background-color: goldenyellow;
+    color: #43525b;
   }
 
   & a.active:hover {
-    background-color: #c7c736;
   }
 
   & a:hover {
-    background-color: #06121a;
+    background-color: #f8cf68;
   }
 `;
 
@@ -69,11 +68,11 @@ const StyledNavLink = styled(NavLink)`
   justify-content: space-between;
   padding: 0 3rem;
 
-  color: #222;
+  /* color: #222; */
 `;
 
 const StyledIconDiv = styled.div`
-  color: #fff;
+  color: #43525b;
   font-size: 1.125rem;
   font-weight: 500;
 `;
@@ -121,7 +120,7 @@ function MobileNavigation() {
         </div>
       </StyledMainNav>
       <div
-        className="z-40 bg-[#144c6f] text-lg"
+        className="z-40 bg-[#ebf1f5] text-lg"
         ref={numref}
         onClick={handleIsOpen}
       >

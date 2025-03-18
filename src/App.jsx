@@ -1,4 +1,10 @@
-import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Navigate,
+  Routes,
+  replace,
+} from "react-router-dom";
 import Sell from "./pages/Sell";
 import Buy from "./pages/Buy";
 import Dashboard from "./pages/Dashboard";
@@ -9,7 +15,7 @@ import Header from "./components/Header";
 import FindAnAgent from "./pages/FindAnAgent";
 import Advertisement from "./pages/Advertisement";
 import { useAuthContext } from "./hooks/useAuthContext";
-import Root from "./components/Root";
+import Footer from "./components/Footer";
 import AnonymousRoute from "./components/AnonymousRoute";
 import MyAccount from "./pages/MyAccount";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -20,6 +26,7 @@ import MyProperties from "./pages/MyProperties";
 import PropertyToLetForm from "./components/CreatePropertiesToLetForm";
 import ProductSaleForm from "./components/ProductSaleForm";
 import Profile from "./components/Profile";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,7 +45,7 @@ export default function App() {
       {authIsReady && (
         <BrowserRouter className="relative">
           <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={true} />
+            {/* <ReactQueryDevtools initialIsOpen={true} /> */}
             <div>
               <Header />
               <Routes>
@@ -51,17 +58,19 @@ export default function App() {
                 <Route path="/rent" element={<Rent />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/findanagent" element={<FindAnAgent />} />
-                <Route path="/myaccount" element={<MyAccount />}>
-                  <Route path="myprofile" element={<Profile />} />
-                  <Route path="myproperties" element={<MyProperties />} />
-                  <Route
-                    path="addpropertytolet"
-                    element={<PropertyToLetForm />}
-                  />
-                  <Route
-                    path="addpropertyforsale"
-                    element={<ProductSaleForm />}
-                  />
+                <Route element={<ProtectedRoutes />}>
+                  <Route path="/myaccount" element={<MyAccount />}>
+                    <Route path="profile" element={<Profile />} />
+                    <Route path="myproperties" element={<MyProperties />} />
+                    <Route
+                      path="addpropertytolet"
+                      element={<PropertyToLetForm />}
+                    />
+                    <Route
+                      path="addpropertyforsale"
+                      element={<ProductSaleForm />}
+                    />
+                  </Route>
                 </Route>
 
                 <Route path="/advertisement" element={<Advertisement />} />
@@ -70,7 +79,7 @@ export default function App() {
                 </Route>
                 <Route path="/*" element={<PageNotFound />} />
               </Routes>
-              <Root />
+              <Footer />
             </div>
             <Toaster
               position="top-center"

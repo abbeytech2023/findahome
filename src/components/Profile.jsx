@@ -10,10 +10,10 @@ import { useQuery } from "@tanstack/react-query";
 
 const StyledProfileBox = styled.div`
   display: flex;
-  gap: 7px;
+
   margin-bottom: 12px;
   & > :first-child {
-    width: 8rem;
+    width: 7rem;
   }
 `;
 
@@ -44,8 +44,8 @@ function Profile() {
 
   return (
     <>
-      <div className="flex items-center flex-col  mb-[5rem] gap-8">
-        <form>
+      <div className="flex items-center flex-col  mb-[5rem]">
+        <form className="flex flex-col gap-[1.8rem]">
           <StyledProfileBox>
             <Label>
               <p>FullName</p>
@@ -90,7 +90,9 @@ function Profile() {
 export default Profile;
 
 function Label({ children }) {
-  return <div className=" text-[0.9rem] flex flex-row ">{children}</div>;
+  return (
+    <div className=" text-[0.9rem]  mr-[5rem] flex flex-row ">{children}</div>
+  );
 }
 
 function EditSaaveButton({ onClick }) {

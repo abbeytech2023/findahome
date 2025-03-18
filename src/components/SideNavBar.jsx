@@ -57,31 +57,13 @@ export default function SideNavBar() {
   );
 }
 
-function Tabbed({ activeTab, setActiveTab }) {
+function Tabbed() {
   return (
     <div className="flex  flex-col gap-11 h-full min-w-[200px] font-semibold cursor-pointer justify-center  ">
-      <Link to="myprofile">My Profile</Link>
+      <Link to="profile">My Profile</Link>
       <Link to="addpropertyforsale">Add property for sale</Link>
       <Link to="addpropertytolet">Add property to let</Link>
       <Link to="myproperties">My properties</Link>
     </div>
-  );
-}
-
-function Tab({ children, activeTab, num, setActiveTab }) {
-  const otherClass = "py-2 px-1";
-  return (
-    <button
-      onClick={() => {
-        setActiveTab(num);
-      }}
-      className={
-        activeTab === num
-          ? `${otherClass} bg-[#0d293b] text-white `
-          : `${otherClass} hover:bg-[rgba(13,41,59,0.56)]  hover:text-white `
-      }
-    >
-      {children}
-    </button>
   );
 }

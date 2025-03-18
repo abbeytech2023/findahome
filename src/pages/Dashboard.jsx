@@ -5,8 +5,7 @@ import { BackgroundImage } from "../components/BackgroundImage";
 import ProductCart from "../components/ProductCart";
 import PropertiesToLet from "../components/PropertiesToLet";
 import { Heading } from "../components/HeadingText";
-import { fetchCollectionToLet } from "../hooks/useCollections";
-import { useQuery } from "@tanstack/react-query";
+
 import {
   useFetchPropertiesForSale,
   useFetchPropertiesTolet,
