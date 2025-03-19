@@ -24,9 +24,7 @@ export default function MyProperties() {
   );
   return (
     <div className="flex flex-col">
-      {!documents || !propToLet ? (
-        <Spinner className="w-screen h-screen" />
-      ) : null}
+      {!documents || !propToLet ? <Spinner /> : null}
       {documents && <ProductCart documents={documents} />}
       {propToLet && <PropertiesToLet propToLet={propToLet} />}
     </div>

@@ -68,11 +68,11 @@ export default function App() {
                     <Route path="myproperties" element={<MyProperties />} />
                     <Route
                       path="addpropertytolet"
-                      element={<PropertyToLetForm />}
+                      element={<PropertyToLetForm uid={user && user.uid} />}
                     />
                     <Route
                       path="addpropertyforsale"
-                      element={<ProductSaleForm />}
+                      element={<ProductSaleForm uid={user && user.uid} />}
                     />
                   </Route>
                 </Route>

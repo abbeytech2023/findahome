@@ -14,7 +14,7 @@ export default function MyAccount() {
           <div className="flex flex-col text-[#fff] bg-[#144c6f] h-screen fixed z-10 top-0 bottom-0 sm:hidden md:hidden lg:block xl:block min-[0px]:hidden ">
             <SideBarTabbed />
           </div>
-          <div className=" w-4/5 flex pl-[5%] justify-center items-center ml-16 mt-36">
+          <div className=" w-4/5 flex pl-[5%] justify-center items-center lg:ml-16 xl:ml-16 mt-36">
             <Outlet />
           </div>
         </div>
