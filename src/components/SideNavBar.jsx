@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import SideBarTabbed from "./SideBarTabbed";
 
 const StyledTabDiv = styled.div`
   position: fixed;
@@ -15,7 +16,7 @@ const StyledTabDiv = styled.div`
   z-index: 10;
   color: #0d293b;
   color: #fff;
-  background-color: #555;
+  background-color: #144c6f;
 
   /* transform: translateY(-100%); */
   transition: all 0.3s ease-out;
@@ -23,10 +24,9 @@ const StyledTabDiv = styled.div`
 
 export default function SideNavBar() {
   const [isOpen, setIsisOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState(1);
   const { user } = useAuthContext();
   return (
-    <div className="relative flex gap-2 bg-gray-400">
+    <div className="relative flex gap-2 ">
       <div className="z-10 text-4xl absolute ">
         <div
           onClick={() => setIsisOpen(true)}
@@ -51,19 +51,8 @@ export default function SideNavBar() {
             />
           )}
         </div>
-        {isOpen && <Tabbed activeTab={activeTab} setActiveTab={setActiveTab} />}
+        {isOpen && <SideBarTabbed />}
       </StyledTabDiv>
-    </div>
-  );
-}
-
-function Tabbed() {
-  return (
-    <div className="flex  flex-col gap-11 h-full min-w-[200px] font-semibold cursor-pointer justify-center  ">
-      <Link to="profile">My Profile</Link>
-      <Link to="addpropertyforsale">Add property for sale</Link>
-      <Link to="addpropertytolet">Add property to let</Link>
-      <Link to="myproperties">My properties</Link>
     </div>
   );
 }

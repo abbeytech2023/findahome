@@ -1,20 +1,19 @@
 import { Link, Outlet } from "react-router-dom";
 // import MyProperties from "./MyProperties";
 import SideNavBar from "../components/SideNavBar";
+import styled from "styled-components";
+import SideBarTabbed from "../components/SideBarTabbed";
 
 export default function MyAccount() {
   return (
-    <div className="mt-32  ">
+    <div className=" ">
       <div>
         <div className="absolute top-1 lg:hidden xl:hidden">
           <SideNavBar />
         </div>
         <div className="flex gap-5">
-          <div className="flex flex-col gap-7 sm:hidden md:hidden ">
-            <Link to="profile">my profile</Link>
-            <Link to="addpropertyforsale">Add property for sale</Link>
-            <Link to="addpropertytolet">Add property to let</Link>
-            <Link to="myproperties">my properties</Link>
+          <div className="flex flex-col bg-[#144c6f] sm:hidden md:hidden lg:block xl:block min-[0px]:hidden ">
+            <SideBarTabbed />
           </div>
           <div className=" w-4/5 flex pl-[5%]">
             <Outlet />
