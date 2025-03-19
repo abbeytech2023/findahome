@@ -16,14 +16,11 @@ const StyledLogo = styled(NavLink)`
 
 export default function Logo({ type }) {
   return (
-    <StyledLogo
-      type={type}
-      className={`${type === "mobile" ? "text-2xl" : ""}`}
-    >
+    <StyledLogo type={type} className={``}>
       <Link to="/">
-        <div className="bg-[#fff] flex ">
+        <div className="bg-[#fff] flex text-lg">
           <p className=" text-[#43425b]">GETHOMES</p>
-          <p className=" text-[#646416]">.NG</p>
+          <p className=" text-[goldenrod]">.NG</p>
         </div>
       </Link>
     </StyledLogo>

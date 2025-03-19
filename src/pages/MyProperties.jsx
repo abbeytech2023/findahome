@@ -1,6 +1,7 @@
 import ProductCart from "../components/ProductCart";
 import PropertiesToLet from "../components/PropertiesToLet";
 import SideNavBar from "../components/SideNavBar";
+import Spinner from "../components/Spinner";
 import SpinnerMini from "../components/SpinnerMini";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useUserCollections } from "../hooks/useUserCollections";
@@ -23,8 +24,11 @@ export default function MyProperties() {
   );
   return (
     <div className="flex flex-col">
-      {!documents ? <SpinnerMini /> : <ProductCart documents={documents} />}
-      {!propToLet ? <SpinnerMini /> : <PropertiesToLet propToLet={propToLet} />}
+      {!documents || !propToLet ? (
+        <Spinner className="w-screen h-screen" />
+      ) : null}
+      {documents && <ProductCart documents={documents} />}
+      {propToLet && <PropertiesToLet propToLet={propToLet} />}
     </div>
   );
 }

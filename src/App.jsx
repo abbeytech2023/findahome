@@ -46,7 +46,7 @@ export default function App() {
         <BrowserRouter className="relative">
           <QueryClientProvider client={queryClient}>
             {/* <ReactQueryDevtools initialIsOpen={true} /> */}
-            <div>
+            <div className="">
               <Header />
               <Routes>
                 <Route
@@ -59,7 +59,11 @@ export default function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/findanagent" element={<FindAnAgent />} />
                 <Route element={<ProtectedRoutes />}>
-                  <Route path="/myaccount" element={<MyAccount />}>
+                  <Route
+                    path="/myaccount"
+                    element={<MyAccount />}
+                    // element={<Navigate replace to="/myaccount/profile" />}
+                  >
                     <Route path="profile" element={<Profile />} />
                     <Route path="myproperties" element={<MyProperties />} />
                     <Route

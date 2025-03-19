@@ -22,7 +22,7 @@ function ProductCart({ documents }) {
 
       {documents && documents.length === 0 ? (
         <p className="text-3xl uppercase">
-          you don&apos;t have a property listed for sale
+          you do not have a property listed for sale
         </p>
       ) : (
         <GridContainer className="">
