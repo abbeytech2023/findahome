@@ -65,23 +65,23 @@ function Profile() {
               <Label editSavebutton>
                 <p>Email</p>
               </Label>
-              <p> {user && user.email}</p>
+              <StyledInput value={user && user.email} />
             </StyledProfileBox>
             <StyledProfileBox>
               <Label>
                 <p>NIN</p>
               </Label>
-              <p>{user && user.NIN}</p>
+              <StyledInput value={user && user.nin} />
             </StyledProfileBox>
             <StyledProfileBox>
               <Label>
                 <p>State</p>
               </Label>
-              <p className="uppercase">{user && user.state}</p>
+              <StyledInput value={user && user.state} />
             </StyledProfileBox>
             <StyledProfileBox>
               <Label label="Local-govt"> Local-government</Label>
-              <p className="uppercase">{user && user.localGovt}</p>
+              <StyledInput value={user && user.localGovt} />
             </StyledProfileBox>
             <StyledProfileBox>
               <Label>
