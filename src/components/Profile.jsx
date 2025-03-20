@@ -2,11 +2,12 @@
 // import { doc, updateDoc } from "firebase/firestore";
 
 import { fetchCollectionForAUser } from "../hooks/useCollections";
-import { useFirestore } from "../hooks/useFirestore";
-import { useCollections } from "../hooks/useCollections";
+
 import styled from "styled-components";
-import Button from "./Button";
 import { useQuery } from "@tanstack/react-query";
+import Spinner from "./Spinner";
+import { useState } from "react";
+import StyledInput from "./StyledInput";
 
 const StyledProfileBox = styled.div`
   display: flex;
@@ -20,6 +21,11 @@ const StyledProfileBox = styled.div`
 // Email regex: /\S+@\S+\.\S+/
 
 function Profile() {
+  const [displayName, setDisplayName] = useState();
+  const [email, setEmail] = useState();
+  const [nin, setNin] = useState();
+  const [State, setEState] = useState();
+
   const { data: user, isLoading } = useQuery({
     queryKey: ["Users"],
     queryFn: fetchCollectionForAUser,
@@ -45,43 +51,47 @@ function Profile() {
   return (
     <>
       <div className="flex items-center flex-col  mb-[5rem]">
-        <form className="flex flex-col gap-[1.8rem]">
-          <StyledProfileBox>
-            <Label>
-              <p>FullName</p>
-            </Label>
-            <p className="uppercase">{user && user.displayName}</p>
-          </StyledProfileBox>
-          <StyledProfileBox>
-            <Label editSavebutton>
-              <p>Email</p>
-            </Label>
-            <p> {user && user.email}</p>
-          </StyledProfileBox>
-          <StyledProfileBox>
-            <Label>
-              <p>NIN</p>
-            </Label>
-            <p>{user && user.NIN}</p>
-          </StyledProfileBox>
-          <StyledProfileBox>
-            <Label>
-              <p>State</p>
-            </Label>
-            <p className="uppercase">{user && user.state}</p>
-          </StyledProfileBox>
-          <StyledProfileBox>
-            <Label label="Local-govt"> Local-government</Label>
-            <p className="uppercase">{user && user.localGovt}</p>
-          </StyledProfileBox>
-          <StyledProfileBox>
-            <Label>
-              <p>Gender</p>
-            </Label>
-            <p className="uppercase">{user && user.gender}</p>
-          </StyledProfileBox>
-          <EditSaaveButton />
-        </form>
+        {!user ? (
+          <Spinner />
+        ) : (
+          <form className="flex flex-col gap-[1.8rem]">
+            <StyledProfileBox>
+              <Label>
+                <p>FullName</p>
+              </Label>
+              <StyledInput value={user && user.displayName} />
+            </StyledProfileBox>
+            <StyledProfileBox>
+              <Label editSavebutton>
+                <p>Email</p>
+              </Label>
+              <p> {user && user.email}</p>
+            </StyledProfileBox>
+            <StyledProfileBox>
+              <Label>
+                <p>NIN</p>
+              </Label>
+              <p>{user && user.NIN}</p>
+            </StyledProfileBox>
+            <StyledProfileBox>
+              <Label>
+                <p>State</p>
+              </Label>
+              <p className="uppercase">{user && user.state}</p>
+            </StyledProfileBox>
+            <StyledProfileBox>
+              <Label label="Local-govt"> Local-government</Label>
+              <p className="uppercase">{user && user.localGovt}</p>
+            </StyledProfileBox>
+            <StyledProfileBox>
+              <Label>
+                <p>Gender</p>
+              </Label>
+              <p className="uppercase">{user && user.gender}</p>
+            </StyledProfileBox>
+            <EditSaaveButton />
+          </form>
+        )}
       </div>
     </>
   );

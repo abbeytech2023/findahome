@@ -54,11 +54,11 @@ const StyledMainNavList = styled.div`
   }
 
   & a.active:hover {
-    background-color: #43525b;
+    background-color: rgba(67, 82, 91, 0.317);
   }
 
   & a:hover {
-    background-color: goldenrod;
+    background-color: rgba(218, 165, 32, 0.317);
   }
 `;
 
@@ -75,6 +75,10 @@ const StyledIconDiv = styled.div`
   color: #43525b;
   font-size: 1.125rem;
   font-weight: 500;
+
+  & .active {
+    color: goldenrod;
+  }
 `;
 
 function MobileNavigation() {
