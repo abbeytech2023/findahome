@@ -95,22 +95,22 @@ export const useFirestore = (c) => {
   const updateDocument = async (data) => {
     dispatch({ type: "Is_PENDING" });
 
-    try {
-      const ref = doc(db, "Users", auth.currentUser.uid);
-      const updateData = { ...data };
-      const upDatedDocument = await updateDoc(ref, { ...updateData });
-      console.log(updateDocument);
+    // try {
+    //   const ref = doc(db, "Users", auth.currentUser.uid);
+    //   const updateData = { ...data };
+    //   const upDatedDocument = await updateDoc(ref, { ...updateData });
+    //   console.log(updateDocument);
 
-      dispatchIfNotCancelled({
-        type: "UPDATED_DOCUMENT",
-        payload: { ...updateData },
-      });
-    } catch (err) {
-      dispatchIfNotCancelled({
-        type: "ERROR",
-        payload: console.log(err),
-      });
-    }
+    //   dispatchIfNotCancelled({
+    //     type: "UPDATED_DOCUMENT",
+    //     payload: { ...updateData },
+    //   });
+    // } catch (err) {
+    //   dispatchIfNotCancelled({
+    //     type: "ERROR",
+    //     payload: console.log(err),
+    //   });
+    // }
   };
 
   return { updateDocument, addDocument, deleteDocument, response };
@@ -138,4 +138,13 @@ export const addPropertiesForSale = async (doc) => {
   const addedDocument = await addDoc(ref, { ...doc, createdAt });
 
   return addedDocument;
+};
+
+export const upDateDocument = async (data) => {
+  const ref = doc(db, "Users", auth.currentUser.uid);
+  const updateData = { ...data };
+  const upDatedDocument = await updateDoc(ref, { ...updateData });
+  console.log(upDateDocument);
+
+  return upDatedDocument;
 };

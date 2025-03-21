@@ -1,13 +1,17 @@
 // import Form from "../components";
 // import { doc, updateDoc } from "firebase/firestore";
-
+import { useMutation } from "@tanstack/react-query";
 import { fetchCollectionForAUser } from "../hooks/useCollections";
+import { upDateDocument } from "../hooks/useFirestore";
 
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "./Spinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StyledInput from "./StyledInput";
+import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import FormRow from "./FormRow";
 
 const StyledProfileBox = styled.div`
   display: flex;
@@ -21,32 +25,48 @@ const StyledProfileBox = styled.div`
 // Email regex: /\S+@\S+\.\S+/
 
 function Profile() {
-  const [displayName, setDisplayName] = useState();
-  const [email, setEmail] = useState();
-  const [nin, setNin] = useState();
-  const [State, setEState] = useState();
-
   const { data: user, isLoading } = useQuery({
     queryKey: ["Users"],
     queryFn: fetchCollectionForAUser,
   });
+
+  const [displayName, setDisplayName] = useState();
+  const [email, setEmail] = useState();
+  const [NIN, setNin] = useState();
+  const [gender, setgender] = useState();
+  const [State, setState] = useState();
+  const [localGovt, setLocalGovt] = useState();
+
+  const { mutate } = useMutation({
+    mutationFn: (data) => upDateDocument(data),
+    onSuccess: () => toast.success("updated successfully"),
+  });
   // const { aDoc } = useCollections("Users");
 
-  // const { updateDocument } = useFirestore("Users");
+  const { reset, register, handleSubmit, formState } = useForm();
 
-  // const docRef = doc(db, "Users", auth.currentUser.uid);
+  const { errors } = formState;
 
   const GreyBox = styled.div`
     filter: grayscale();
     opacity: 0.8;
   `;
 
-  // const handleSaveDocument = (e) => {
-  //   e.preventDefault();
-  //   console.log(gender);
+  useEffect(() => {
+    const getUserDetails = () => {
+      setDisplayName(user && user.displayName);
+      setState(user && user.State);
+      setEmail(user && user.email);
+      setNin(user && user.NIN);
+      setgender(user && user.gender);
+      setLocalGovt(user && user.localGovt);
+    };
+    getUserDetails();
+  }, [user]);
 
-  //   updateDocument({ displayName, email, NIN, gender, State, localGovt });
-  // };
+  const onSubmit = ({ NIN, gender, State, localGovt }) => {
+    mutate({ NIN, gender, State, localGovt });
+  };
 
   return (
     <>
@@ -54,40 +74,67 @@ function Profile() {
         {!user ? (
           <Spinner />
         ) : (
-          <form className="flex flex-col gap-[1.8rem]">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-[1.8rem]"
+          >
             <StyledProfileBox>
-              <Label>
-                <p>FullName</p>
-              </Label>
-              <StyledInput value={user && user.displayName} />
+              <label>FullName</label>
+              <StyledInput
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                id="displayName"
+                {...register("displayName", {})}
+              />
             </StyledProfileBox>
             <StyledProfileBox>
-              <Label editSavebutton>
-                <p>Email</p>
-              </Label>
-              <StyledInput value={user && user.email} />
+              <label>Email</label>
+              <StyledInput
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                id="email"
+                {...register("email", {})}
+              />
             </StyledProfileBox>
             <StyledProfileBox>
-              <Label>
-                <p>NIN</p>
-              </Label>
-              <StyledInput value={user && user.nin} />
+              <label>NIN</label>
+              <StyledInput
+                defaultValue={NIN}
+                onChange={(e) => setNin(e.target.value)}
+                id="NIN"
+                {...register("NIN", {})}
+              />
             </StyledProfileBox>
             <StyledProfileBox>
               <Label>
                 <p>State</p>
               </Label>
-              <StyledInput value={user && user.state} />
+              <StyledInput
+                defaultValue={State}
+                onChange={(e) => setState(e.target.value)}
+                id="State"
+                {...register("State", {})}
+              />
             </StyledProfileBox>
             <StyledProfileBox>
               <Label label="Local-govt"> Local-government</Label>
-              <StyledInput value={user && user.localGovt} />
+              <StyledInput
+                value={localGovt}
+                onChange={(e) => setLocalGovt(e.target.value)}
+                id="localGovt"
+                {...register("localGovt", {})}
+              />
             </StyledProfileBox>
             <StyledProfileBox>
               <Label>
                 <p>Gender</p>
               </Label>
-              <p className="uppercase">{user && user.gender}</p>
+              <StyledInput
+                value={gender}
+                onChange={(e) => setgender(e.target.value)}
+                id="gender"
+                {...register("gender", {})}
+              />
             </StyledProfileBox>
             <EditSaaveButton />
           </form>

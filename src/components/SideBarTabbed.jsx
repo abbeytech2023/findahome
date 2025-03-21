@@ -4,7 +4,7 @@ import { StyledNavLink } from "./Navigation";
 function SideBarTabbed() {
   return (
     <div className="flex  flex-col gap-11 h-full min-w-[200px] font-semibold cursor-pointer justify-center items-center  ">
-      <StyledNavLink to="profile">My Profile</StyledNavLink>
+      <StyledNavLink to="profile">Edit Profile</StyledNavLink>
       <StyledNavLink to="addpropertyforsale">
         Add property for sale
       </StyledNavLink>

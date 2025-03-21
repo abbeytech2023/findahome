@@ -2,6 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 // import MyProperties from "./MyProperties";
 import SideNavBar from "../components/SideNavBar";
 import SideBarTabbed from "../components/SideBarTabbed";
+import Profile from "../components/Profile";
 
 export default function MyAccount() {
   return (
@@ -16,6 +17,7 @@ export default function MyAccount() {
           </div>
           <div className=" w-4/5 flex pl-[5%] justify-center items-center lg:ml-16 xl:ml-16 mt-36">
             <Outlet />
+            <Profile />
           </div>
         </div>
       </div>
