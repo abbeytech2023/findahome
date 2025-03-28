@@ -46,7 +46,7 @@ function Profile() {
 
   return (
     <>
-      <div className="flex items-center flex-col  mb-[10rem] ">
+      <div className="flex items-center flex-col text-lg mb-[10rem] ">
         {!user ? <Spinner /> : <UserDetails user={user} />}
       </div>
     </>
@@ -124,7 +124,7 @@ const UserDetails = ({ user }) => {
             edit
           </EditSaaveButton>
         )}
-        {disable === false && (
+        {
           <EditSaaveButton
             onClick={(e) => {
               e.preventDefault();
@@ -135,7 +135,7 @@ const UserDetails = ({ user }) => {
           >
             save
           </EditSaaveButton>
-        )}
+        }
       </StyledFormDiv>
 
       <StyledFormDiv>
@@ -150,6 +150,7 @@ const UserDetails = ({ user }) => {
           onClick={(e) => {
             e.preventDefault();
             inputRefLocalGovt.current.focus();
+            inputRefLocalGovt.current.disabled = false;
           }}
         >
           edit
@@ -289,7 +290,7 @@ function EditSaaveButton({ onClick, label, children }) {
     <div className=" gap-4 mb-2">
       <button
         onClick={onClick}
-        className="border-2 border-[#144c6f]  text-[#144c6f] rounded-lg px-8 py-2"
+        className="border-[1px] border-[#144c6f]  text-[#144c6f] rounded-lg px-8 py-2"
       >
         {children}
       </button>
