@@ -29,7 +29,7 @@ export default function Navigation() {
   const { user } = useAuthContext();
   return (
     <nav
-      className={"flex justify-between items-center h-28 px-6 bg-[#144c6f] "}
+      className={"flex justify-between items-center h-28 px-6 bg-[#144c6f]  "}
     >
       <div className="flex justify-between items-center basis-1/3">
         <StyledNavLink exact to="/rent">

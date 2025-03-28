@@ -83,7 +83,9 @@ export default function App() {
                 </Route>
                 <Route path="/*" element={<PageNotFound />} />
               </Routes>
-              <Footer />
+              <div className="relative">
+                <Footer />
+              </div>
             </div>
             <Toaster
               position="top-center"
