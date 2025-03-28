@@ -28,6 +28,7 @@ const StyledFormDiv = styled.div`
 
   & label {
     width: 5rem;
+    /* background-color: red; */
   }
 
   & input {
@@ -45,7 +46,7 @@ function Profile() {
 
   return (
     <>
-      <div className="flex items-center flex-col  mb-[5rem] ">
+      <div className="flex items-center flex-col  mb-[10rem] ">
         {!user ? <Spinner /> : <UserDetails user={user} />}
       </div>
     </>
@@ -53,6 +54,15 @@ function Profile() {
 }
 
 const UserDetails = ({ user }) => {
+  const [displayName, setDisplayName] = useState();
+  const [email, setEmail] = useState();
+  const [NIN, setNin] = useState();
+  const [gender, setgender] = useState();
+  const [State, setState] = useState();
+  const [localGovt, setLocalGovt] = useState();
+  const [homeAdress, setHomeAdress] = useState();
+  const [officeAdress, setOfficeAdress] = useState();
+
   const inputRefState = useRef(null);
   const inputRefLocalGovt = useRef(null);
   const inputRefNIN = useRef(null);
@@ -60,46 +70,82 @@ const UserDetails = ({ user }) => {
   const inputRefHomeAddress = useRef(null);
   const inputRefGener = useRef(null);
 
-  const { handleSubmit } = useForm;
+  useEffect(() => {
+    const getUserDetails = () => {
+      setDisplayName(user && user.displayName);
+      setState(user && user.State);
+      setEmail(user && user.email);
+      setNin(user && user.NIN);
+      setgender(user && user.gender);
+      setLocalGovt(user && user.localGovt);
+      setHomeAdress(user && user.homeAdress);
+      setOfficeAdress(user && user.officeAdress);
+    };
+    getUserDetails();
+  }, [user]);
+
+  const { mutate } = useMutation({
+    mutationFn: (data) => upDateDocument(data),
+    onSuccess: () => toast.success("updated successfully"),
+  });
+
+  const { reset, register, handleSubmit, formState } = useForm();
 
   const [disable, setDisable] = useState(true);
 
+  // const onsubmit = ({ data }) => {
+  //   // mutate({ data });
+  //   console.log(data);
+  // };
+
+  let onsubmit;
+
   return (
-    <form className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col gap-6">
       <StyledFormDiv>
         <label>full-name</label>
-        <input disabled value={user?.displayName} />
+        <input width="12rem" disabled value={displayName} />
       </StyledFormDiv>
       <StyledFormDiv>
         <label>Email</label>
-        <input disabled value={user?.email} />
+        <input disabled value={email} />
       </StyledFormDiv>
       <StyledFormDiv>
         <label>state</label>
-        <input disabled={disable} ref={inputRefState} value={user?.State} />
-        <EditSaaveButton
-          onClick={(e) => {
-            e.preventDefault();
-            inputRefState.current.focus();
-            inputRefState.current.disabled = false;
-          }}
-        >
-          edit
-        </EditSaaveButton>
-        <EditSaaveButton
-          onClick={(e) => {
-            e.preventDefault();
-            inputRefState.current.focus();
-            inputRefState.current.disabled = false;
-          }}
-        >
-          save
-        </EditSaaveButton>
+        <input disabled={disable} ref={inputRefState} value={State} />
+        {disable === true && (
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefState.current.focus();
+              inputRefState.current.disabled = false;
+            }}
+          >
+            edit
+          </EditSaaveButton>
+        )}
+        {disable === false && (
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefState.current.focus();
+              inputRefState.current.disabled = false;
+              onsubmit({ State });
+            }}
+          >
+            save
+          </EditSaaveButton>
+        )}
       </StyledFormDiv>
 
       <StyledFormDiv>
         <label>Local-Govt</label>
-        <input ref={inputRefLocalGovt} value={user?.localGovt} />
+        <input
+          disabled={disable}
+          ref={inputRefLocalGovt}
+          onChange={(e) => setLocalGovt(e.target.value)}
+          value={localGovt}
+        />
         <EditSaaveButton
           onClick={(e) => {
             e.preventDefault();
@@ -111,7 +157,8 @@ const UserDetails = ({ user }) => {
         <EditSaaveButton
           onClick={(e) => {
             e.preventDefault();
-            inputRefLocalGovt.current.focus();
+            inputRefLocalGovt.current.disabled = true;
+            mutate({ localGovt });
           }}
         >
           save
@@ -119,11 +166,17 @@ const UserDetails = ({ user }) => {
       </StyledFormDiv>
       <StyledFormDiv>
         <label>NIN</label>
-        <input ref={inputRefNIN} value={user?.NIN} />
+        <input
+          disabled={disable}
+          ref={inputRefNIN}
+          onChange={(e) => setNin(e.target.value)}
+          value={NIN}
+        />
         <EditSaaveButton
           onClick={(e) => {
             e.preventDefault();
             inputRefNIN.current.focus();
+            inputRefNIN.current.disabled = false;
           }}
         >
           edit
@@ -131,7 +184,7 @@ const UserDetails = ({ user }) => {
         <EditSaaveButton
           onClick={(e) => {
             e.preventDefault();
-            inputRefNIN.current.focus();
+            mutate({ NIN });
           }}
         >
           save
@@ -139,12 +192,18 @@ const UserDetails = ({ user }) => {
       </StyledFormDiv>
       <StyledFormDiv>
         <label>gender</label>
-        <input ref={inputRefGener} value={user?.gender} />
+        <input
+          disabled={disable}
+          ref={inputRefGener}
+          onChange={(e) => setgender(e.target.value)}
+          value={gender}
+        />
 
         <EditSaaveButton
           onClick={(e) => {
             e.preventDefault();
             inputRefGener.current.focus();
+            inputRefGener.current.disabled = false;
           }}
         >
           edit
@@ -152,14 +211,24 @@ const UserDetails = ({ user }) => {
         <EditSaaveButton
           onClick={(e) => {
             e.preventDefault();
-            inputRefGener.current.focus();
+            inputRefGener.current.disabled = true;
+            inputRefGener.current.disabled = false;
+
+            mutate({ gender });
           }}
-        ></EditSaaveButton>
+        >
+          Save
+        </EditSaaveButton>
       </StyledFormDiv>
 
       <StyledFormDiv>
         <label>Home-Address</label>
-        <input ref={inputRefHomeAddress} value={user?.gender} />
+        <input
+          disabled={disable}
+          ref={inputRefHomeAddress}
+          onChange={(e) => setHomeAdress(e.target.value)}
+          value={homeAdress}
+        />
         <EditSaaveButton
           onClick={(e) => {
             e.preventDefault();
@@ -172,6 +241,8 @@ const UserDetails = ({ user }) => {
           onClick={(e) => {
             e.preventDefault();
             inputRefHomeAddress.current.focus();
+            inputRefHomeAddress.current.disable = true;
+            mutate({ homeAdress });
           }}
         >
           Save
@@ -179,11 +250,18 @@ const UserDetails = ({ user }) => {
       </StyledFormDiv>
       <StyledFormDiv>
         <label>Office-Address</label>
-        <input ref={inputRefOfficeAddress} value={user?.gender} />
+        <input
+          disabled={disable}
+          ref={inputRefOfficeAddress}
+          value={officeAdress}
+          onChange={(e) => setOfficeAdress(e.target.value)}
+        />
+
         <EditSaaveButton
           onClick={(e) => {
             e.preventDefault();
             inputRefOfficeAddress.current.focus();
+            inputRefOfficeAddress.current.disabled = false;
           }}
         >
           edit
@@ -192,6 +270,8 @@ const UserDetails = ({ user }) => {
           onClick={(e) => {
             e.preventDefault();
             inputRefOfficeAddress.current.focus();
+            inputRefOfficeAddress.current.disabled = true;
+            mutate({ officeAdress });
           }}
         >
           save
@@ -209,7 +289,7 @@ function EditSaaveButton({ onClick, label, children }) {
     <div className=" gap-4 mb-2">
       <button
         onClick={onClick}
-        className="border-2  text-[#144c6f] rounded-lg px-8 py-2"
+        className="border-2 border-[#144c6f]  text-[#144c6f] rounded-lg px-8 py-2"
       >
         {children}
       </button>
