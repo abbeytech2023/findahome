@@ -46,7 +46,7 @@ export default function App() {
         <BrowserRouter className="relative">
           <QueryClientProvider client={queryClient}>
             {/* <ReactQueryDevtools initialIsOpen={true} /> */}
-            <div className="">
+            <div className="flex flex-col min-h-screen ">
               <Header />
               <Routes>
                 <Route
@@ -83,9 +83,6 @@ export default function App() {
                 </Route>
                 <Route path="/*" element={<PageNotFound />} />
               </Routes>
-              <div className="relative">
-                <Footer />
-              </div>
             </div>
             <Toaster
               position="top-center"
@@ -107,6 +104,7 @@ export default function App() {
                 },
               }}
             />
+            <Footer />
           </QueryClientProvider>
         </BrowserRouter>
       )}

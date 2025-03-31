@@ -12,6 +12,7 @@ import { RiAdvertisementLine, RiLogoutBoxRLine } from "react-icons/ri";
 import { BiHomeSmile } from "react-icons/bi";
 import { MdOutlineSell } from "react-icons/md";
 import { TbHomeSearch } from "react-icons/tb";
+import MyAccountLinks from "./MyAccountLinks";
 
 const StyledMainNav = styled.nav`
   .main-nav {
@@ -83,6 +84,7 @@ const StyledIconDiv = styled.div`
 
 function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenAcct, setIsOpenAcct] = useState(false);
 
   let numref = useRef();
 
@@ -126,9 +128,11 @@ function MobileNavigation() {
       <div
         className="z-40 font-bold bg-[#fff] text-lg"
         ref={numref}
-        onClick={handleIsOpen}
+        // onClick={handleIsOpen}
       >
-        {isOpen && <Navigation />}
+        {isOpen && (
+          <Navigation isOpenAcct={isOpenAcct} setIsOpenAcct={setIsOpenAcct} />
+        )}
       </div>
     </>
   );
@@ -136,7 +140,7 @@ function MobileNavigation() {
 
 export default MobileNavigation;
 
-function Navigation() {
+function Navigation({ isOpenAcct, setIsOpenAcct }) {
   const { logout } = useLogout();
   const { user } = useAuthContext();
 
@@ -145,12 +149,23 @@ function Navigation() {
       <StyledMainNavList>
         {/* {user && ( */}
         {user && (
-          <StyledNavLink to="/myaccount">
-            <div>My account</div>
-            <StyledIconDiv>
-              <CgProfile />
-            </StyledIconDiv>
-          </StyledNavLink>
+          <div>
+            <StyledNavLink
+              // to="/myaccount"
+              onClick={() => setIsOpenAcct((open) => !open)}
+            >
+              <div>My account</div>
+
+              <StyledIconDiv>
+                <CgProfile />
+              </StyledIconDiv>
+            </StyledNavLink>
+            {isOpenAcct && (
+              <div className="">
+                <MyAccountLinks bgColor="#fff" color="#43525b" />
+              </div>
+            )}
+          </div>
         )}
         {/* )} */}
 

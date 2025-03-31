@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import FormRow from "./FormRow";
+import Input from "./Input";
 
 // .pizza.sold-out img {
 //   filter: grayscale();
@@ -32,9 +33,11 @@ const StyledFormDiv = styled.div`
   }
 
   & input {
-    /* border: 1px solid black; */
+    border: 1px solid black;
     max-width: 15rem;
-    height: 2rem;
+    height: 3rem;
+    /* filter: grayscale(); */
+    /* opacity: 0.6; */
   }
 `;
 
@@ -104,38 +107,46 @@ const UserDetails = ({ user }) => {
     <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col gap-6">
       <StyledFormDiv>
         <label>full-name</label>
-        <input width="12rem" disabled value={displayName} />
+        <input
+          width="12rem"
+          disabled
+          value={displayName}
+          className={`${disable === true ? "opacity-50" : "opacity-100"}`}
+        />
       </StyledFormDiv>
       <StyledFormDiv>
         <label>Email</label>
         <input disabled value={email} />
       </StyledFormDiv>
-      <StyledFormDiv>
-        <label>state</label>
-        <input disabled={disable} ref={inputRefState} value={State} />
-        {disable === true && (
-          <EditSaaveButton
-            onClick={(e) => {
-              e.preventDefault();
-              inputRefState.current.focus();
-              inputRefState.current.disabled = false;
-            }}
-          >
-            edit
-          </EditSaaveButton>
-        )}
-        {
-          <EditSaaveButton
-            onClick={(e) => {
-              e.preventDefault();
-              inputRefState.current.focus();
-              inputRefState.current.disabled = false;
-              onsubmit({ State });
-            }}
-          >
-            save
-          </EditSaaveButton>
-        }
+      <StyledFormDiv className="">
+        <div className="flex gap-9">
+          <label>state</label>
+          <input disabled={disable} ref={inputRefState} value={State} />
+        </div>
+        <div className="flex gap-4">
+          {
+            <EditSaaveButton
+              onClick={(e) => {
+                e.preventDefault();
+                inputRefState.current.focus();
+                inputRefState.current.disabled = false;
+              }}
+            >
+              edit
+            </EditSaaveButton>
+          }
+          {
+            <EditSaaveButton
+              onClick={(e) => {
+                e.preventDefault();
+                inputRefState.current.disabled = true;
+                mutate({ State });
+              }}
+            >
+              save
+            </EditSaaveButton>
+          }
+        </div>
       </StyledFormDiv>
 
       <StyledFormDiv>
@@ -197,6 +208,7 @@ const UserDetails = ({ user }) => {
           disabled={disable}
           ref={inputRefGener}
           onChange={(e) => setgender(e.target.value)}
+          className={`${disable === true ? "opacity-50" : "opacity-100"}`}
           value={gender}
         />
 
@@ -205,6 +217,7 @@ const UserDetails = ({ user }) => {
             e.preventDefault();
             inputRefGener.current.focus();
             inputRefGener.current.disabled = false;
+            inputRefGener.current.opacity = "1";
           }}
         >
           edit
@@ -224,7 +237,7 @@ const UserDetails = ({ user }) => {
 
       <StyledFormDiv>
         <label>Home-Address</label>
-        <input
+        <Input
           disabled={disable}
           ref={inputRefHomeAddress}
           onChange={(e) => setHomeAdress(e.target.value)}
@@ -251,7 +264,7 @@ const UserDetails = ({ user }) => {
       </StyledFormDiv>
       <StyledFormDiv>
         <label>Office-Address</label>
-        <input
+        <Input
           disabled={disable}
           ref={inputRefOfficeAddress}
           value={officeAdress}
@@ -287,10 +300,10 @@ export default Profile;
 
 function EditSaaveButton({ onClick, label, children }) {
   return (
-    <div className=" gap-4 mb-2">
+    <div className=" gap-4">
       <button
         onClick={onClick}
-        className="border-[1px] border-[#144c6f]  text-[#144c6f] rounded-lg px-8 py-2"
+        className="border-[1px] text-[#fff] text  bg-[#144c6f] rounded-lg py-1 px-1"
       >
         {children}
       </button>
