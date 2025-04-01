@@ -30,7 +30,7 @@ const StyledFormDiv = styled.div`
 
   & label {
     width: 9rem;
-    /* background-color: red; */
+    margin-bottom: 0.7rem;
   }
 
   & input {
@@ -45,7 +45,7 @@ const StyledFormDiv = styled.div`
 const StyledContainerEditSave = styled.div`
   display: flex;
   gap: 8.3rem;
-  margin-left: auto;
+  /* margin-left: auto; */
 `;
 
 function Profile() {
@@ -111,12 +111,11 @@ const UserDetails = ({ user }) => {
   let onsubmit;
 
   return (
-    <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col gap-9">
       <StyledFormDiv>
-        <div className="flex gap-7">
+        <div className=" flex flex-col">
           <label>full-name</label>
           <input
-            width="12rem"
             disabled
             value={displayName}
             className={`${disable === true ? "opacity-50" : "opacity-100"}`}
@@ -124,7 +123,7 @@ const UserDetails = ({ user }) => {
         </div>
       </StyledFormDiv>
       <StyledFormDiv>
-        <div className="flex gap-7">
+        <div className="flex flex-col">
           <label>Email</label>
           <input
             disabled
@@ -134,7 +133,7 @@ const UserDetails = ({ user }) => {
         </div>
       </StyledFormDiv>
       <StyledFormDiv className="">
-        <div className="flex gap-7">
+        <div className="flex flex-col">
           <label>state</label>
           <input disabled={disable} ref={inputRefState} value={State} />
         </div>
@@ -165,7 +164,7 @@ const UserDetails = ({ user }) => {
       </StyledFormDiv>
 
       <StyledFormDiv>
-        <div className="flex gap-7">
+        <div className="flex flex-col">
           <label>Local-Govt</label>
           <input
             disabled={disable}
@@ -196,7 +195,7 @@ const UserDetails = ({ user }) => {
         </StyledContainerEditSave>
       </StyledFormDiv>
       <StyledFormDiv>
-        <div className="flex gap-7">
+        <div className="flex flex-col">
           <label>NIN</label>
           <input
             disabled={disable}
@@ -226,7 +225,7 @@ const UserDetails = ({ user }) => {
         </StyledContainerEditSave>
       </StyledFormDiv>
       <StyledFormDiv>
-        <div className="flex gap-7 h-14 items-center">
+        <div className="flex flex-col">
           <label>gender</label>
           <input
             disabled={disable}
@@ -262,14 +261,13 @@ const UserDetails = ({ user }) => {
       </StyledFormDiv>
 
       <StyledFormDiv>
-        <div className="flex gap-7">
+        <div className="flex flex-col">
           <label className="">Home-Address</label>
           <input
             disabled={disable}
             ref={inputRefHomeAddress}
             onChange={(e) => setHomeAdress(e.target.value)}
             value={homeAdress}
-            className="h-full"
           />
         </div>
         <StyledContainerEditSave>
@@ -294,7 +292,7 @@ const UserDetails = ({ user }) => {
         </StyledContainerEditSave>
       </StyledFormDiv>
       <StyledFormDiv>
-        <div className="flex gap-7">
+        <div className="flex flex-col">
           <label>Office-Address</label>
           <input
             disabled={disable}
@@ -337,7 +335,7 @@ function EditSaaveButton({ onClick, label, children }) {
     <div className=" gap-4">
       <button
         onClick={onClick}
-        className="border-[1px] text-[#fff] text  bg-[#144c6f] rounded-lg py-1 px-1"
+        className="border-[1px] text-[#fff] text  bg-[#39637d] rounded-lg py-1 px-1"
       >
         {children}
       </button>
