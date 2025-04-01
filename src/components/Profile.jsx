@@ -30,7 +30,7 @@ const StyledFormDiv = styled.div`
 
   & label {
     width: 9rem;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.4rem;
   }
 
   & input {
@@ -44,7 +44,8 @@ const StyledFormDiv = styled.div`
 
 const StyledContainerEditSave = styled.div`
   display: flex;
-  gap: 8.3rem;
+  justify-content: space-between;
+  width: 100%;
   /* margin-left: auto; */
 `;
 
