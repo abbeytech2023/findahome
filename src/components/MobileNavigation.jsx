@@ -91,6 +91,7 @@ function MobileNavigation() {
   useEffect(() => {
     document.addEventListener("mousedown", (event) => {
       if (!numref.current.contains(event.target)) {
+        console.log(event);
         setIsOpen(false);
       }
     });
@@ -128,7 +129,7 @@ function MobileNavigation() {
       <div
         className="z-40 font-bold bg-[#fff] text-lg"
         ref={numref}
-        // onClick={handleIsOpen}
+        onClick={handleIsOpen}
       >
         {isOpen && (
           <Navigation isOpenAcct={isOpenAcct} setIsOpenAcct={setIsOpenAcct} />
@@ -151,8 +152,8 @@ function Navigation({ isOpenAcct, setIsOpenAcct }) {
         {user && (
           <div>
             <StyledNavLink
-              // to="/myaccount"
-              onClick={() => setIsOpenAcct((open) => !open)}
+              to="/myaccount/profile"
+              onClick={() => setIsOpenAcct(false)}
             >
               <div>My account</div>
 
