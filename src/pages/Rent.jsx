@@ -1,5 +1,4 @@
 import bannerImage from "../assets/images/road-houses.jpg";
-import CreatePropertiesToLetForm from "../components/CreatePropertiesToLetForm";
 import PropertiesToLet from "../components/PropertiesToLet";
 
 import styled from "styled-components";
@@ -15,8 +14,10 @@ const RentSection = styled.section`
 
 import { BgOverlay } from "../components/BgOverlay";
 import { Heading, StyledSubheading } from "../components/HeadingText";
+import { useFetchPropertiesTolet } from "../hooks/useFetchProperties";
 
 export default function Rent() {
+  const { propToLet, isPending } = useFetchPropertiesTolet();
   return (
     <>
       <RentSection className=" bg-no-repeat bg-center bg-cover w-full h-screen">
@@ -40,7 +41,7 @@ export default function Rent() {
       </div> */}
 
       <div className="mt-[15rem]">
-        <PropertiesToLet />
+        <PropertiesToLet propToLet={propToLet} isPending={isPending} />
       </div>
       {/* <div className="mt-32">
         <CreatePropertiesToLetForm />

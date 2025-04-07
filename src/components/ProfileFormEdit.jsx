@@ -1,45 +1,60 @@
-import styled from "styled-components";
-import { fetchCollectionForAUser } from "../hooks/useCollections";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
 import { upDateDocument } from "../hooks/useFirestore";
-import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
-import StyledInput from "./StyledInput";
+import toast from "react-hot-toast";
+import styled from "styled-components";
 
-const StyledProfileBox = styled.div`
+const StyledFormDiv = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 2rem; */
 
-  margin-bottom: 12px;
-  filter: grayscale();
-  opacity: 0.6;
-  & > :first-child {
-    width: 7rem;
+  & label {
+    width: 9rem;
+    margin-bottom: 0.4rem;
+  }
+
+  & input {
+    border: 1px solid black;
+    max-width: 15rem;
+    height: 4rem;
+    filter: grayscale();
+    opacity: 0.6;
+  }
+  & select {
+    border: 1px solid black;
+    max-width: 15rem;
+    height: 4rem;
+    /* filter: grayscale(); */
+    /* opacity: 0.6; */
   }
 `;
 
-export default function ProfileFormEdit({ user }) {
+const StyledContainerEditSave = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /* margin-left: auto; */
+`;
+
+const ProfileFormEdit = ({ user }) => {
   const [displayName, setDisplayName] = useState();
   const [email, setEmail] = useState();
   const [NIN, setNin] = useState();
   const [gender, setgender] = useState();
   const [State, setState] = useState();
   const [localGovt, setLocalGovt] = useState();
+  const [homeAdress, setHomeAdress] = useState();
+  const [officeAdress, setOfficeAdress] = useState();
 
-  const { mutate } = useMutation({
-    mutationFn: (data) => upDateDocument(data),
-    onSuccess: () => toast.success("updated successfully"),
-  });
-  // const { aDoc } = useCollections("Users");
-
-  const { reset, register, handleSubmit, formState } = useForm();
-
-  const { errors } = formState;
-
-  const GreyBox = styled.div`
-    filter: grayscale();
-    opacity: 0.8;
-  `;
+  const inputRefState = useRef(null);
+  const inputRefLocalGovt = useRef(null);
+  const inputRefNIN = useRef(null);
+  const inputRefOfficeAddress = useRef(null);
+  const inputRefHomeAddress = useRef(null);
+  const inputRefGener = useRef(null);
 
   useEffect(() => {
     const getUserDetails = () => {
@@ -49,101 +64,269 @@ export default function ProfileFormEdit({ user }) {
       setNin(user && user.NIN);
       setgender(user && user.gender);
       setLocalGovt(user && user.localGovt);
+      setHomeAdress(user && user.homeAdress);
+      setOfficeAdress(user && user.officeAdress);
     };
     getUserDetails();
   }, [user]);
 
-  const onSubmit = ({ NIN, gender, State, localGovt }) => {
-    mutate({ NIN, gender, State, localGovt });
-  };
+  const { mutate } = useMutation({
+    mutationFn: (data) => upDateDocument(data),
+    onSuccess: () => toast.success("updated successfully"),
+  });
+
+  const { reset, register, handleSubmit, formState } = useForm();
+
+  const [disable, setDisable] = useState(true);
+
+  // const onsubmit = ({ data }) => {
+  //   // mutate({ data });
+  //   console.log(data);
+  // };
+
+  let onsubmit;
 
   return (
-    <div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-[1.8rem]"
-      >
-        <StyledProfileBox>
-          <label>FullName</label>
-          <StyledInput
+    <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col gap-9 ">
+      <StyledFormDiv>
+        <div className=" flex flex-col ">
+          <label>full-name</label>
+          <input
+            disabled
             value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
-            id="displayName"
-            {...register("displayName", {})}
+            className={`${disable === true ? "opacity-50" : "opacity-100"}`}
           />
-        </StyledProfileBox>
-        <StyledProfileBox>
+        </div>
+      </StyledFormDiv>
+      <StyledFormDiv>
+        <div className="flex flex-col">
           <label>Email</label>
-          <StyledInput
+          <input
+            disabled
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            id="email"
-            {...register("email", {})}
+            className={`border-none ${
+              disable === true ? "opacity-50" : "opacity-100"
+            }`}
           />
-        </StyledProfileBox>
-        <StyledProfileBox>
-          <label>NIN</label>
-          <StyledInput
-            defaultValue={NIN}
-            onChange={(e) => setNin(e.target.value)}
-            id="NIN"
-            {...register("NIN", {})}
-          />
-        </StyledProfileBox>
-        <StyledProfileBox>
-          <Label>
-            <p>State</p>
-          </Label>
-          <StyledInput
-            defaultValue={State}
-            onChange={(e) => setState(e.target.value)}
-            id="State"
-            {...register("State", {})}
-          />
-        </StyledProfileBox>
-        <StyledProfileBox>
-          <Label label="Local-govt"> Local-government</Label>
-          <StyledInput
-            value={localGovt}
+        </div>
+      </StyledFormDiv>
+      <StyledFormDiv className="">
+        <div className="flex flex-col">
+          <label>state</label>
+          <input disabled={disable} ref={inputRefState} value={State} />
+        </div>
+        <StyledContainerEditSave>
+          {
+            <EditSaaveButton
+              onClick={(e) => {
+                e.preventDefault();
+                inputRefState.current.focus();
+                inputRefState.current.disabled = false;
+              }}
+            >
+              edit
+            </EditSaaveButton>
+          }
+          {
+            <EditSaaveButton
+              onClick={(e) => {
+                e.preventDefault();
+                inputRefState.current.disabled = true;
+                mutate({ State });
+              }}
+            >
+              save
+            </EditSaaveButton>
+          }
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+
+      <StyledFormDiv>
+        <div className="flex flex-col">
+          <label>Local-Govt</label>
+          <select>
+            <option>ABeokuts</option>
+          </select>
+          {/* disabled={disable}
+            ref={inputRefLocalGovt}
             onChange={(e) => setLocalGovt(e.target.value)}
-            id="localGovt"
-            {...register("localGovt", {})}
+            value={localGovt} */}
+        </div>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefLocalGovt.current.focus();
+              inputRefLocalGovt.current.disabled = false;
+            }}
+          >
+            edit
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefLocalGovt.current.disabled = true;
+              mutate({ localGovt });
+            }}
+          >
+            save
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+      <StyledFormDiv>
+        <div className="flex flex-col">
+          <label>NIN</label>
+          <input
+            disabled={disable}
+            ref={inputRefNIN}
+            onChange={(e) => setNin(e.target.value)}
+            value={NIN}
           />
-        </StyledProfileBox>
-        <StyledProfileBox>
-          <Label>
-            <p>Gender</p>
-          </Label>
-          <StyledInput
-            value={gender}
+        </div>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefNIN.current.focus();
+              inputRefNIN.current.disabled = false;
+            }}
+          >
+            edit
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              mutate({ NIN });
+            }}
+          >
+            save
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+      <StyledFormDiv>
+        <div className="flex flex-col">
+          <label>Gender</label>
+          <select
             onChange={(e) => setgender(e.target.value)}
-            id="gender"
-            {...register("gender", {})}
+            value={gender}
+            ref={inputRefGener}
+            className={` ${
+              disable === true ? "opacity-50" : "opacity-100"
+            }  w-full`}
+          >
+            <option value="MALE">MALE</option>
+            <option value="FEMALE">FEMALE</option>
+          </select>
+          {/* disabled={disable}
+            ref={inputRefGener}
+            onChange={(e) => setgender(e.target.value)}
+            className={` ${disable === true ? "opacity-50" : "opacity-100"}`}
+            value={gender}
+          /> */}
+        </div>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefGener.current.focus();
+              inputRefGener.current.disabled = false;
+              inputRefGener.current.opacity = "1";
+            }}
+          >
+            edit
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefGener.current.disabled = true;
+              inputRefGener.current.disabled = false;
+
+              mutate({ gender });
+            }}
+          >
+            Save
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+
+      <StyledFormDiv>
+        <div className="flex flex-col">
+          <label className="">Home-Address</label>
+          <input
+            disabled={disable}
+            ref={inputRefHomeAddress}
+            onChange={(e) => setHomeAdress(e.target.value)}
+            value={homeAdress}
           />
-        </StyledProfileBox>
-        <StyledProfileBox>
-          <EditSaaveButton label="save" />
-          <EditSaaveButton label="edit" />
-        </StyledProfileBox>
-      </form>
-    </div>
+        </div>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefHomeAddress.current.focus();
+            }}
+          >
+            edit
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefHomeAddress.current.focus();
+              inputRefHomeAddress.current.disable = true;
+              mutate({ homeAdress });
+            }}
+          >
+            Save
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+      <StyledFormDiv>
+        <div className="flex flex-col">
+          <label>Office-Address</label>
+          <input
+            disabled={disable}
+            ref={inputRefOfficeAddress}
+            value={officeAdress}
+            onChange={(e) => setOfficeAdress(e.target.value)}
+          />
+        </div>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefOfficeAddress.current.focus();
+              inputRefOfficeAddress.current.disabled = false;
+            }}
+          >
+            edit
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefOfficeAddress.current.focus();
+              inputRefOfficeAddress.current.disabled = true;
+              mutate({ officeAdress });
+            }}
+          >
+            save
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+      {/* <StyledFormDiv></StyledFormDiv> */}
+    </form>
   );
-}
+};
 
-function Label({ children }) {
-  return (
-    <div className=" text-[0.9rem]  mr-[5rem] flex flex-row ">{children}</div>
-  );
-}
+export default ProfileFormEdit;
 
-function EditSaaveButton({ onClick, label }) {
+function EditSaaveButton({ onClick, label, children }) {
   return (
-    <div className="flex justify-center items-center gap-4 mb-2">
+    <div className=" gap-4">
       <button
         onClick={onClick}
-        className="border-2 bg-[#144c6f] mt-7 border-white text-white rounded-lg px-8 py-2"
+        className="border-[1px] text-[#fff] text  bg-[#39637d] rounded-lg py-1 px-1"
       >
-        {label}
+        {children}
       </button>
     </div>
   );

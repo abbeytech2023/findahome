@@ -25,10 +25,13 @@ export default function Buy() {
       </BackgroundImage>
 
       {/* ------------------- BUY RENT SELL SECTION -------------  */}
-
-      {user && (
-        <section>{documents && <ProductCart documents={documents} />}</section>
-      )}
+      <div className="mt-[15rem]">
+        {user && (
+          <section>
+            {documents && <ProductCart documents={documents} />}
+          </section>
+        )}
+      </div>
     </>
   );
 }

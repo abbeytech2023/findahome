@@ -5,16 +5,16 @@ import SideBarTabbed from "../components/SideBarTabbed";
 
 export default function MyAccount() {
   return (
-    <div className="mt-[8rem] ">
+    <div className="mt-[12rem]  ">
       <div>
         <div className="absolute top-1 lg:hidden xl:hidden">
           <SideNavBar />
         </div>
-        <div className="flex gap-5">
-          <div className="flex flex-col text-[#fff] bg-[#144c6f] h-screen fixed z-10 top-0 bottom-0 sm:hidden md:hidden lg:block xl:block min-[0px]:hidden ">
-            {/* <SideBarTabbed /> */}
+        <div className="flex  items-start justify-start ml-[10%] gap-[15%]">
+          <div className="flex flex-col text-[#144c6f]  sm:hidden md:hidden lg:block xl:block min-[0px]:hidden ">
+            <SideBarTabbed />
           </div>
-          <div className=" w-4/5 flex pl-[5%] justify-center items-center lg:ml-16 xl:ml-16 ">
+          <div className="flex justify-center items-center  ">
             <Outlet />
           </div>
         </div>

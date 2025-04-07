@@ -25,7 +25,6 @@ const Section = styled.section`
 
 export default function Dashboard() {
   const { propToLet, isPending } = useFetchPropertiesTolet();
-  console.log(propToLet);
 
   const { documents } = useFetchPropertiesForSale();
   console.log(documents);

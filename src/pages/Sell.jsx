@@ -28,7 +28,7 @@ export default function Sell() {
               Sell your home with confidence
             </h2>
             <p className="text-[#e9f0f3] font-medium text-2xl sm:text-3xl  ">
-              FindAHome is making it simpler to sell your home and move forward.
+              Gethomes is making it simpler to sell your home and move forward.
             </p>
           </div>
         </BgOverlay>

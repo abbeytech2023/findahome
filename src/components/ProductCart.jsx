@@ -21,7 +21,7 @@ function ProductCart({ documents }) {
       {isPending && <SpinnerMini />}
 
       {documents && documents.length === 0 ? (
-        <p className="text-3xl uppercase">
+        <p className="text-center text-3xl uppercase">
           you do not have a property listed for sale
         </p>
       ) : (

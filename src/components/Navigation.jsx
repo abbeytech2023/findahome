@@ -15,14 +15,16 @@ export const StyledNavLink = styled(NavLink)`
   &:visited {
     /* color: #fff; */
     text-decoration: none;
+    border-bottom: 1px solid #144c6f;
   }
 
   &.active {
-    color: #f2f203;
+    color: #c1c124;
   }
 
   &:hover {
     background-color: #1e1b1b;
+    color: #fff;
   }
 `;
 
