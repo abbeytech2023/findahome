@@ -5,9 +5,9 @@ import SideBarTabbed from "../components/SideBarTabbed";
 
 export default function MyAccount() {
   return (
-    <div className="mt-[12rem]  ">
+    <div className="">
       <div>
-        <div className="absolute top-1 lg:hidden xl:hidden">
+        <div className="mt-[4.3rem]  lg:hidden xl:hidden">
           <SideNavBar />
         </div>
         <div className="flex  items-start justify-start ml-[10%] gap-[15%]">
