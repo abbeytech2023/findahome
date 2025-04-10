@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Route,
-  Navigate,
-  Routes,
-  replace,
-} from "react-router-dom";
+import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import Sell from "./pages/Sell";
 import Buy from "./pages/Buy";
 import Dashboard from "./pages/Dashboard";

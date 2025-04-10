@@ -29,7 +29,7 @@ export default function SideNavBar() {
       <div className="text-4xl ">
         <div
           onClick={() => setIsisOpen(true)}
-          className={`bg-[#0d293b] flex gap-4 absolute items-center text-white  py-2 px-1  top-16 left-0   xl:hidden lg:hidden`}
+          className={`bg-[#0d293b] flex gap-4 items-center text-white  top-16 left-0   xl:hidden lg:hidden`}
         >
           {/* {!isOpen && <h2 className="text-4xl">open</h2>} */}
           {!isOpen && <CgMenuGridO />}
