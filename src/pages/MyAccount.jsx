@@ -5,7 +5,7 @@ import SideBarTabbed from "../components/SideBarTabbed";
 
 export default function MyAccount() {
   return (
-    <div className="mt-32 items-center">
+    <div className="mt-16 items-center">
       <div>
         <div className="lg:hidden xl:hidden">
           <SideNavBar />
@@ -14,7 +14,7 @@ export default function MyAccount() {
           <div className="text-[#fff]  sm:hidden md:hidden lg:block xl:block min-[0px]:hidden ">
             <SideBarTabbed />
           </div>
-          <div className="">
+          <div className="mt-12">
             <Outlet />
           </div>
         </div>
