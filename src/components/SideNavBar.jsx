@@ -23,15 +23,13 @@ const StyledTabDiv = styled.div`
 
 export default function SideNavBar() {
   const [isOpen, setIsisOpen] = useState(false);
-  const { user } = useAuthContext();
   return (
     <div className=" flex ">
       <div className="text-4xl ">
         <div
           onClick={() => setIsisOpen(true)}
-          className={`bg-[#0d293b] flex gap-4 items-center text-white  top-16 left-0   xl:hidden lg:hidden`}
+          className={`flex gap-4 items-center  text-[#000]  top-16 left-0   xl:hidden lg:hidden`}
         >
-          {/* {!isOpen && <h2 className="text-4xl">open</h2>} */}
           {!isOpen && <CgMenuGridO />}
         </div>
       </div>
