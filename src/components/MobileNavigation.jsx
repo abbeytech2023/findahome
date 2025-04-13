@@ -24,6 +24,7 @@ const StyledMainNav = styled.nav`
     /* background-color: transparent; */
     /* top: 2;
     left: 0; */
+    z-index: 99;
     width: 100%;
     height: 100vh;
     font-weight: 700;
@@ -31,7 +32,6 @@ const StyledMainNav = styled.nav`
     transition: all 0.3s ease-in;
     visibility: hidden;
     pointer-events: none;
-    /* z-index: 2; */
   }
 `;
 
@@ -103,7 +103,7 @@ function MobileNavigation() {
 
   return (
     <>
-      <StyledMainNav className="xl:hidden  lg:hidden px-2 py-4 flex items-center justify-between relative  xl:text-4xl sm:text-2xl bg-[#144c6f]  text-[#fff]">
+      <StyledMainNav className="xl:hidden z-[99]  lg:hidden px-2 py-4 flex items-center justify-between relative  xl:text-4xl sm:text-2xl bg-[#144c6f]  text-[#fff]">
         <NavLink to="/" className="  top-3 left-4 ">
           <Logo type="mobile" />
         </NavLink>
@@ -127,7 +127,7 @@ function MobileNavigation() {
         </div>
       </StyledMainNav>
       <div
-        className="z-40 font-bold bg-[#fff] text-lg"
+        className=" font-bold bg-[#fff] text-lg"
         ref={numref}
         onClick={handleIsOpen}
       >

@@ -13,7 +13,7 @@ function ProductCart({ documents }) {
   });
 
   return (
-    <div className="px-[3rem] mb-[20rem]">
+    <div className="px-[3rem] mb-[20rem] ">
       {/* {error && <p>{error}</p>} */}
       <Heading as="h2" className=" uppercase text-center mb-16">
         Properties for sale

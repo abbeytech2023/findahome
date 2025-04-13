@@ -7,15 +7,11 @@ import { Link } from "react-router-dom";
 import SideBarTabbed from "./SideBarTabbed";
 
 const StyledTabDiv = styled.div`
-  /* position: fixed; */
-  /* left: 0;
-  top: 0; */
-  /* bottom: 0; */
   font-size: 0.8rem;
-  z-index: 10;
   color: #0d293b;
   color: #fff;
   background-color: #144c6f;
+  background-color: red;
 
   /* transform: translateY(-100%); */
   transition: all 0.3s ease-out;
@@ -43,7 +39,7 @@ export default function SideNavBar() {
         <div>
           {isOpen && (
             <IoCloseSharp
-              className="text-white text-4xl  z-30 absolute top-4 left-[161px]  xl:top-[7rem] lg:top-[6rem]  xl:left-[161px] lg:left-[161px]"
+              className="text-white text-4xl z-[8] absolute top-4 left-[161px]  xl:top-[7rem] lg:top-[6rem]  xl:left-[161px] lg:left-[161px]"
               onClick={() => setIsisOpen(false)}
             />
           )}

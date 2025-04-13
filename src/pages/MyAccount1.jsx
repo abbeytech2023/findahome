@@ -23,7 +23,7 @@ const StyledTabDiv = styled.div`
   bottom: 0;
   font-size: 0.8rem;
   height: 100%;
-  z-index: 10;
+  /* z-index: 10; */
   color: #0d293b;
   color: #fff;
   background-color: #555;
@@ -40,7 +40,7 @@ export default function MyAccount() {
   return (
     <>
       <div className="relative flex gap-2 bg-gray-400">
-        <div className="z-10 text-4xl absolute ">
+        <div className=" text-4xl absolute ">
           <div
             onClick={() => setIsisOpen(true)}
             className={`bg-[#0d293b] flex gap-4  items-center text-white  py-2 px-1 absolute top-16 left-0   xl:hidden lg:hidden`}

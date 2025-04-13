@@ -4,12 +4,17 @@ import { upDateDocument } from "../hooks/useFirestore";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import styled from "styled-components";
+import { LuPencilLine } from "react-icons/lu";
+import { CiSaveUp2 } from "react-icons/ci";
+import { PiNotePencilThin } from "react-icons/pi";
+import { RiSave2Fill } from "react-icons/ri";
 
 const StyledFormDiv = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* gap: 2rem; */
+  /* flex-direction: column; */
+  /* justify-content: space-between; */
+  align-items: end;
+  position: relative;
 
   & label {
     width: 9rem;
@@ -25,7 +30,7 @@ const StyledFormDiv = styled.div`
   }
   & select {
     border: 1px solid black;
-    max-width: 15rem;
+    /* max-width: 15rem; */
     height: 4rem;
     /* filter: grayscale(); */
     /* opacity: 0.6; */
@@ -34,9 +39,20 @@ const StyledFormDiv = styled.div`
 
 const StyledContainerEditSave = styled.div`
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  /* margin-left: auto; */
+  position: absolute;
+  gap: 0.95rem;
+  top: 28px;
+  right: -35px;
+  flex-direction: column;
+  /* background-color: red; */
+  /* gap: 1rem; */
+
+  /* align-items: flex-end; */
+`;
+
+const LabelInputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const ProfileFormEdit = ({ user }) => {
@@ -75,7 +91,7 @@ const ProfileFormEdit = ({ user }) => {
     onSuccess: () => toast.success("updated successfully"),
   });
 
-  const { reset, register, handleSubmit, formState } = useForm();
+  const { handleSubmit } = useForm();
 
   const [disable, setDisable] = useState(true);
 
@@ -89,17 +105,17 @@ const ProfileFormEdit = ({ user }) => {
   return (
     <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col gap-9 ">
       <StyledFormDiv>
-        <div className=" flex flex-col ">
+        <LabelInputDiv className=" flex flex-col">
           <label>full-name</label>
           <input
             disabled
             value={displayName}
             className={`${disable === true ? "opacity-50" : "opacity-100"}`}
           />
-        </div>
+        </LabelInputDiv>
       </StyledFormDiv>
       <StyledFormDiv>
-        <div className="flex flex-col">
+        <LabelInputDiv>
           <label>Email</label>
           <input
             disabled
@@ -108,13 +124,13 @@ const ProfileFormEdit = ({ user }) => {
               disable === true ? "opacity-50" : "opacity-100"
             }`}
           />
-        </div>
+        </LabelInputDiv>
       </StyledFormDiv>
-      <StyledFormDiv className="">
-        <div className="flex flex-col">
+      <StyledFormDiv>
+        <LabelInputDiv>
           <label>state</label>
           <input disabled={disable} ref={inputRefState} value={State} />
-        </div>
+        </LabelInputDiv>
         <StyledContainerEditSave>
           {
             <EditSaaveButton
@@ -124,7 +140,7 @@ const ProfileFormEdit = ({ user }) => {
                 inputRefState.current.disabled = false;
               }}
             >
-              edit
+              <PiNotePencilThin />
             </EditSaaveButton>
           }
           {
@@ -135,23 +151,20 @@ const ProfileFormEdit = ({ user }) => {
                 mutate({ State });
               }}
             >
-              save
+              <RiSave2Fill />
             </EditSaaveButton>
           }
         </StyledContainerEditSave>
       </StyledFormDiv>
 
       <StyledFormDiv>
-        <div className="flex flex-col">
+        <LabelInputDiv>
           <label>Local-Govt</label>
           <select>
-            <option>ABeokuts</option>
+            <option>Abeokuta-south</option>
+            <option>Abeokuta-North</option>
           </select>
-          {/* disabled={disable}
-            ref={inputRefLocalGovt}
-            onChange={(e) => setLocalGovt(e.target.value)}
-            value={localGovt} */}
-        </div>
+        </LabelInputDiv>
         <StyledContainerEditSave>
           <EditSaaveButton
             onClick={(e) => {
@@ -160,7 +173,7 @@ const ProfileFormEdit = ({ user }) => {
               inputRefLocalGovt.current.disabled = false;
             }}
           >
-            edit
+            <PiNotePencilThin />
           </EditSaaveButton>
           <EditSaaveButton
             onClick={(e) => {
@@ -169,12 +182,12 @@ const ProfileFormEdit = ({ user }) => {
               mutate({ localGovt });
             }}
           >
-            save
+            <RiSave2Fill />
           </EditSaaveButton>
         </StyledContainerEditSave>
       </StyledFormDiv>
       <StyledFormDiv>
-        <div className="flex flex-col">
+        <LabelInputDiv>
           <label>NIN</label>
           <input
             disabled={disable}
@@ -182,7 +195,7 @@ const ProfileFormEdit = ({ user }) => {
             onChange={(e) => setNin(e.target.value)}
             value={NIN}
           />
-        </div>
+        </LabelInputDiv>
         <StyledContainerEditSave>
           <EditSaaveButton
             onClick={(e) => {
@@ -191,7 +204,7 @@ const ProfileFormEdit = ({ user }) => {
               inputRefNIN.current.disabled = false;
             }}
           >
-            edit
+            <PiNotePencilThin />
           </EditSaaveButton>
           <EditSaaveButton
             onClick={(e) => {
@@ -199,12 +212,12 @@ const ProfileFormEdit = ({ user }) => {
               mutate({ NIN });
             }}
           >
-            save
+            <RiSave2Fill />
           </EditSaaveButton>
         </StyledContainerEditSave>
       </StyledFormDiv>
       <StyledFormDiv>
-        <div className="flex flex-col">
+        <LabelInputDiv>
           <label>Gender</label>
           <select
             onChange={(e) => setgender(e.target.value)}
@@ -223,7 +236,7 @@ const ProfileFormEdit = ({ user }) => {
             className={` ${disable === true ? "opacity-50" : "opacity-100"}`}
             value={gender}
           /> */}
-        </div>
+        </LabelInputDiv>
         <StyledContainerEditSave>
           <EditSaaveButton
             onClick={(e) => {
@@ -233,7 +246,7 @@ const ProfileFormEdit = ({ user }) => {
               inputRefGener.current.opacity = "1";
             }}
           >
-            edit
+            <PiNotePencilThin />
           </EditSaaveButton>
           <EditSaaveButton
             onClick={(e) => {
@@ -244,13 +257,13 @@ const ProfileFormEdit = ({ user }) => {
               mutate({ gender });
             }}
           >
-            Save
+            <RiSave2Fill />
           </EditSaaveButton>
         </StyledContainerEditSave>
       </StyledFormDiv>
 
       <StyledFormDiv>
-        <div className="flex flex-col">
+        <LabelInputDiv>
           <label className="">Home-Address</label>
           <input
             disabled={disable}
@@ -258,7 +271,7 @@ const ProfileFormEdit = ({ user }) => {
             onChange={(e) => setHomeAdress(e.target.value)}
             value={homeAdress}
           />
-        </div>
+        </LabelInputDiv>
         <StyledContainerEditSave>
           <EditSaaveButton
             onClick={(e) => {
@@ -266,7 +279,7 @@ const ProfileFormEdit = ({ user }) => {
               inputRefHomeAddress.current.focus();
             }}
           >
-            edit
+            <PiNotePencilThin />
           </EditSaaveButton>
           <EditSaaveButton
             onClick={(e) => {
@@ -276,12 +289,12 @@ const ProfileFormEdit = ({ user }) => {
               mutate({ homeAdress });
             }}
           >
-            Save
+            <RiSave2Fill />
           </EditSaaveButton>
         </StyledContainerEditSave>
       </StyledFormDiv>
       <StyledFormDiv>
-        <div className="flex flex-col">
+        <LabelInputDiv>
           <label>Office-Address</label>
           <input
             disabled={disable}
@@ -289,7 +302,7 @@ const ProfileFormEdit = ({ user }) => {
             value={officeAdress}
             onChange={(e) => setOfficeAdress(e.target.value)}
           />
-        </div>
+        </LabelInputDiv>
         <StyledContainerEditSave>
           <EditSaaveButton
             onClick={(e) => {
@@ -298,7 +311,7 @@ const ProfileFormEdit = ({ user }) => {
               inputRefOfficeAddress.current.disabled = false;
             }}
           >
-            edit
+            <PiNotePencilThin />
           </EditSaaveButton>
           <EditSaaveButton
             onClick={(e) => {
@@ -308,7 +321,7 @@ const ProfileFormEdit = ({ user }) => {
               mutate({ officeAdress });
             }}
           >
-            save
+            <RiSave2Fill />
           </EditSaaveButton>
         </StyledContainerEditSave>
       </StyledFormDiv>
@@ -319,12 +332,12 @@ const ProfileFormEdit = ({ user }) => {
 
 export default ProfileFormEdit;
 
-function EditSaaveButton({ onClick, label, children }) {
+function EditSaaveButton({ onClick, children }) {
   return (
     <div className=" gap-4">
       <button
         onClick={onClick}
-        className="border-[1px] text-[#fff] text  bg-[#39637d] rounded-lg py-1 px-1"
+        className="border-[1px] text-[#000]    rounded-lg py-1 px-1"
       >
         {children}
       </button>

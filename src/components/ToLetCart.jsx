@@ -1,8 +1,6 @@
 import { MdDelete } from "react-icons/md";
 import { GridContainer } from "./Grid";
 import { useDeleteMutateToLets } from "../hooks/useDeleteMutate";
-import { useFetchPropertiesTolet } from "../hooks/useFetchProperties";
-import SpinnerMini from "./SpinnerMini";
 
 export const ToLetCart = ({ documents }) => {
   console.log(documents);
