@@ -26,14 +26,14 @@ const StyledFormDiv = styled.div`
     /* padding-left: 5rem;
     padding-right: 5rem; */
     text-align: center;
-    width: 18rem;
+    min-width: 16rem;
     height: 4rem;
     filter: grayscale();
     opacity: 0.6;
   }
   & select {
     border: 1px solid black;
-    width: 18rem;
+    min-width: 16rem;
     height: 4rem;
     /* filter: grayscale(); */
     /* opacity: 0.6; */
