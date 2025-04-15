@@ -11,8 +11,7 @@ import { RiSave2Fill } from "react-icons/ri";
 
 const StyledFormDiv = styled.div`
   display: flex;
-  /* flex-direction: column; */
-  /* justify-content: space-between; */
+
   align-items: end;
   position: relative;
 
@@ -23,14 +22,18 @@ const StyledFormDiv = styled.div`
 
   & input {
     border: 1px solid black;
-    max-width: 15rem;
+    /* max-width: 20rem; */
+    /* padding-left: 5rem;
+    padding-right: 5rem; */
+    text-align: center;
+    width: 18rem;
     height: 4rem;
     filter: grayscale();
     opacity: 0.6;
   }
   & select {
     border: 1px solid black;
-    /* max-width: 15rem; */
+    width: 18rem;
     height: 4rem;
     /* filter: grayscale(); */
     /* opacity: 0.6; */
