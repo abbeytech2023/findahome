@@ -13,8 +13,9 @@ const GridContainer = styled.div`
   margin-top: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-template-rows: auto;
-  grid-gap: 4rem;
-  padding: 0 2rem;
+  grid-gap: 2rem;
+  padding: 3rem 2rem;
+  background-color: rgba(119, 119, 119, 0.137);
 `;
 
 const StyledIconDiv = styled.div`
@@ -80,7 +81,8 @@ export default function Dashboard() {
         </BgOverlay>
       </BackgroundImage>
 
-      <section className="mt-[15rem]">
+      <section className="mt-[15rem] text-center">
+        <Heading as="h4">How it works</Heading>
         <GridContainer className="">
           <GridInner className=" flex flex-col items-center justify-center gap-3">
             <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">

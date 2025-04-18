@@ -18,6 +18,7 @@ export const GridContainer = styled.div`
 
 export const GridInner = styled.div`
   border-radius: 1rem;
+  background-color: #fff;
   /* width: 100%; */
   position: relative;
   overflow: hidden;

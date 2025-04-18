@@ -37,7 +37,7 @@ ${(props) =>
       font-size: 3rem;
       font-weight: 600;
       text-align: center;
-      color: blue;
+      color: #144c6f;
     `}
 
 line-height: 1.4
