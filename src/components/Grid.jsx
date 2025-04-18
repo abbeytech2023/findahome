@@ -6,6 +6,7 @@ export const GridContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   grid-template-rows: auto;
   grid-gap: 4rem;
+  padding: 0 2rem;
 `;
 
 // .work {
@@ -21,4 +22,5 @@ export const GridInner = styled.div`
   position: relative;
   overflow: hidden;
   box-shadow: 7px 3px 8px rgba(85, 85, 85, 0.487);
+  height: 100%;
 `;

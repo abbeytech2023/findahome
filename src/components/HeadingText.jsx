@@ -50,5 +50,5 @@ export const StyledSubheading = styled.div`
 `;
 
 export function HeadingText({ text }) {
-  return <h1 className="text-8xl ">{text}</h1>;
+  return <h1>{text}</h1>;
 }

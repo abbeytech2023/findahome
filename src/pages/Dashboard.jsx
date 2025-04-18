@@ -2,14 +2,50 @@ import styled from "styled-components";
 import { BgOverlay } from "../components/BgOverlay";
 import Image from "../assets/images/Image-search.jpg";
 import { BackgroundImage } from "../components/BackgroundImage";
-import ProductCart from "../components/ProductCart";
-import PropertiesToLet from "../components/PropertiesToLet";
+import { GridInner } from "../components/Grid";
 import { Heading } from "../components/HeadingText";
+import IconBuy from "../assets/images/illusale.jpg";
+import IconSell from "../assets/images/hand-shake.jpg";
+import IconRent from "../assets/images/see-through.jpg";
+
+const GridContainer = styled.div`
+  display: grid;
+  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 4rem;
+  padding: 0 2rem;
+`;
+
+const StyledIconDiv = styled.div`
+  width: 14rem;
+  height: 13rem;
+`;
+
+//<Link className="border-2 border-black block w-[70%] mt-[3rem] h-[4rem]"></Link>
+
+const StyledLinkButton = styled(Link)`
+  border: 1px solid #144c6f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  color: #144c6f;
+  font-weight: 700;
+  text-align: center;
+  width: 12rem;
+  height: 10%;
+  border-radius: 10px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding: 2rem 0.3rem;
+`;
 
 import {
   useFetchPropertiesForSale,
   useFetchPropertiesTolet,
 } from "../hooks/useFetchProperties";
+import { Link } from "react-router-dom";
 
 const Section = styled.section`
   color: blue;
@@ -24,10 +60,9 @@ const Section = styled.section`
 `;
 
 export default function Dashboard() {
-  const { propToLet, isPending } = useFetchPropertiesTolet();
+  // const { propToLet, isPending } = useFetchPropertiesTolet();
 
-  const { documents } = useFetchPropertiesForSale();
-  console.log(documents);
+  // const { documents } = useFetchPropertiesForSale();
 
   return (
     <>
@@ -46,12 +81,41 @@ export default function Dashboard() {
       </BackgroundImage>
 
       <section className="mt-[15rem]">
-        <div className="mb-[15rem]">
-          {propToLet && (
-            <PropertiesToLet propToLet={propToLet} isPending={isPending} />
-          )}
-        </div>
-        <div>{documents && <ProductCart documents={documents} />}</div>
+        <GridContainer className="">
+          <GridInner className=" flex flex-col items-center justify-center gap-3">
+            <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
+              <img src={`${IconSell}`} />
+            </StyledIconDiv>
+            <h3 className="font-bold text-3xl">Buy A Home</h3>
+            <p className="text-[19px] h-[20%]">
+              A real estate agent will give you a detailed breakdown of costs,
+              helping you anticipate and budget for all expenses.
+            </p>
+            <StyledLinkButton to="/buy">Find a local agent</StyledLinkButton>
+          </GridInner>
+          <GridInner className=" flex flex-col items-center justify-center gap-3">
+            <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
+              <img src={`${IconBuy}`} />
+            </StyledIconDiv>
+            <h3 className="font-bold text-3xl">Sell A Home</h3>
+            <p className="text-[21px] h-[20%]">
+              No matter what path you take to sell your home, we can help you
+              navigate a successful sale.
+            </p>
+            <StyledLinkButton to="/sell">See your options</StyledLinkButton>
+          </GridInner>
+          <GridInner className=" flex flex-col items-center justify-center gap-3">
+            <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
+              <img src={`${IconRent}`} />
+            </StyledIconDiv>
+            <h3 className="font-bold text-3xl">Rent A Home</h3>
+            <p className="text-[21px] h-[20%]">
+              No matter what path you take to sell your home, we can help you
+              navigate a successful sale.
+            </p>
+            <StyledLinkButton to="/rent">Find Rentals</StyledLinkButton>
+          </GridInner>
+        </GridContainer>
       </section>
     </>
   );

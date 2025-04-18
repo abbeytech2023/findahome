@@ -29,7 +29,7 @@ function CartCard({ document }) {
 
   const location = useLocation();
 
-  const deleteCart = location.pathname === "/myaccount";
+  const deleteCart = location.pathname === "/myaccount/myproperties";
 
   return (
     <GridInner className=" gap-8 text-4xl rounded-3xl relative">

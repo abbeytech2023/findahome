@@ -42,6 +42,7 @@ export default function PropertyToLetForm({ uid }) {
     propertyLocation,
     localGovernment,
     phoneNumber,
+    State,
   }) => {
     mutate({
       uid,
@@ -50,6 +51,7 @@ export default function PropertyToLetForm({ uid }) {
       localGovernment,
       phoneNumber,
       agentName,
+      State,
     });
     console.log(
       uid,
@@ -57,7 +59,8 @@ export default function PropertyToLetForm({ uid }) {
       propertyLocation,
       localGovernment,
       phoneNumber,
-      agentName
+      agentName,
+      State
     );
   };
 
@@ -82,7 +85,7 @@ export default function PropertyToLetForm({ uid }) {
               />
             </FormRow>
             <FormRow
-              label="property-location"
+              label="Property-Location"
               error={errors?.propertyLocation?.message}
             >
               <StyledInput
@@ -93,8 +96,17 @@ export default function PropertyToLetForm({ uid }) {
                 })}
               />
             </FormRow>
+            <FormRow label="State" error={errors?.State?.message}>
+              <StyledInput
+                type="text"
+                id="state"
+                {...register("State", {
+                  required: "This field is required",
+                })}
+              />
+            </FormRow>
             <FormRow
-              label="Local-govt"
+              label="Local-Government"
               error={errors?.localGovernment?.message}
             >
               <StyledInput

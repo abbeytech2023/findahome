@@ -108,7 +108,7 @@ const ProfileFormEdit = ({ user }) => {
     <form onSubmit={handleSubmit(onsubmit)} className="flex flex-col gap-9 ">
       <StyledFormDiv>
         <LabelInputDiv className=" flex flex-col">
-          <label>full-name</label>
+          <label>Full-name</label>
           <input
             disabled
             value={displayName}
@@ -130,7 +130,7 @@ const ProfileFormEdit = ({ user }) => {
       </StyledFormDiv>
       <StyledFormDiv>
         <LabelInputDiv>
-          <label>state</label>
+          <label>State</label>
           <input disabled={disable} ref={inputRefState} value={State} />
         </LabelInputDiv>
         <StyledContainerEditSave>
@@ -162,9 +162,13 @@ const ProfileFormEdit = ({ user }) => {
       <StyledFormDiv>
         <LabelInputDiv>
           <label>Local-Govt</label>
-          <select>
-            <option>Abeokuta-south</option>
-            <option>Abeokuta-North</option>
+          <select
+            onChange={(e) => setLocalGovt(e.target.value)}
+            value={localGovt}
+            ref={inputRefLocalGovt}
+          >
+            <option value="Abeokut-South">Abeokuta-south</option>
+            <option value="Abeokuta-North">Abeokuta-North</option>
           </select>
         </LabelInputDiv>
         <StyledContainerEditSave>
@@ -211,6 +215,7 @@ const ProfileFormEdit = ({ user }) => {
           <EditSaaveButton
             onClick={(e) => {
               e.preventDefault();
+              inputRefNIN.current.disabled = true;
               mutate({ NIN });
             }}
           >
@@ -225,19 +230,10 @@ const ProfileFormEdit = ({ user }) => {
             onChange={(e) => setgender(e.target.value)}
             value={gender}
             ref={inputRefGener}
-            className={` ${
-              disable === true ? "opacity-50" : "opacity-100"
-            }  w-full`}
           >
             <option value="MALE">MALE</option>
             <option value="FEMALE">FEMALE</option>
           </select>
-          {/* disabled={disable}
-            ref={inputRefGener}
-            onChange={(e) => setgender(e.target.value)}
-            className={` ${disable === true ? "opacity-50" : "opacity-100"}`}
-            value={gender}
-          /> */}
         </LabelInputDiv>
         <StyledContainerEditSave>
           <EditSaaveButton
@@ -245,7 +241,7 @@ const ProfileFormEdit = ({ user }) => {
               e.preventDefault();
               inputRefGener.current.focus();
               inputRefGener.current.disabled = false;
-              inputRefGener.current.opacity = "1";
+              // console.log("edit button");
             }}
           >
             <PiNotePencilThin />
@@ -254,7 +250,6 @@ const ProfileFormEdit = ({ user }) => {
             onClick={(e) => {
               e.preventDefault();
               inputRefGener.current.disabled = true;
-              inputRefGener.current.disabled = false;
 
               mutate({ gender });
             }}
@@ -267,7 +262,9 @@ const ProfileFormEdit = ({ user }) => {
       <StyledFormDiv>
         <LabelInputDiv>
           <label className="">Home-Address</label>
+
           <input
+            height="80px"
             disabled={disable}
             ref={inputRefHomeAddress}
             onChange={(e) => setHomeAdress(e.target.value)}
@@ -279,6 +276,7 @@ const ProfileFormEdit = ({ user }) => {
             onClick={(e) => {
               e.preventDefault();
               inputRefHomeAddress.current.focus();
+              inputRefHomeAddress.current.disabled = false;
             }}
           >
             <PiNotePencilThin />
@@ -286,7 +284,6 @@ const ProfileFormEdit = ({ user }) => {
           <EditSaaveButton
             onClick={(e) => {
               e.preventDefault();
-              inputRefHomeAddress.current.focus();
               inputRefHomeAddress.current.disable = true;
               mutate({ homeAdress });
             }}

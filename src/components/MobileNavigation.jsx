@@ -91,7 +91,6 @@ function MobileNavigation() {
   useEffect(() => {
     document.addEventListener("mousedown", (event) => {
       if (!numref.current.contains(event.target)) {
-        console.log(event);
         setIsOpen(false);
       }
     });
