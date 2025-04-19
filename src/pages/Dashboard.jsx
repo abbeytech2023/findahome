@@ -11,7 +11,7 @@ import IconRent from "../assets/images/see-through.jpg";
 const GridContainer = styled.div`
   display: grid;
   margin-top: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
   grid-template-rows: auto;
   grid-gap: 2rem;
   padding: 3rem 2rem;
@@ -30,9 +30,9 @@ const StyledLinkButton = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #144c6f;
-  font-weight: 700;
+  font-weight: 500;
   text-align: center;
   width: 12rem;
   height: 10%;
@@ -82,14 +82,14 @@ export default function Dashboard() {
       </BackgroundImage>
 
       <section className="mt-[15rem] text-center">
-        <Heading as="h4">How it works</Heading>
+        <Heading as="h5">How it works</Heading>
         <GridContainer className="">
           <GridInner className=" flex flex-col items-center justify-center gap-3">
             <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
               <img src={`${IconSell}`} />
             </StyledIconDiv>
             <h3 className="font-bold text-3xl">Buy A Home</h3>
-            <p className="text-[19px] h-[20%]">
+            <p className="text-[19px] h-[20%] px-5">
               A real estate agent will give you a detailed breakdown of costs,
               helping you anticipate and budget for all expenses.
             </p>
@@ -100,7 +100,7 @@ export default function Dashboard() {
               <img src={`${IconBuy}`} />
             </StyledIconDiv>
             <h3 className="font-bold text-3xl">Sell A Home</h3>
-            <p className="text-[21px] h-[20%]">
+            <p className="text-[19px] h-[20%] px-5">
               No matter what path you take to sell your home, we can help you
               navigate a successful sale.
             </p>
@@ -111,7 +111,7 @@ export default function Dashboard() {
               <img src={`${IconRent}`} />
             </StyledIconDiv>
             <h3 className="font-bold text-3xl">Rent A Home</h3>
-            <p className="text-[21px] h-[20%]">
+            <p className="text-[21px] h-[20%] px-5">
               No matter what path you take to sell your home, we can help you
               navigate a successful sale.
             </p>
