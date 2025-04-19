@@ -82,24 +82,30 @@ export default function Dashboard() {
       </BackgroundImage>
 
       <section className="mt-[15rem] text-center">
-        <Heading as="h5">How it works</Heading>
+        <Heading as="h5">Our Services</Heading>
         <GridContainer className="">
           <GridInner className=" flex flex-col items-center justify-center gap-3">
             <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
               <img src={`${IconSell}`} />
             </StyledIconDiv>
-            <h3 className="font-bold text-3xl">Buy A Home</h3>
+            <Heading as="h5" className="font-bold text-3xl">
+              Buy A Home
+            </Heading>
             <p className="text-[19px] h-[20%] px-5">
               A real estate agent will give you a detailed breakdown of costs,
               helping you anticipate and budget for all expenses.
             </p>
-            <StyledLinkButton to="/buy">Find a local agent</StyledLinkButton>
+            <StyledLinkButton to="/findanagent">
+              Find a local agent
+            </StyledLinkButton>
           </GridInner>
           <GridInner className=" flex flex-col items-center justify-center gap-3">
             <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
               <img src={`${IconBuy}`} />
             </StyledIconDiv>
-            <h3 className="font-bold text-3xl">Sell A Home</h3>
+            <Heading as="h5" className="font-bold text-3xl">
+              Sell A Home
+            </Heading>
             <p className="text-[19px] h-[20%] px-5">
               No matter what path you take to sell your home, we can help you
               navigate a successful sale.
@@ -110,7 +116,9 @@ export default function Dashboard() {
             <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
               <img src={`${IconRent}`} />
             </StyledIconDiv>
-            <h3 className="font-bold text-3xl">Rent A Home</h3>
+            <Heading Heading as="h5" className="font-bold text-3xl">
+              Rent A Home
+            </Heading>
             <p className="text-[21px] h-[20%] px-5">
               No matter what path you take to sell your home, we can help you
               navigate a successful sale.
