@@ -40,6 +40,15 @@ ${(props) =>
       color: #144c6f;
     `}
 
+${(props) =>
+    props.as === "h5" &&
+    css`
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+      color: #144c6f;
+    `}
+
 line-height: 1.4
 `;
 
