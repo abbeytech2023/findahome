@@ -43,18 +43,6 @@ export const useSignup = () => {
         email: user.email,
       });
 
-      // await collection(db, "Users").doc(user.uid).set({
-      //   gender: "",
-      //   NIN: "",
-      //   State: "",
-      //   localGovt: "",
-      //   Address: "",
-      //   companyName: "",
-      //   online: true,
-      //   displayName,
-      //   totalRatings: "",
-      // });
-
       dispatch({ type: "LOGIN", payload: res.user });
 
       setIsPending(false);

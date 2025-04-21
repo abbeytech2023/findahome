@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, Timestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
+// zUXJ3piyJQQjpj3UyBpAHCW4m9x2
+
 const firebaseConfig = {
   apiKey: "AIzaSyAF-jloQMbpHhD8rVl0e3b2oSu3oEua_qA",
   authDomain: "renting-project-a580f.firebaseapp.com",

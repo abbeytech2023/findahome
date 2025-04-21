@@ -81,8 +81,8 @@ export default function Dashboard() {
         </BgOverlay>
       </BackgroundImage>
 
-      <section className="mt-[15rem] text-center">
-        <Heading as="h5">Our Services</Heading>
+      <section className="mt-[8rem] text-center">
+        {/* <Heading as="h5">Our Services</Heading> */}
         <GridContainer className="">
           <GridInner className=" flex flex-col items-center justify-center gap-3">
             <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">

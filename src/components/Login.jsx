@@ -17,11 +17,7 @@ function LoginForm() {
   const { errors } = formState;
 
   const onSubmit = ({ email, password }) => {
-    console.log(email);
-
     login(email, password);
-
-    console.log(email, password);
   };
 
   return (
