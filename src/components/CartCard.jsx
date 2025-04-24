@@ -39,10 +39,7 @@ function CartCard({ document }) {
         </div>
         <h1 className="text-[18px] uppercase">{title}</h1>
         <p className=" text-lg">{price}</p>
-        <p className="h-[7rem] text-lg ">
-          {propertyDetails} Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Id, omnis.
-        </p>
+        <p className="h-[7rem] text-lg ">{propertyDetails}</p>
         {deleteCart && (
           <button
             onClick={() => mutate(id)}

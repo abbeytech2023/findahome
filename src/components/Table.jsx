@@ -1,101 +1,76 @@
-import { createContext, useContext } from "react";
-import styled from "styled-components";
+import React from "react";
 
-const StyledTable = styled.div`
-  border: 1px solid var(--color-grey-200);
+export default function Table({ data }) {
+  // const { NIN, State, gender, homeAdress } = data;
 
-  font-size: 1.4rem;
-  background-color: var(--color-grey-0);
-  border-radius: 7px;
-  overflow: hidden;
-`;
+  console.log(data);
 
-const CommonRow = styled.div`
-  display: grid;
-  grid-template-columns: ${(props) => props.columns};
-  column-gap: 2.4rem;
-  align-items: center;
-  transition: none;
-`;
-
-const StyledHeader = styled(CommonRow)`
-  padding: 1.6rem 2.4rem;
-
-  background-color: var(--color-grey-50);
-  border-bottom: 1px solid var(--color-grey-100);
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  font-weight: 600;
-  color: var(--color-grey-600);
-`;
-
-const StyledRow = styled(CommonRow)`
-  padding: 1.2rem 2.4rem;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-100);
-  }
-`;
-
-const StyledBody = styled.section`
-  margin: 0.4rem 0;
-`;
-
-const Footer = styled.footer`
-  background-color: var(--color-grey-50);
-  display: flex;
-  justify-content: center;
-  padding: 1.2rem;
-
-  /* This will hide the footer when it contains no child elements. Possible thanks to the parent selector :has 🎉 */
-  &:not(:has(*)) {
-    display: none;
-  }
-`;
-
-const Empty = styled.p`
-  font-size: 1.6rem;
-  font-weight: 500;
-  text-align: center;
-  margin: 2.4rem;
-`;
-
-const TableContext = createContext();
-
-function Table({ columns, children }) {
   return (
-    <TableContext.Provider value={{ columns }}>
-      <StyledTable role="table">{children}</StyledTable>
-    </TableContext.Provider>
+    <div>
+      <table>
+        <caption>Our Agents</caption>
+        <thead>
+          <tr>
+            <th>Fullname</th>
+            {/* <th>state of origin</th>
+            <th>Local Government</th> */}
+            <th>Home-Adress</th>
+            <th>Office-Adress</th>
+            <th>mobile</th>
+            <th>email</th>
+          </tr>
+        </thead>
+        {data &&
+          data.map((user) => {
+            return (
+              <>
+                <tbody>
+                  <tr>
+                    <th>{user.displayName}</th>
+                    {/* <td>{user.State}</td>
+                    <td>{user.localGovt}</td> */}
+                    <td>{user.homeAdress}</td>
+                    <td>{user.officeAdress}</td>
+                    <td>{user.phone}</td>
+                    <td>{user.email}</td>
+                  </tr>
+                  {/* <tr>
+                    <th scope="row">Break</th>
+                    <td>
+                      <time>11am</time>-<time>12pm</time>
+                    </td>
+                    <td>
+                      Eat launch Lorem ipsum, dolor sit amet consectetur
+                      adipisicing.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Afternoon</th>
+                    <td>
+                      <time>12pm</time>-<time>17pm</time>
+                    </td>
+                    <td>Study for other course</td>
+                  </tr>
+                  <tr>
+                    <th>Evening</th>
+                    <td>
+                      All other times Lorem ipsum dolor sit amet. Lorem ipsum
+                      dolor sit amet consectetur adipisicing elit.
+                      Necessitatibus ipsam temporibus laudantium non culpa vel
+                      facilis facere itaque nisi enim.
+                    </td>
+                    <td>Free time</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Night</th>
+
+                    <td>Sleep</td>
+                  </tr> */}
+                </tbody>
+              </>
+            );
+          })}
+      </table>
+    </div>
   );
 }
-
-function Header({ children }) {
-  const { columns } = useContext(TableContext);
-  return (
-    <StyledHeader role="row" columns={columns}>
-      {children}
-    </StyledHeader>
-  );
-}
-
-function Row({ children }) {
-  const { columns } = useContext(TableContext);
-  return (
-    <StyledRow role="row" columns={columns}>
-      {children}
-    </StyledRow>
-  );
-}
-
-function Body({ data, render }) {
-  // if (!data?.length) return <Empty>No data to show at the moment</Empty>;
-  return <StyledBody>{data.map(render)}</StyledBody>;
-}
-
-Table.Header = Header;
-Table.Body = Body;
-Table.Row = Row;
-Table.Footer = Footer;
-
-export default Table;

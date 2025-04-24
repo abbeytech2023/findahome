@@ -64,4 +64,11 @@ export const fetchCollectionForSale = async () => {
   return data;
 };
 
-export const fetchUserCollection = async () => {};
+export const fetchUserCollection = async () => {
+  let ref = collection(db, "Users");
+  const querySnapshot = await getDocs(ref);
+
+  const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+  return data;
+};

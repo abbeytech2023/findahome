@@ -1,6 +1,5 @@
 import { BackgroundImage } from "../components/BackgroundImage";
 import { BgOverlay } from "../components/BgOverlay";
-import MyAccountLinks from "../components/MyAccountLinks";
 import ProductCart from "../components/ProductCart";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useFetchPropertiesForSale } from "../hooks/useFetchProperties";
@@ -8,6 +7,7 @@ import { useFetchPropertiesForSale } from "../hooks/useFetchProperties";
 export default function Buy() {
   const { user } = useAuthContext();
   const { documents } = useFetchPropertiesForSale();
+  console.log(documents);
 
   return (
     <>

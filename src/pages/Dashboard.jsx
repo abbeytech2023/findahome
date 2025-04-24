@@ -85,7 +85,7 @@ export default function Dashboard() {
         {/* <Heading as="h5">Our Services</Heading> */}
         <GridContainer className="">
           <GridInner className=" flex flex-col items-center justify-center gap-3">
-            <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
+            <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[13rem] lg:h-[11rem] md:h-[8rem] sm:h-[7rem]">
               <img src={`${IconSell}`} />
             </StyledIconDiv>
             <Heading as="h5" className="font-bold text-3xl">

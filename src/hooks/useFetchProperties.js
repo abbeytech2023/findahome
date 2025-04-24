@@ -1,5 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchCollectionForSale, fetchCollectionToLet } from "./useCollections";
+import {
+  fetchCollectionForSale,
+  fetchCollectionToLet,
+  fetchUserCollection,
+} from "./useCollections";
 
 export const useFetchPropertiesTolet = () => {
   const { data: propToLet, isPending } = useQuery({
@@ -16,7 +20,18 @@ export const useFetchPropertiesForSale = () => {
     queryFn: fetchCollectionForSale,
   });
 
-  console.log(documents, isPending);
+  console.log(documents);
 
   return { documents, isPending };
+};
+
+export const useFetchUsers = () => {
+  const { data: userDoc, isPending } = useQuery({
+    queryKey: ["Users"],
+    queryFn: fetchUserCollection,
+  });
+
+  console.log(userDoc);
+
+  return { userDoc, isPending };
 };
