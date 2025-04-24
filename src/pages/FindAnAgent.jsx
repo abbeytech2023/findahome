@@ -20,7 +20,7 @@ const FlexContainer = styled.div`
     border: 0.5px solid black;
     font-family: "Courier New", Courier, monospace;
     border-collapse: collapse;
-    padding: 1rem;
+    /* padding: 1rem; */
   }
 `;
 
