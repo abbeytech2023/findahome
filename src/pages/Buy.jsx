@@ -19,8 +19,6 @@ export default function Buy() {
     background-size: cover;
   `;
 
-  // https://plus.unsplash.com/premium_photo-1680300960892-bd11b59b469b?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFmcmljYW4lMjBob3VzZXxlbnwwfHwwfHx8MA%3D%3D
-
   return (
     <>
       <BuySection className=" bg-no-repeat bg-center bg-cover w-full h-screen">
@@ -29,10 +27,10 @@ export default function Buy() {
             className={`relative bg-no-repeat bg-center bg-cover w-full items-center justify-center  flex h-screen`}
           >
             <div className="  ">
-              <Heading className="text-center font-extrabold text-4xl  text-[#89bde5] tracking-[4px] xl:text-6xl   md:text-5xl ">
+              <Heading className="text-center font-extrabold text-4xl  text-[#b8daf4] tracking-[4px] xl:text-6xl   md:text-5xl ">
                 Get Ready to move
               </Heading>
-              <p className="text-[#c9eaeec9] text-2xl sm:text-3xl mt-5">
+              <p className="text-[#c9eaeec9] text-center text-2xl sm:text-3xl mt-5">
                 your step by step guide to a stress free relocation
               </p>
             </div>
