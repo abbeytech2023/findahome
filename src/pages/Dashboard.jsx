@@ -67,18 +67,18 @@ export default function Dashboard() {
 
   return (
     <>
-      <BackgroundImage>
-        <BgOverlay className="h-full w-full flex items-center justify-center">
-          <div>
-            <Heading
-              // as="h3"
-              className="text-center font-extrabold text-4xl  text-[#e4f3ff] tracking-[4px]   md:text-5xl "
-            >
-              The Ultimate Neighborhood Guide. <br /> Discover the Best Places
-              to Live
-            </Heading>
-          </div>
-        </BgOverlay>
+      <BackgroundImage className="flex items-center justify-center">
+        {/* <BgOverlay className="h-full w-full flex items-center justify-center"> */}
+        <div>
+          <Heading
+            // as="h3"
+            className="text-center font-extrabold text-4xl  text-[#e4f3ff] tracking-[4px]   md:text-5xl "
+          >
+            The Ultimate Neighborhood Guide. <br /> Discover the Best Places to
+            Live
+          </Heading>
+        </div>
+        {/* </BgOverlay> */}
       </BackgroundImage>
 
       <section className="mt-[8rem] text-center">
