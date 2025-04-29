@@ -26,7 +26,7 @@ export default function Rent() {
             className={`relative bg-no-repeat bg-center bg-cover w-full items-center justify-center  flex h-screen`}
           >
             <div className="text-center w-full h-full flex  flex-col justify-center items-center ">
-              <Heading className="text-center font-extrabold text-4xl  text-[#f088e4] xl:tracking-[2px] xl:text-6xl   md:text-5xl ">
+              <Heading className="text-center font-extrabold text-4xl  text-[#f088e4c5] xl:tracking-[2px] xl:text-6xl   md:text-5xl ">
                 Agent.Shops. <br /> Office.Homes.
               </Heading>
             </div>
