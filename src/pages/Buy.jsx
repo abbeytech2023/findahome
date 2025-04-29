@@ -29,9 +29,12 @@ export default function Buy() {
             className={`relative bg-no-repeat bg-center bg-cover w-full items-center justify-center  flex h-screen`}
           >
             <div className="  ">
-              <Heading className="text-center font-extrabold text-4xl  text-[#d0ebd1] tracking-[4px] xl:text-6xl   md:text-5xl ">
-                Agent.Shops. <br /> Office.Homes.
+              <Heading className="text-center font-extrabold text-4xl  text-[#89bde5] tracking-[4px] xl:text-6xl   md:text-5xl ">
+                Get Ready to move
               </Heading>
+              <p className="text-[#c9eaeec9] text-2xl sm:text-3xl mt-5">
+                your step by step guide to a stress free relocation
+              </p>
             </div>
           </section>
         </BgOverlay>
