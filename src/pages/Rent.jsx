@@ -6,7 +6,7 @@ import styled from "styled-components";
 const RentSection = styled.section`
   height: 100vh;
   width: 100%;
-  background-image: url(${bannerImage});
+  background-image: url(${"https://plus.unsplash.com/premium_photo-1680300960892-bd11b59b469b?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFmcmljYW4lMjBob3VzZXxlbnwwfHwwfHx8MA%3D%3D"});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
