@@ -4,6 +4,7 @@ import { BgOverlay } from "../components/BgOverlay";
 import ProductCart from "../components/ProductCart";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useFetchPropertiesForSale } from "../hooks/useFetchProperties";
+import { Heading } from "../components/HeadingText";
 
 export default function Buy() {
   const { user } = useAuthContext();
@@ -27,9 +28,10 @@ export default function Buy() {
           <section
             className={`relative bg-no-repeat bg-center bg-cover w-full items-center justify-center  flex h-screen`}
           >
-            <div className="bg-blackOverlay text-6xl font-extrabold text-[#a8c1d1]  w-full h-full flex  flex-col justify-center items-center ">
-              <h2 className="">Agent.Shops.</h2>
-              <h2 className="">Office.Homes.</h2>
+            <div className="  ">
+              <Heading className="text-center font-extrabold text-4xl  text-[#d0ebd1] tracking-[4px] xl:text-6xl   md:text-5xl ">
+                Agent.Shops. <br /> Office.Homes.
+              </Heading>
             </div>
           </section>
         </BgOverlay>
