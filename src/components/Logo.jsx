@@ -20,7 +20,7 @@ export default function Logo({ type }) {
       <Link to="/">
         <div className="bg-[#fff] flex text-lg">
           <p className=" text-[#43425b]">GETHOMES</p>
-          <p className=" text-[#f088e4]">.NG</p>
+          <p className=" text-[#19380f]">.NG</p>
         </div>
       </Link>
     </StyledLogo>

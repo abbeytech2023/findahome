@@ -21,8 +21,8 @@ export default function Sell() {
     <>
       <SellSection>
         <BgOverlay>
-          <div className="w-full h-screen flex justify-center text-5xl text-center items-center gap-6 tracking-wider flex-col  /">
-            <h2 className="font-extrabold text-[#f7e6e6] tracking-[4px]   text-6xl  ">
+          <div className="w-full h-screen flex justify-center text-5xl text-center items-center gap-6 tracking-wider flex-col   /">
+            <h2 className="font-extrabold text-[#dce4fb] tracking-[2px]   text-4xl xl:text-6xl lg:text-5xl md:text-5xl">
               Sell your home with confidence
             </h2>
             <p className="text-[#e9f0f3] font-medium text-2xl sm:text-3xl  ">

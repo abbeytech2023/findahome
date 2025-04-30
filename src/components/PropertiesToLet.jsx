@@ -3,18 +3,7 @@ import { Heading } from "./HeadingText";
 import { useLocation } from "react-router-dom";
 import SpinnerMini from "./SpinnerMini";
 import { ToLetCart } from "./ToLetCart";
-import { useFetchPropertiesTolet } from "../hooks/useFetchProperties";
-
-const StyledLi = styled.li`
-  display: flex;
-
-  & span {
-    display: flex;
-
-    gap: 1.8rem;
-    width: 50%;
-  }
-`;
+import { GridContainer } from "./Grid";
 
 export default function PropertiesToLet({ propToLet, isPending }) {
   const location = useLocation();
@@ -32,8 +21,23 @@ export default function PropertiesToLet({ propToLet, isPending }) {
           You do not have a property listed to let
         </p>
       )}
-
-      <ToLetCart documents={propToLet} isPending={isPending} />
+      <div>
+        {propToLet &&
+          propToLet.map((prop) => {
+            return (
+              <div
+                key={prop.uid}
+                className="bg-red-800 flex  justify-center items-center  flex-row"
+              >
+                <ToLetCart
+                  documents={prop}
+                  isPending={isPending}
+                  className="flex"
+                />
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }
