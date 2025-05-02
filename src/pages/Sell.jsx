@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { BgOverlay } from "../components/BgOverlay";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useQuery } from "@tanstack/react-query";
-import { db } from "../firebase/config";
 import { fetchCollectionForSale } from "../hooks/useCollections";
 
 const SellSection = styled.section`

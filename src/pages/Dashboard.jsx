@@ -92,8 +92,9 @@ export default function Dashboard() {
               Buy A Home
             </Heading>
             <p className="text-[19px] h-[20%] px-5">
-              A real estate agent will give you a detailed breakdown of costs,
-              helping you anticipate and budget for all expenses.
+              Find your dream home today! Expert guidance, endless options and
+              unbeatable prices your perfect haven awaits start searching now
+              and make it yours
             </p>
             <StyledLinkButton to="/findanagent">
               Find a local agent
@@ -107,8 +108,9 @@ export default function Dashboard() {
               Sell A Home
             </Heading>
             <p className="text-[19px] h-[20%] px-5">
-              No matter what path you take to sell your home, we can help you
-              navigate a successful sale.
+              Sell a home fast and stress free, get top payment with expert
+              marketing global reach and personalized services, get a quote
+              today and sell with confidence
             </p>
             <StyledLinkButton to="/sell">See your options</StyledLinkButton>
           </GridInner>
@@ -120,8 +122,9 @@ export default function Dashboard() {
               Rent A Home
             </Heading>
             <p className="text-[21px] h-[20%] px-5">
-              No matter what path you take to sell your home, we can help you
-              navigate a successful sale.
+              Rent your dream home today! Luxury, comfort, and convenience -
+              explore top listings and find your perfect space with ease and
+              simplicity.
             </p>
             <StyledLinkButton to="/rent">Find Rentals</StyledLinkButton>
           </GridInner>

@@ -22,21 +22,13 @@ export default function PropertiesToLet({ propToLet, isPending }) {
         </p>
       )}
       <div>
-        {propToLet &&
-          propToLet.map((prop) => {
-            return (
-              <div
-                key={prop.uid}
-                className="bg-red-800 flex  justify-center items-center  flex-row"
-              >
-                <ToLetCart
-                  documents={prop}
-                  isPending={isPending}
-                  className="flex"
-                />
-              </div>
-            );
-          })}
+        {propToLet && (
+          <ToLetCart
+            documents={propToLet}
+            isPending={isPending}
+            // className="flex justify-center items-center"
+          />
+        )}
       </div>
     </div>
   );
