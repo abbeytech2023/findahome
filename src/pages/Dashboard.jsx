@@ -7,6 +7,7 @@ import { Heading } from "../components/HeadingText";
 import IconBuy from "../assets/images/illusale.jpg";
 import IconSell from "../assets/images/hand-shake.jpg";
 import IconRent from "../assets/images/see-through.jpg";
+import IconSurvey from "../assets/images/illus.jpg";
 
 const GridContainer = styled.div`
   display: grid;
@@ -88,10 +89,10 @@ export default function Dashboard() {
             <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[13rem] lg:h-[11rem] md:h-[8rem] sm:h-[7rem]">
               <img src={`${IconSell}`} />
             </StyledIconDiv>
-            <Heading as="h5" className="font-bold text-3xl">
+            <Heading as="h5" className="font-bold text-2xl">
               Buy A Home
             </Heading>
-            <p className="text-[19px] h-[20%] px-5">
+            <p className="text-[18px]  px-5">
               Find your dream home today! Expert guidance, endless options and
               unbeatable prices your perfect haven awaits start searching now
               and make it yours
@@ -104,10 +105,10 @@ export default function Dashboard() {
             <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
               <img src={`${IconBuy}`} />
             </StyledIconDiv>
-            <Heading as="h5" className="font-bold text-3xl">
+            <Heading as="h5" className="font-bold text-2xl">
               Sell A Home
             </Heading>
-            <p className="text-[19px] h-[20%] px-5">
+            <p className="text-[18px]  px-5">
               Sell a home fast and stress free, get top payment with expert
               marketing global reach and personalized services, get a quote
               today and sell with confidence
@@ -118,15 +119,30 @@ export default function Dashboard() {
             <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
               <img src={`${IconRent}`} />
             </StyledIconDiv>
-            <Heading Heading as="h5" className="font-bold text-3xl">
+            <Heading Heading as="h5" className="font-bold text-2xl">
               Rent A Home
             </Heading>
-            <p className="text-[21px] h-[20%] px-5">
+            <p className="text-[18px] px-5">
               Rent your dream home today! Luxury, comfort, and convenience -
               explore top listings and find your perfect space with ease and
               simplicity.
             </p>
             <StyledLinkButton to="/rent">Find Rentals</StyledLinkButton>
+          </GridInner>
+
+          <GridInner className=" flex flex-col items-center justify-center gap-3">
+            <StyledIconDiv className="flex items-center min-[0px]:h-[7rem] xl:h-[15rem] lg:h-[12rem] md:h-[8rem] sm:h-[7rem]">
+              <img src={`${IconSurvey}`} />
+            </StyledIconDiv>
+            <Heading Heading as="h5" className="font-bold text-2xl">
+              Survey your Land
+            </Heading>
+            <p className="text-[18px] px-5">
+              Accurate land surveys, precise results. Trust our experts for
+              boundary mapping, topographic surveys, and more. Reliable data for
+              your property decisions.
+            </p>
+            <StyledLinkButton to="/rent">Our Surveyors</StyledLinkButton>
           </GridInner>
         </GridContainer>
       </section>

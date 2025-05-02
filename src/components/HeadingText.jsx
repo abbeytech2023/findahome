@@ -43,7 +43,7 @@ ${(props) =>
     props.as === "h5" &&
     css`
       color: (props => props.color);
-      font-size: 1.4rem;
+      font-size: 1.255rem;
       font-weight: 600;
       text-align: center;
       color: #144c6f;
