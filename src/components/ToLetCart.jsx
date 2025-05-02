@@ -23,12 +23,12 @@ export const ToLetCart = ({ documents }) => {
           return (
             <div
               key={doc.uid}
-              className="border-2 pt-5 flex flex-col justify-between   border-[#144c6f] w-[12rem]"
+              className="border-[1px] pt-5 flex flex-col justify-between   border-[#144c6f] w-[12rem]"
             >
               <p className=" px-4">
                 {doc.propertyDescription}, {doc.propertyLocation}
               </p>
-              <div className="bg-[#144c6f40] mt-5 items-center px-1 py-2">
+              <div className="bg-[#bce1f840] mt-5 items-center px-1 py-2">
                 <div className=" flex items-center gap-1">
                   <CgProfile />: <p>{doc.agentName}</p>
                 </div>
