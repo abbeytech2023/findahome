@@ -44,8 +44,7 @@ const StyledLinkButton = styled(Link)`
 `;
 
 import {
-  useFetchPropertiesForSale,
-  useFetchPropertiesTolet,
+ 
 } from "../hooks/useFetchProperties";
 import { Link } from "react-router-dom";
 

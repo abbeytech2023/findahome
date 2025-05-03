@@ -86,17 +86,6 @@ function ProductSaleForm({ uid }) {
                 })}
               />
             </FormRow>
-            <FormRow label="PropertyDetails" error={errors?.phone?.message}>
-              <StyledInput
-                minLength="11"
-                type="PropertyDetails"
-                placeHolder="mobile"
-                id="propertyDetails"
-                {...register("propertyDetails", {
-                  required: "This field is required",
-                })}
-              />
-            </FormRow>
 
             <FormRow></FormRow>
             <Button type="primary">

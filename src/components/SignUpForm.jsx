@@ -13,8 +13,8 @@ function SignUpForm() {
 
   const { errors } = formState;
 
-  const onSubmit = ({ email, password, fullName, phoneNumber }) => {
-    signup(email, password, fullName, phoneNumber);
+  const onSubmit = ({ email, password, fullName }) => {
+    signup(email, password, fullName);
   };
 
   return (
@@ -78,7 +78,6 @@ function SignUpForm() {
               })}
             />
           </FormRow>
-
           <FormRow label="Phone">
             <StyledInput
               minLength="11"

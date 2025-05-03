@@ -22,20 +22,20 @@ export const useLogin = () => {
       if (!res) throw new Error("wrong email and password");
 
       dispatch({ type: "LOGIN", payload: res.user });
-      const userId = "zUXJ3piyJQQjpj3UyBpAHCW4m9x2";
-      db.collection("Users").doc(userId).set({ role: "admin" });
+      // const userId = "zUXJ3piyJQQjpj3UyBpAHCW4m9x2";
+      // db.collection("Users").doc(userId).set({ role: "admin" });
 
       //verify Admin Role
-      const user = res.user;
-      console.log(user);
+      // const user = res.user;
+      // console.log(user);
 
-      if (user) {
-        user.getIdTokenResult().then((idTokenResult) => {
-          if (idTokenResult.claims.admin) {
-            console.log("user is admin");
-          }
-        });
-      }
+      // if (user) {
+      //   user.getIdTokenResult().then((idTokenResult) => {
+      //     if (idTokenResult.claims.admin) {
+      //       console.log("user is admin");
+      //     }
+      //   });
+      // }
 
       setError(null);
       setIsPending(false);

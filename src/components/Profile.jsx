@@ -21,7 +21,7 @@ function Profile() {
 
   return (
     <>
-      <div className="flex w-full flex-col text-lg mb-[10rem] ">
+      <div className="flex w-full items-center justify-center flex-col text-lg mb-[10rem] ">
         {!user ? <Spinner /> : <ProfileFormEdit user={user} />}
       </div>
     </>

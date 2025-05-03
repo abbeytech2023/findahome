@@ -4,8 +4,7 @@ import { upDateDocument } from "../hooks/useFirestore";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import styled from "styled-components";
-import { LuPencilLine } from "react-icons/lu";
-import { CiSaveUp2 } from "react-icons/ci";
+
 import { PiNotePencilThin } from "react-icons/pi";
 import { RiSave2Fill } from "react-icons/ri";
 
@@ -66,6 +65,7 @@ const ProfileFormEdit = ({ user }) => {
   const [localGovt, setLocalGovt] = useState();
   const [homeAdress, setHomeAdress] = useState();
   const [officeAdress, setOfficeAdress] = useState();
+  const [occupation, setOccupation] = useState();
 
   const inputRefState = useRef(null);
   const inputRefLocalGovt = useRef(null);
@@ -73,6 +73,7 @@ const ProfileFormEdit = ({ user }) => {
   const inputRefOfficeAddress = useRef(null);
   const inputRefHomeAddress = useRef(null);
   const inputRefGener = useRef(null);
+  const inputRefOccupation = useRef(null);
 
   useEffect(() => {
     const getUserDetails = () => {
@@ -84,6 +85,7 @@ const ProfileFormEdit = ({ user }) => {
       setLocalGovt(user && user.localGovt);
       setHomeAdress(user && user.homeAdress);
       setOfficeAdress(user && user.officeAdress);
+      setOccupation(user && user.occupation);
     };
     getUserDetails();
   }, [user]);
@@ -324,7 +326,42 @@ const ProfileFormEdit = ({ user }) => {
           </EditSaaveButton>
         </StyledContainerEditSave>
       </StyledFormDiv>
-      {/* <StyledFormDiv></StyledFormDiv> */}
+      <StyledFormDiv>
+        <LabelInputDiv>
+          <label>Occupation</label>
+          <select
+            className="text-[1.18rem] border-[1px] border-[#666] px-[2rem] py-[0.6rem]"
+            onChange={(e) => setOccupation(e.target.value)}
+            value={occupation}
+            disabled={disable}
+            ref={inputRefOccupation}
+          >
+            <option value="furniture">Furniture</option>
+            <option value="surveyor">surveyor</option>
+            <option value="Agents">Agent</option>
+          </select>
+        </LabelInputDiv>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefOccupation.current.focus();
+              inputRefOccupation.current.disabled = false;
+            }}
+          >
+            <PiNotePencilThin />
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefOccupation.current.disabled = true;
+              mutate({ occupation });
+            }}
+          >
+            <RiSave2Fill />
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
     </form>
   );
 };
