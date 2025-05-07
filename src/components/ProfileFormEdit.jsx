@@ -66,6 +66,7 @@ const ProfileFormEdit = ({ user }) => {
   const [homeAdress, setHomeAdress] = useState();
   const [officeAdress, setOfficeAdress] = useState();
   const [occupation, setOccupation] = useState();
+  const [mobilePhone, setMobilePhone] = useState();
 
   const inputRefState = useRef(null);
   const inputRefLocalGovt = useRef(null);
@@ -74,6 +75,7 @@ const ProfileFormEdit = ({ user }) => {
   const inputRefHomeAddress = useRef(null);
   const inputRefGener = useRef(null);
   const inputRefOccupation = useRef(null);
+  const inputRefMobilePhone = useRef(null);
 
   useEffect(() => {
     const getUserDetails = () => {
@@ -86,6 +88,7 @@ const ProfileFormEdit = ({ user }) => {
       setHomeAdress(user && user.homeAdress);
       setOfficeAdress(user && user.officeAdress);
       setOccupation(user && user.occupation);
+      setMobilePhone(user && user.mobilePhone);
     };
     getUserDetails();
   }, [user]);
@@ -356,6 +359,43 @@ const ProfileFormEdit = ({ user }) => {
               e.preventDefault();
               inputRefOccupation.current.disabled = true;
               mutate({ occupation });
+            }}
+          >
+            <RiSave2Fill />
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+      <StyledFormDiv>
+        <LabelInputDiv>
+          <label>Mobile</label>
+          <input
+            disabled={disable}
+            ref={inputRefMobilePhone}
+            value={mobilePhone}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setMobilePhone(e.target.value);
+              console.log(mobilePhone);
+            }}
+          />
+        </LabelInputDiv>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefMobilePhone.current.focus();
+              inputRefMobilePhone.current.disabled = false;
+            }}
+          >
+            <PiNotePencilThin />
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefMobilePhone.current.disabled = true;
+              console.log(mobilePhone);
+
+              mutate({ mobilePhone });
             }}
           >
             <RiSave2Fill />

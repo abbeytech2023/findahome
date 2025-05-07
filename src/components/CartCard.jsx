@@ -35,7 +35,16 @@ function CartCard({ document }) {
     <GridInner className=" gap-8 text-4xl rounded-3xl relative">
       <div className="w-full h-full text-center px-4 py-8 flex flex-col gap-1 justify-center items-center">
         <div className="w-2/4 ">
-          <img alt="image" src={bg} />
+          <iframe
+            width="150%"
+            height="315"
+            src="https://www.youtube.com/embed/K54Kg-QE1MY?si=t_aLDJyiblJciPwA"
+            title="YouTube video player"
+            // frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            // referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </div>
         <h1 className="text-[18px] uppercase">{title}</h1>
         <p className=" text-lg">{price}</p>

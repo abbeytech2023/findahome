@@ -3,7 +3,7 @@ import { Heading } from "./HeadingText";
 import { useLocation } from "react-router-dom";
 import SpinnerMini from "./SpinnerMini";
 import { ToLetCart } from "./ToLetCart";
-import { GridContainer } from "./Grid";
+// import { GridContainer } from "./Grid";
 
 export default function PropertiesToLet({ propToLet, isPending }) {
   const location = useLocation();

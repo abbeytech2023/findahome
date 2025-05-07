@@ -43,17 +43,20 @@ function ProductSaleForm({ uid }) {
             handleSubmit={handleSubmit}
           >
             <FormRow
-              label="property details"
+              label="Property details"
               error={errors?.propertyDetails?.message}
             >
-              <StyledInput
-                minLength="20"
-                className="h-[120px]"
+              <textarea
+                minLength="10"
+                placeholder="About the property"
+                rows="4"
+                cols="50"
+                className="border-[1px] border-[#666] px-2"
                 id="propertyDetails"
                 {...register("propertyDetails", {
                   required: "This field is required",
                 })}
-              />
+              ></textarea>
             </FormRow>
             <FormRow label="Address" error={errors?.address?.message}>
               <StyledInput
