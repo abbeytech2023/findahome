@@ -8,14 +8,11 @@ import styled from "styled-components";
 import { Heading } from "./HeadingText";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-
-const OpenCloseForm = styled.button`
-  border: 1px solid black;
-
-  padding: 0.6rem 1rem;
-`;
+import { useFetchUsers } from "../hooks/useFetchProperties";
 
 export default function PropertyToLetForm({ uid }) {
+  const { userDoc } = useFetchUsers();
+
   const QueryClient = useQueryClient();
   const { user } = useAuthContext();
 
@@ -35,13 +32,20 @@ export default function PropertyToLetForm({ uid }) {
     },
   });
 
+  const document = userDoc && userDoc.filter((doc) => doc.id === uid);
+
+  const phoneNumber = document && document[0].mobilePhone;
+
+  // const mobilePhone = document?.mobilePhone;
+
+  // console.log(mobilePhone);
+
   const agentName = user?.displayName;
 
   const onSubmit = ({
     propertyDescription,
     propertyLocation,
     localGovernment,
-    phoneNumber,
     State,
   }) => {
     mutate({
@@ -49,18 +53,18 @@ export default function PropertyToLetForm({ uid }) {
       propertyDescription,
       propertyLocation,
       localGovernment,
-      phoneNumber,
       agentName,
       State,
+      phoneNumber,
     });
     console.log(
       uid,
       propertyDescription,
       propertyLocation,
       localGovernment,
-      phoneNumber,
       agentName,
-      State
+      State,
+      phoneNumber
     );
   };
 
@@ -118,15 +122,6 @@ export default function PropertyToLetForm({ uid }) {
               />
             </FormRow>
 
-            <FormRow label="Phone">
-              <StyledInput
-                placeHolder="Enter your phone Number"
-                id="phone"
-                {...register("phoneNumber", {
-                  required: "this field is required",
-                })}
-              />
-            </FormRow>
             <FormRow>
               {!isPending && (
                 <Button type="primary" className="mt-12">

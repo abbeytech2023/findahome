@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { BackgroundImage } from "../components/BackgroundImage";
 import { BgOverlay } from "../components/BgOverlay";
 import ProductCart from "../components/ProductCart";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -26,7 +25,7 @@ export default function Buy() {
           <section
             className={`relative bg-no-repeat bg-center bg-cover w-full items-center justify-center  flex h-screen`}
           >
-            <div className="  ">
+            <div className="">
               <Heading className="text-center font-extrabold text-4xl  text-[#b8daf4] tracking-[4px] xl:text-6xl   md:text-5xl ">
                 Get Ready to move
               </Heading>

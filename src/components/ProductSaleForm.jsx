@@ -5,11 +5,17 @@ import StyledInput from "./StyledInput";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import { useFetchUsers } from "../hooks/useFetchProperties";
 
 function ProductSaleForm({ uid }) {
   const { reset, register, handleSubmit, formState } = useForm();
+  const { userDoc } = useFetchUsers();
 
   const { errors } = formState;
+
+  const document = userDoc && userDoc.filter((doc) => doc.id === uid);
+
+  const phoneNumber = document && document[0].mobilePhone;
 
   const QueryClient = useQueryClient();
 
@@ -26,7 +32,7 @@ function ProductSaleForm({ uid }) {
   });
 
   const onSubmit = ({ address, propertyDetails, title, price }) => {
-    mutate({ uid, address, propertyDetails, title, price });
+    mutate({ uid, address, propertyDetails, title, price, phoneNumber });
   };
 
   return (

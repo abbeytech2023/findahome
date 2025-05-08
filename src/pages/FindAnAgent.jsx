@@ -32,8 +32,6 @@ const StyledUserBox = styled.div`
 export default function FindAnAgent() {
   const { userDoc } = useFetchUsers();
 
-  console.log(userDoc);
-
   return (
     <div className="flex flex-col justify-center gap-4 items-center mt-[9rem]">
       <Heading as="h5" className="text-black">

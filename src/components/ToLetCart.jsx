@@ -30,7 +30,7 @@ export const ToLetCart = ({ documents }) => {
               </p>
               <div className="bg-[#bce1f840] mt-5 items-center px-1 py-2">
                 <div className=" flex items-center gap-1">
-                  <CgProfile />: <p>adetoun</p>
+                  <CgProfile />: <p>{doc.agentName}</p>
                 </div>
                 <div className=" flex items-center gap-1 ">
                   <MdDialerSip />:<p>{doc.phoneNumber}</p>

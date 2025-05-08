@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 
 import { MdDelete } from "react-icons/md";
-import { useAuthContext } from "../hooks/useAuthContext";
 import { GridInner } from "./Grid";
 
 import bg from "../assets/images/illus.jpg";
@@ -24,6 +23,8 @@ export const StyledCartCard = styled.div`
 
 function CartCard({ document }) {
   const { propertyDetails, price, title, id } = document;
+  console.log(document);
+
   // const { deleteDocument, response } = useFirestore("Outlets");
   const { mutate } = useDeleteMutateForSale("Outlets");
 
@@ -32,12 +33,12 @@ function CartCard({ document }) {
   const deleteCart = location.pathname === "/myaccount/myproperties";
 
   return (
-    <GridInner className=" gap-8 text-4xl rounded-3xl relative">
-      <div className="w-full h-full text-center px-4 py-8 flex flex-col gap-1 justify-center items-center">
-        <div className="w-2/4 ">
+    <GridInner className=" gap-8 text-4xl rounded-3xl relative ">
+      <div className="w-full h-full text-center px-4 py-8  flex flex-col gap-1 justify-center items-center">
+        <div className="w-[100%] flex items-center justify-center ">
           <iframe
-            width="150%"
-            height="315"
+            width="170"
+            height="265"
             src="https://www.youtube.com/embed/K54Kg-QE1MY?si=t_aLDJyiblJciPwA"
             title="YouTube video player"
             // frameborder="0"

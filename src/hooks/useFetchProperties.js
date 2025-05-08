@@ -31,7 +31,7 @@ export const useFetchUsers = () => {
     queryFn: fetchUserCollection,
   });
 
-  console.log(userDoc);
+  // console.log(userDoc);
 
   return { userDoc, isPending };
 };
