@@ -1,8 +1,6 @@
 import ProductCart from "../components/ProductCart";
 import PropertiesToLet from "../components/PropertiesToLet";
-import SideNavBar from "../components/SideNavBar";
 import Spinner from "../components/Spinner";
-import SpinnerMini from "../components/SpinnerMini";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useUserCollections } from "../hooks/useUserCollections";
 

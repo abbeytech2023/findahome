@@ -96,7 +96,6 @@ function ProductSaleForm({ uid }) {
               />
             </FormRow>
 
-            <FormRow></FormRow>
             <Button type="primary">
               {isPending ? <p>Loading...</p> : <p>Completed</p>}
             </Button>

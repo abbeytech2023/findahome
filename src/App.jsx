@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import Sell from "./pages/Sell";
 import Buy from "./pages/Buy";
-import Dashboard from "./pages/Dashboard";
+import Homepage from "./pages/Homepage";
 import PageNotFound from "./pages/PageNotFound";
 import Rent from "./pages/Rent";
 import SignIn from "./pages/SignIn";
@@ -34,7 +34,11 @@ export default function App() {
   // const navigate = useNavigate();
   return (
     <div className="overflow-x-hidden">
-      {!authIsReady && <Spinner />}
+      {!authIsReady && (
+        <div>
+          <Spinner className="flex justify-center items-center bg-red-800" />
+        </div>
+      )}
       {authIsReady && (
         <BrowserRouter className="relative">
           <QueryClientProvider client={queryClient}>
@@ -49,7 +53,7 @@ export default function App() {
                 <Route path="/sell" element={<Sell />} />
                 <Route path="/buy" element={<Buy />} />
                 <Route path="/rent" element={<Rent />} />
-                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Homepage />} />
                 <Route path="/findanagent" element={<FindAnAgent />} />
                 <Route element={<ProtectedRoutes />}>
                   <Route
@@ -59,10 +63,12 @@ export default function App() {
                   >
                     <Route path="profile" element={<Profile />} />
                     <Route path="myproperties" element={<MyProperties />} />
+
                     <Route
                       path="addpropertytolet"
                       element={<PropertyToLetForm uid={user && user.uid} />}
                     />
+
                     <Route
                       path="addpropertyforsale"
                       element={<ProductSaleForm uid={user && user.uid} />}

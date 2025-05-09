@@ -29,7 +29,7 @@ const StyledOverlay = styled.div`
 
 const Spinner = () => {
   return (
-    <StyledOverlay className="flex justify-center items-center">
+    <StyledOverlay className="flex ">
       <StyledSpinner>{/* <Logo /> */}</StyledSpinner>
     </StyledOverlay>
   );
