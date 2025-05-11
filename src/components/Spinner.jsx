@@ -7,7 +7,7 @@ const rotate = keyframes`
   }
 `;
 
-const StyledSpinner = styled(BiLoaderAlt)`
+export const StyledSpinner = styled(BiLoaderAlt)`
   margin: 4.8rem auto;
 
   width: 6.4rem;
@@ -27,12 +27,10 @@ const StyledOverlay = styled.div`
   /* background-color: rgba(18, 18, 18, 0.305); */
 `;
 
-const Spinner = () => {
+export const Spinner = () => {
   return (
-    <StyledOverlay className="flex ">
+    <StyledOverlay className="flex justify-center items-center">
       <StyledSpinner>{/* <Logo /> */}</StyledSpinner>
     </StyledOverlay>
   );
 };
-
-export default Spinner;

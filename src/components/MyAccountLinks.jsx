@@ -14,7 +14,7 @@ export default function MyAccountLinks({ bgColor, color }) {
       color={color}
       className="flex flex-col gap-4 items-start pl-6 py-6  px-3"
     >
-      <StyledNavLink to="myaccount/dashb">Dashboard</StyledNavLink>
+      <StyledNavLink to="myaccount/dashboard">Dashboard</StyledNavLink>
       <StyledNavLink to="myaccount/profile">Edit Profile</StyledNavLink>
       <StyledNavLink to="myaccount/addpropertyforsale">
         Add Properties for sale
@@ -22,7 +22,6 @@ export default function MyAccountLinks({ bgColor, color }) {
       <StyledNavLink to="myaccount/addpropertytolet">
         Add Properties to let
       </StyledNavLink>
-      <StyledNavLink to="myaccount/myproperties">My Properties</StyledNavLink>
     </StyledAccountLinks>
   );
 }

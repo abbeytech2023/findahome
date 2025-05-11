@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useAuthContext } from "../hooks/useAuthContext";
-import Spinner from "./Spinner";
 import { useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";

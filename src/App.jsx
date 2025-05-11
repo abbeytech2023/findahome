@@ -14,12 +14,13 @@ import AnonymousRoute from "./components/AnonymousRoute";
 import MyAccount from "./pages/MyAccount";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
-import Spinner from "./components/Spinner";
-import MyProperties from "./pages/MyProperties";
+import { Spinner } from "./components/Spinner";
+// import MyProperties from "./pages/MyProperties";
 import PropertyToLetForm from "./components/CreatePropertiesToLetForm";
 import ProductSaleForm from "./components/ProductSaleForm";
 import Profile from "./components/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import Dashboard from "./pages/Homepage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,8 +36,10 @@ export default function App() {
   return (
     <div className="overflow-x-hidden">
       {!authIsReady && (
-        <div>
-          <Spinner className="flex justify-center items-center bg-red-800" />
+        <div className="flex justify-center items-center bg-red-800]">
+          <div>
+            <Spinner />
+          </div>
         </div>
       )}
       {authIsReady && (
@@ -46,14 +49,11 @@ export default function App() {
             <div className="flex flex-col min-h-screen ">
               <Header />
               <Routes>
-                <Route
-                  path="/"
-                  element={<Navigate replace to="/dashboard" />}
-                />
+                <Route path="/" element={<Navigate replace to="/homepage" />} />
                 <Route path="/sell" element={<Sell />} />
                 <Route path="/buy" element={<Buy />} />
                 <Route path="/rent" element={<Rent />} />
-                <Route path="/dashboard" element={<Homepage />} />
+                <Route path="/homepage" element={<Homepage />} />
                 <Route path="/findanagent" element={<FindAnAgent />} />
                 <Route element={<ProtectedRoutes />}>
                   <Route
@@ -62,7 +62,7 @@ export default function App() {
                     // element={<Navigate replace to="/myaccount/profile" />}
                   >
                     <Route path="profile" element={<Profile />} />
-                    <Route path="myproperties" element={<MyProperties />} />
+                    <Route path="dashboard" element={<Dashboard />} />
 
                     <Route
                       path="addpropertytolet"

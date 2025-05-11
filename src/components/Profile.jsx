@@ -4,7 +4,7 @@ import { fetchCollectionForAUser } from "../hooks/useCollections";
 
 import { useQuery } from "@tanstack/react-query";
 import ProfileFormEdit from "./ProfileFormEdit";
-import Spinner from "./Spinner";
+import { StyledSpinner } from "./Spinner";
 
 // .pizza.sold-out img {
 //   filter: grayscale();
@@ -21,11 +21,9 @@ function Profile() {
 
   return (
     <>
-      {user && (
-        <div className="flex w-full items-center justify-center flex-col text-lg mb-[10rem] ">
-          {!user ? <Spinner /> : <ProfileFormEdit user={user} />}
-        </div>
-      )}
+      <div className="flex w-full items-center justify-center flex-col text-lg mb-[10rem] ">
+        {!user ? <StyledSpinner /> : <ProfileFormEdit user={user} />}
+      </div>
     </>
   );
 }

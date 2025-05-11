@@ -1,5 +1,4 @@
-import Spinner from "../components/Spinner";
-import SpinnerMini from "../components/SpinnerMini";
+import { Spinner } from "../components/Spinner";
 
 export default function Advertisement() {
   return (

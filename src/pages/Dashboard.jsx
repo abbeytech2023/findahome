@@ -1,6 +1,6 @@
 import ProductCart from "../components/ProductCart";
 import PropertiesToLet from "../components/PropertiesToLet";
-import Spinner from "../components/Spinner";
+import { StyledSpinner } from "../components/Spinner";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useUserCollections } from "../hooks/useUserCollections";
 
@@ -21,8 +21,8 @@ export default function MyProperties() {
     ["createdAt", "desc"]
   );
   return (
-    <div className="flex flex-col">
-      {!documents || !propToLet ? <Spinner /> : null}
+    <div className="flex w-full items-center justify-center text-lg mb-[10rem]">
+      {!documents || !propToLet ? <StyledSpinner /> : null}
       {documents && <ProductCart documents={documents} />}
       {propToLet && <PropertiesToLet propToLet={propToLet} />}
     </div>

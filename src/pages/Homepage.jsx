@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { BgOverlay } from "../components/BgOverlay";
 import Image from "../assets/images/Image-search.jpg";
 import { BackgroundImage } from "../components/BackgroundImage";
+import Testimonials from "../components/Testimonials";
 import { GridInner } from "../components/Grid";
 import { Heading } from "../components/HeadingText";
 import IconBuy from "../assets/images/illusale.jpg";
@@ -43,9 +44,7 @@ const StyledLinkButton = styled(Link)`
   padding: 2rem 0.3rem;
 `;
 
-import {
- 
-} from "../hooks/useFetchProperties";
+import {} from "../hooks/useFetchProperties";
 import { Link } from "react-router-dom";
 
 const Section = styled.section`
@@ -144,6 +143,9 @@ export default function Dashboard() {
             <StyledLinkButton to="/rent">Our Surveyors</StyledLinkButton>
           </GridInner>
         </GridContainer>
+      </section>
+      <section className="mt-[2rem]">
+        <Testimonials />
       </section>
     </>
   );
