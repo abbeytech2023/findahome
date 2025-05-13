@@ -32,7 +32,7 @@ const CarouselItem = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 40vh;
+  /* height: 40vh; */
 
   text-align: center;
   flex-shrink: 0;
@@ -88,9 +88,11 @@ const Carousel = ({ comments }) => {
           comments.map((comment) => {
             return (
               <CarouselItem key={comment.id}>
-                <div className="flex flex-col justify-center items-center bg-[#071a25] text-[#fff] h-[12rem] max-w-[70%] min-w-[9rem] px-[3rem] py-5">
-                  <p>{comment.comment}</p>
-                  <p className=" mt-6">author: {comment.author}</p>
+                <div className="flex flex-col justify-center  items-center bg-[#071a25] text-[#fff]  max-w-[70%]  px-[3rem] py-5">
+                  <p className="mb-8">{comment.comment}</p>
+                  <p className="mb-9 font-semibold text-2xl">
+                    {comment.author}
+                  </p>
                 </div>
               </CarouselItem>
             );

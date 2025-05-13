@@ -145,7 +145,7 @@ export default function Dashboard() {
           </GridInner>
         </GridContainer>
       </section>
-      <section className="mt-[12rem] bg-[rgb(178,220,255)] ">
+      <section className="mt-[12rem]  ">
         <Testimonials />
       </section>
     </>
