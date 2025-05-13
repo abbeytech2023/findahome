@@ -17,7 +17,7 @@ const GridContainer = styled.div`
   grid-template-rows: auto;
   grid-gap: 2rem;
   padding: 3rem 2rem;
-  background-color: rgba(119, 119, 119, 0.137);
+  /* background-color: rgba(119, 119, 119, 0.137); */
 `;
 
 const StyledIconDiv = styled.div`
@@ -46,6 +46,7 @@ const StyledLinkButton = styled(Link)`
 
 import {} from "../hooks/useFetchProperties";
 import { Link } from "react-router-dom";
+import Carousel from "../components/Carousel";
 
 const Section = styled.section`
   color: blue;
@@ -144,7 +145,7 @@ export default function Dashboard() {
           </GridInner>
         </GridContainer>
       </section>
-      <section className="mt-[2rem]">
+      <section className="mt-[12rem] bg-[rgb(178,220,255)] ">
         <Testimonials />
       </section>
     </>
