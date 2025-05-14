@@ -4,7 +4,7 @@ import { StyledSpinner } from "../components/Spinner";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useUserCollections } from "../hooks/useUserCollections";
 
-export default function MyProperties() {
+export default function Dashboard() {
   const { user } = useAuthContext();
 
   const { documents, error } = useUserCollections(

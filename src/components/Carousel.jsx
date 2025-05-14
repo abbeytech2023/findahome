@@ -11,7 +11,7 @@ const StyledCarousel = styled.div`
 
   width: 80%;
   margin: 0 auto;
-  height: 50vh;
+  /* height: 70vh; */
   overflow: hidden;
 `;
 
@@ -23,6 +23,7 @@ const CarouselInner = styled.div`
   width: 100%;
   /* gap: 2rem; */
   transition: transform 0.5s ease-in-out;
+  /* position: relative; */
   /* overflow-x: hidden; */
 `;
 
@@ -46,6 +47,8 @@ const CarouselControl = styled.button`
   font-size: 24px;
   cursor: pointer;
   color: #144c6f;
+  color: #fff;
+
   border: none;
 `;
 
@@ -77,7 +80,9 @@ const Carousel = ({ comments }) => {
   return (
     <StyledCarousel>
       <div className="flex justify-center items-center text-center h-20">
-        <Heading as="h2">OUR TESTMONALS</Heading>
+        <Heading className="mb-10" as="h2">
+          OUR TESTMONALS
+        </Heading>
       </div>
       <CarouselInner
         style={{
@@ -88,7 +93,7 @@ const Carousel = ({ comments }) => {
           comments.map((comment) => {
             return (
               <CarouselItem key={comment.id}>
-                <div className="flex flex-col justify-center  items-center bg-[#071a25] text-[#fff]  max-w-[70%]  px-[3rem] py-5">
+                <div className="flex flex-col justify-center mb-10  items-center bg-[#071a25] text-[#fff] w-[100%] px-[3rem] py-5">
                   <p className="mb-8">{comment.comment}</p>
                   <p className="mb-9 font-semibold text-2xl">
                     {comment.author}
@@ -98,10 +103,10 @@ const Carousel = ({ comments }) => {
             );
           })}
       </CarouselInner>
-      <CarouselControl className="left-[20px]" onClick={goToPrevSlide}>
+      <CarouselControl className="left-[0px]" onClick={goToPrevSlide}>
         <FaAngleLeft />
       </CarouselControl>
-      <CarouselControl className="right-[20px]" onClick={goToNextSlide}>
+      <CarouselControl className="right-[0px]" onClick={goToNextSlide}>
         <FaAngleRight />
       </CarouselControl>
       <CarouselIndicator>

@@ -20,7 +20,7 @@ import PropertyToLetForm from "./components/CreatePropertiesToLetForm";
 import ProductSaleForm from "./components/ProductSaleForm";
 import Profile from "./components/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import Dashboard from "./pages/Homepage";
+import Dashboard from "./components/Dashboard";
 
 const queryClient = new QueryClient({
   defaultOptions: {
