@@ -26,7 +26,7 @@ export default function Dashboard() {
       <div>{documents && <ProductCart documents={documents} />}</div>
 
       <div className="">
-        {propToLet && <PropertiesToLet propToLet={propToLet} />}{" "}
+        {propToLet && <PropertiesToLet propToLet={propToLet} />}
       </div>
     </div>
   );

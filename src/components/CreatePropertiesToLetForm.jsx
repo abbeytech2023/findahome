@@ -34,7 +34,7 @@ export default function PropertyToLetForm({ uid }) {
 
   const document = userDoc && userDoc.filter((doc) => doc.id === uid);
 
-  const phoneNumber = document && document[0]?.mobilePhone;
+  const phoneNumber = document && document[0].mobilePhone;
 
   // const mobilePhone = document?.mobilePhone;
 
