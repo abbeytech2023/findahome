@@ -1,7 +1,7 @@
 // Here's a simple carousel logic in React:
 
 import "../index.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import styled from "styled-components";
 import { Heading } from "./HeadingText";
@@ -76,6 +76,14 @@ const Carousel = ({ comments }) => {
   const goToNextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % comments.length);
   };
+
+  useEffect(() => {
+    const intervalid = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % comments.length);
+    }, 5000);
+
+    return () => clearInterval(intervalid);
+  }, [comments.length]);
 
   return (
     <StyledCarousel>
