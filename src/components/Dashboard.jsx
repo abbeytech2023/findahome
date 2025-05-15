@@ -21,10 +21,13 @@ export default function Dashboard() {
     ["createdAt", "desc"]
   );
   return (
-    <div className="flex w-full items-center justify-center text-lg mb-[10rem]">
-      {!documents || !propToLet ? <StyledSpinner /> : null}
-      {documents && <ProductCart documents={documents} />}
-      {propToLet && <PropertiesToLet propToLet={propToLet} />}
+    <div className="flex flex-col w-full items-center justify-center text-lg mb-[10rem]">
+      <div> {!documents || !propToLet ? <StyledSpinner /> : null} </div>
+      <div>{documents && <ProductCart documents={documents} />}</div>
+
+      <div className="">
+        {propToLet && <PropertiesToLet propToLet={propToLet} />}{" "}
+      </div>
     </div>
   );
 }

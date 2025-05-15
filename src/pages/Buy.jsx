@@ -4,6 +4,7 @@ import ProductCart from "../components/ProductCart";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useFetchPropertiesForSale } from "../hooks/useFetchProperties";
 import { Heading } from "../components/HeadingText";
+import { StyledSpinner } from "../components/Spinner";
 
 export default function Buy() {
   const { user } = useAuthContext();
@@ -39,7 +40,9 @@ export default function Buy() {
 
       {/* ------------------- BUY RENT SELL SECTION -------------  */}
       <div className="mt-[15rem]">
-        {user && (
+        {!documents ? (
+          <StyledSpinner />
+        ) : (
           <section>
             {documents && <ProductCart documents={documents} />}
           </section>

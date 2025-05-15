@@ -13,7 +13,7 @@ export default function MyAccount() {
         <div className="z-[8] fixed top-16 lg:hidden xl:hidden">
           <SideNavBar />
         </div>
-        <div className="flex w-7rem justify-center">
+        <div className="flex  justify-center">
           <div className="text-[#fff] absolute left-6 top-[8rem]  sm:hidden md:hidden lg:block xl:block min-[0px]:hidden ">
             <SideBarTabbed />
           </div>
