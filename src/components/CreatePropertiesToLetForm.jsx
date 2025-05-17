@@ -5,10 +5,10 @@ import Button from "./Button";
 import FormRow from "./FormRow";
 import StyledInput from "./StyledInput";
 import styled from "styled-components";
-import { Heading } from "./HeadingText";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useFetchUsers } from "../hooks/useFetchProperties";
+import { StyledSpinner } from "./Spinner";
 
 export default function PropertyToLetForm({ uid }) {
   const { userDoc } = useFetchUsers();
@@ -34,7 +34,7 @@ export default function PropertyToLetForm({ uid }) {
 
   const document = userDoc && userDoc.filter((doc) => doc.id === uid);
 
-  const phoneNumber = document && document[0].mobilePhone;
+  const phoneNumber = document && document[0]?.mobilePhone;
 
   // const mobilePhone = document?.mobilePhone;
 
@@ -74,67 +74,71 @@ export default function PropertyToLetForm({ uid }) {
         {/* <Heading as="h2">Properties To Let Form</Heading> */}
 
         <div className="flex justify-center items-center">
-          <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
-            <FormRow
-              label="Property Description"
-              error={errors?.propertyDescription?.message}
-            >
-              <StyledInput
-                type="text"
-                placeHolder="describe the property"
-                id="propertyDescription"
-                {...register("propertyDescription", {
-                  required: "This field is required",
-                })}
-              />
-            </FormRow>
-            <FormRow
-              label="Property-Location"
-              error={errors?.propertyLocation?.message}
-            >
-              <StyledInput
-                type="text"
-                id="propertyLocation"
-                {...register("propertyLocation", {
-                  required: "This field is required",
-                })}
-              />
-            </FormRow>
-            <FormRow label="State" error={errors?.State?.message}>
-              <StyledInput
-                type="text"
-                id="state"
-                {...register("State", {
-                  required: "This field is required",
-                })}
-              />
-            </FormRow>
-            <FormRow
-              label="Local-Government"
-              error={errors?.localGovernment?.message}
-            >
-              <StyledInput
-                type="text"
-                id="localGovernment"
-                {...register("localGovernment", {
-                  required: "This field is required",
-                })}
-              />
-            </FormRow>
+          {!document ? (
+            <StyledSpinner />
+          ) : (
+            <Form onSubmit={onSubmit} handleSubmit={handleSubmit}>
+              <FormRow
+                label="Property Description"
+                error={errors?.propertyDescription?.message}
+              >
+                <StyledInput
+                  type="text"
+                  placeHolder="describe the property"
+                  id="propertyDescription"
+                  {...register("propertyDescription", {
+                    required: "This field is required",
+                  })}
+                />
+              </FormRow>
+              <FormRow
+                label="Property-Location"
+                error={errors?.propertyLocation?.message}
+              >
+                <StyledInput
+                  type="text"
+                  id="propertyLocation"
+                  {...register("propertyLocation", {
+                    required: "This field is required",
+                  })}
+                />
+              </FormRow>
+              <FormRow label="State" error={errors?.State?.message}>
+                <StyledInput
+                  type="text"
+                  id="state"
+                  {...register("State", {
+                    required: "This field is required",
+                  })}
+                />
+              </FormRow>
+              <FormRow
+                label="Local-Government"
+                error={errors?.localGovernment?.message}
+              >
+                <StyledInput
+                  type="text"
+                  id="localGovernment"
+                  {...register("localGovernment", {
+                    required: "This field is required",
+                  })}
+                />
+              </FormRow>
 
-            <FormRow>
-              {!isPending && (
-                <Button type="primary" className="mt-12">
-                  Complete
-                </Button>
-              )}
-              {isPending && (
-                <Button type="primary" disabled>
-                  loading...
-                </Button>
-              )}
-            </FormRow>
-          </Form>
+              <FormRow>
+                {!isPending && (
+                  <Button type="primary" className="mt-12">
+                    Complete
+                  </Button>
+                )}
+                {isPending && (
+                  <Button type="primary" disabled>
+                    loading...
+                  </Button>
+                )}
+              </FormRow>
+            </Form>
+          )}
         </div>
       </div>
     </div>

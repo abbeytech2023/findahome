@@ -50,9 +50,9 @@ export default function Navigation() {
 
         <StyledNavLink to="/findanagent">Find an Agent</StyledNavLink>
       </div>
-      <NavLink>
+      <div>
         <Logo />
-      </NavLink>
+      </div>
 
       <div className="flex items-center justify-between  basis-1/3">
         {user && (

@@ -67,6 +67,9 @@ const ProfileFormEdit = ({ user }) => {
   const [officeAdress, setOfficeAdress] = useState();
   const [occupation, setOccupation] = useState();
   const [mobilePhone, setMobilePhone] = useState();
+  const [googleLink, setGoogleLink] = useState();
+  const [instagramLink, setInstagramLink] = useState();
+  const [facebookLink, setFacebookLink] = useState();
 
   const inputRefState = useRef(null);
   const inputRefLocalGovt = useRef(null);
@@ -76,6 +79,9 @@ const ProfileFormEdit = ({ user }) => {
   const inputRefGener = useRef(null);
   const inputRefOccupation = useRef(null);
   const inputRefMobilePhone = useRef(null);
+  const inputRefGoogleLink = useRef(null);
+  const inputRefInstagram = useRef(null);
+  const inputRefFacebook = useRef(null);
 
   useEffect(() => {
     const getUserDetails = () => {
@@ -89,6 +95,9 @@ const ProfileFormEdit = ({ user }) => {
       setOfficeAdress(user && user.officeAdress);
       setOccupation(user && user.occupation);
       setMobilePhone(user && user.mobilePhone);
+      setGoogleLink(user && user.googleLink);
+      setFacebookLink(user && user.googleLink);
+      setInstagramLink(user && user.googleLink);
     };
     getUserDetails();
   }, [user]);
@@ -396,6 +405,105 @@ const ProfileFormEdit = ({ user }) => {
               console.log(mobilePhone);
 
               mutate({ mobilePhone });
+            }}
+          >
+            <RiSave2Fill />
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+      <StyledFormDiv>
+        <LabelInputDiv>
+          <label>Google business</label>
+          <input
+            disabled={disable}
+            ref={inputRefGoogleLink}
+            value={googleLink}
+            onChange={(e) => {
+              setGoogleLink(e.target.value);
+            }}
+          />
+        </LabelInputDiv>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefGoogleLink.current.focus();
+              inputRefGoogleLink.current.disabled = false;
+            }}
+          >
+            <PiNotePencilThin />
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefGoogleLink.current.disabled = true;
+              mutate({ googleLink });
+            }}
+          >
+            <RiSave2Fill />
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+      <StyledFormDiv>
+        <LabelInputDiv>
+          <label>Facebook profile</label>
+          <input
+            disabled={disable}
+            ref={inputRefFacebook}
+            value={facebookLink}
+            onChange={(e) => {
+              setFacebookLink(e.target.value);
+            }}
+          />
+        </LabelInputDiv>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefFacebook.current.focus();
+              inputRefFacebook.current.disabled = false;
+            }}
+          >
+            <PiNotePencilThin />
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefFacebook.current.disabled = true;
+              mutate({ facebookLink });
+            }}
+          >
+            <RiSave2Fill />
+          </EditSaaveButton>
+        </StyledContainerEditSave>
+      </StyledFormDiv>
+      <StyledFormDiv>
+        <LabelInputDiv>
+          <label>Instagram</label>
+          <input
+            disabled={disable}
+            ref={inputRefInstagram}
+            value={instagramLink}
+            onChange={(e) => {
+              setInstagramLink(e.target.value);
+            }}
+          />
+        </LabelInputDiv>
+        <StyledContainerEditSave>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefInstagram.current.focus();
+              inputRefInstagram.current.disabled = false;
+            }}
+          >
+            <PiNotePencilThin />
+          </EditSaaveButton>
+          <EditSaaveButton
+            onClick={(e) => {
+              e.preventDefault();
+              inputRefInstagram.current.disabled = true;
+              mutate({ instagramLink });
             }}
           >
             <RiSave2Fill />

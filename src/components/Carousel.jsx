@@ -101,7 +101,7 @@ const Carousel = ({ comments }) => {
           comments.map((comment) => {
             return (
               <CarouselItem key={comment.id}>
-                <div className="flex flex-col justify-center mb-10  items-center bg-[#071a25] text-[#fff] w-[100%] px-[3rem] py-5">
+                <div className="flex flex-col justify-center mb-10  items-center bg-[#071a25] text-[#fff] w-[100%] px-[3rem] py-16">
                   <p className="mb-8">{comment.comment}</p>
                   <p className="mb-9 font-semibold text-2xl">
                     {comment.author}
