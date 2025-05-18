@@ -8,12 +8,25 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledUserDiv = styled.div`
-  padding: 1.4 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* align-items: center; */
+  justify-content: center;
+  padding-right: 2.5rem;
+  padding-left: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   border-radius: 1rem;
   box-shadow: 3px 3px 8px rgba(85, 85, 85, 0.487);
-  width: 25rem;
-  height: 20rem;
+  /* max-width: 20rem; */
+  height: 29rem;
   font-size: 1.12rem;
+`;
+
+const StyledUserParagraph = styled.div`
+  display: flex;
+  width: 18rem;
 `;
 
 export default function AgentCart({ documents }) {
@@ -27,14 +40,28 @@ export default function AgentCart({ documents }) {
 
           return (
             <StyledUserDiv key={doc.id}>
-              <p>Name {doc.displayName}</p>
-              <p>email: {doc.email}</p>
-              {doc.mobilePhone && <p>Mobile: {doc.mobilePhone}</p>}
-              {doc.homeAdress && <p>Home-address: {doc.homeAdress}</p>}
-              <p>Gender: {doc.gender}</p>
-              {doc.occupation && <p>Gender: {doc.occupation}</p>}
-              <p>office-adress: {doc.officeAdress}</p>
-              <p>state: {doc.state}</p>
+              <StyledUserParagraph>Name {doc.displayName}</StyledUserParagraph>
+              <StyledUserParagraph>email: {doc.email}</StyledUserParagraph>
+              {doc.mobilePhone && (
+                <StyledUserParagraph>
+                  Mobile: {doc.mobilePhone}
+                </StyledUserParagraph>
+              )}
+              {doc.homeAdress && (
+                <StyledUserParagraph>
+                  Home-address: {doc.homeAdress}
+                </StyledUserParagraph>
+              )}
+              <StyledUserParagraph>Gender: {doc.gender}</StyledUserParagraph>
+              {doc.occupation && (
+                <StyledUserParagraph>
+                  Gender: {doc.occupation}
+                </StyledUserParagraph>
+              )}
+              <StyledUserParagraph>
+                office-adress: {doc.officeAdress}
+              </StyledUserParagraph>
+              <StyledUserParagraph>state: {doc.state}</StyledUserParagraph>
               {doc.googleLink && (
                 <p className="flex gap-3">
                   <CgGoogle className="text-2xl" />:{" "}
@@ -53,7 +80,7 @@ export default function AgentCart({ documents }) {
                   {<Link to={doc.facebookLink}>click-here</Link>}
                 </p>
               )}
-              <p></p>
+              <StyledUserParagraph></StyledUserParagraph>
             </StyledUserDiv>
           );
         })}
