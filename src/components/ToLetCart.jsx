@@ -12,6 +12,15 @@ const ToLetContainer = styled.div`
   gap: 2rem;
 `;
 
+const StyledDivToLet = styled.div`
+  display: flex;
+  flex-direction: justify-between;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 8px rgba(85, 85, 85, 0.487);
+  padding-top: 1.2rem;
+  width: 15rem;
+`;
+
 export const ToLetCart = ({ documents }) => {
   const { mutate } = useDeleteMutateToLets("Tolet");
   console.log(documents);
@@ -21,9 +30,9 @@ export const ToLetCart = ({ documents }) => {
       {documents &&
         documents.map((doc) => {
           return (
-            <div
+            <StyledDivToLet
               key={doc.uid}
-              className="border-[1px] pt-5 flex flex-col justify-between   border-[#144c6f] w-[12rem]"
+              className="  flex flex-col justify-between   border-[#144c6f] w-[12rem]"
             >
               <p className=" px-4">
                 {doc.propertyDescription}, {doc.propertyLocation}
@@ -36,7 +45,7 @@ export const ToLetCart = ({ documents }) => {
                   <MdDialerSip />:<p>{doc.phoneNumber}</p>
                 </div>
               </div>
-            </div>
+            </StyledDivToLet>
           );
         })}
     </ToLetContainer>

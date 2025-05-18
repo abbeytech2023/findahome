@@ -32,6 +32,7 @@ export default function AgentCart({ documents }) {
               {doc.mobilePhone && <p>Mobile: {doc.mobilePhone}</p>}
               {doc.homeAdress && <p>Home-address: {doc.homeAdress}</p>}
               <p>Gender: {doc.gender}</p>
+              {doc.occupation && <p>Gender: {doc.occupation}</p>}
               <p>office-adress: {doc.officeAdress}</p>
               <p>state: {doc.state}</p>
               {doc.googleLink && (

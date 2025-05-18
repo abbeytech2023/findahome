@@ -80,7 +80,7 @@ const Carousel = ({ comments }) => {
   useEffect(() => {
     const intervalid = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % comments.length);
-    }, 5000);
+    }, 7000);
 
     return () => clearInterval(intervalid);
   }, [comments.length]);
