@@ -1,6 +1,7 @@
 import { Heading } from "../components/HeadingText";
 import StarRating from "../components/StarRating";
-import { useCollections } from "../hooks/useCollections";
+import { StyledSpinner } from "../components/Spinner";
+import SpinnerMini from "../components/SpinnerMini";
 import { useFetchUsers } from "../hooks/useFetchProperties";
 import AgentCart from "../components/AgentCart";
 
@@ -13,7 +14,8 @@ export default function FindAnAgent() {
         Find an Agent
       </Heading>
 
-      <AgentCart documents={userDoc} />
+      {!userDoc && <SpinnerMini />}
+      {userDoc && <AgentCart documents={userDoc} />}
     </div>
   );
 }
